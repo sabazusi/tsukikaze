@@ -1,0 +1,19 @@
+{
+  "name": "yukikaze",
+  "version": "0.0.1",
+  "description": "simple twitter client.",
+  "main": "src/browser/yukikaze.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabazusi/yukikaze.git"
+  },
+  "author": "sabazusi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sabazusi/yukikaze/issues"
+  },
+  "homepage": "https://github.com/sabazusi/yukikaze#readme"
+}
