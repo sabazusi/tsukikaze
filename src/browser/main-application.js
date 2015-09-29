@@ -5,6 +5,7 @@ export default class MainApplication
 {
 	constructor()
 	{
+		this.window = null;
 	}
 
 	start()

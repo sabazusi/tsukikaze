@@ -7,7 +7,9 @@ export default class MainWindow
 		const windowProperty = 
 		{
 			width: 400,
-			height: 800
+			height: 700,
+			frame: false,
+			resizable: false
 		};
 		const renderFilePath = "file://" + __dirname + "/../../renderer/main.html";
 
