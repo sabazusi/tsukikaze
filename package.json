@@ -2,9 +2,9 @@
   "name": "yukikaze",
   "version": "0.0.1",
   "description": "simple twitter client.",
-  "main": "src/browser/yukikaze.js",
+  "main": "app/browser/yukikaze.js",
   "scripts": {
-    "test": "test"
+    "compile": "gulp compile"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/sabazusi/yukikaze/issues"
   },
-  "homepage": "https://github.com/sabazusi/yukikaze#readme"
+  "homepage": "https://github.com/sabazusi/yukikaze#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-load-plugins": "^0.10.0"
+  }
 }
