@@ -1,21 +1,21 @@
 {
-  "name": "yukikaze",
+  "name": "tsukikaze",
   "version": "0.0.1",
   "description": "simple twitter client.",
-  "main": "app/browser/yukikaze.js",
+  "main": "app/browser/tsukikaze.js",
   "scripts": {
     "compile": "gulp compile"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sabazusi/yukikaze.git"
+    "url": "git+https://github.com/sabazusi/tsukikaze.git"
   },
   "author": "sabazusi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sabazusi/yukikaze/issues"
+    "url": "https://github.com/sabazusi/tsukikaze/issues"
   },
-  "homepage": "https://github.com/sabazusi/yukikaze#readme",
+  "homepage": "https://github.com/sabazusi/tsukikaze#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",

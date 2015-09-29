@@ -1,2 +1,2 @@
-# yukikaze
+# tsukikaze
 twitter client for desktop.
