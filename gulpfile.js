@@ -1,8 +1,9 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var sym = require('gulp-sym');
+var sass = require('gulp-sass');
 
-gulp.task('compile', ['compile-js', 'compile-html', 'symlink']);
+gulp.task('compile', ['compile-js', 'compile-html', 'compile-sass', 'symlink']);
 
 gulp.task('compile-js', function(){
 	return gulp.src('src/**/*.{js,jsx}')
@@ -14,7 +15,13 @@ gulp.task('compile-js', function(){
 
 gulp.task('compile-html', function(){
 	return gulp.src('src/**/*.html')
-			.pipe(gulp.dest('dest'));
+				.pipe(gulp.dest('dest'));
+});
+
+gulp.task('compile-sass', function(){
+	gulp.src('src/**/*.sass')
+		.pipe(sass({includePaths:['node_modules']}))
+		.pipe(gulp.dest('dest'));
 });
 
 gulp.task('symlink', function(){
