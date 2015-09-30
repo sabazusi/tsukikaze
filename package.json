@@ -19,6 +19,10 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
-    "gulp-load-plugins": "^0.10.0"
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-sym": "0.0.14"
+  },
+  "dependencies": {
+    "font-awesome": "^4.4.0"
   }
 }
