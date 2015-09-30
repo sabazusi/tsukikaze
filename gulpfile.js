@@ -9,15 +9,15 @@ gulp.task('compile-js', function(){
 			.pipe($.babel({
 				stage: 0
 			}))
-			.pipe(gulp.dest('app'));
+			.pipe(gulp.dest('dest'));
 });
 
 gulp.task('compile-html', function(){
 	return gulp.src('src/**/*.html')
-			.pipe(gulp.dest('app'));
+			.pipe(gulp.dest('dest'));
 });
 
 gulp.task('symlink', function(){
 	gulp.src('node_modules/font-awesome/fonts')
-	.pipe(sym('app/renderer/fonts', {force:true}));
+	.pipe(sym('dest/renderer/fonts', {force:true}));
 });

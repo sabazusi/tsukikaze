@@ -2,7 +2,7 @@
   "name": "tsukikaze",
   "version": "0.0.1",
   "description": "simple twitter client.",
-  "main": "app/browser/tsukikaze.js",
+  "main": "dest/browser/tsukikaze.js",
   "scripts": {
     "compile": "gulp compile"
   },
