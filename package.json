@@ -1,30 +1,32 @@
 {
-	"name": "tsukikaze",
-	"version": "0.0.1",
-	"description": "simple twitter client.",
-	"main": "dest/browser/tsukikaze.js",
-	"scripts": {
-		"compile": "gulp compile",
-		"start" : "gulp compile && electron ."
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/sabazusi/tsukikaze.git"
-	},
-	"author": "sabazusi",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/sabazusi/tsukikaze/issues"
-	},
-	"homepage": "https://github.com/sabazusi/tsukikaze#readme",
-	"devDependencies": {
-		"gulp": "^3.9.0",
-		"gulp-babel": "^5.2.1",
-		"gulp-load-plugins": "^0.10.0",
-		"gulp-sass": "^2.0.4",
-		"gulp-sym": "0.0.14"
-	},
-	"dependencies": {
-		"font-awesome": "^4.4.0"
-	}
+  "name": "tsukikaze",
+  "version": "0.0.1",
+  "description": "simple twitter client.",
+  "main": "dest/browser/tsukikaze.js",
+  "scripts": {
+    "compile": "gulp compile",
+    "package": "electron-packager dest tsukikaze --platform=darwin --arch=x64 --version=0.33.6 --icon=resources/tsukikaze.icns  --overwrite",
+    "start": "gulp compile && electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabazusi/tsukikaze.git"
+  },
+  "author": "sabazusi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sabazusi/tsukikaze/issues"
+  },
+  "homepage": "https://github.com/sabazusi/tsukikaze#readme",
+  "devDependencies": {
+    "electron-packager": "^5.1.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sym": "0.0.14"
+  },
+  "dependencies": {
+    "font-awesome": "^4.4.0"
+  }
 }
