@@ -3,7 +3,7 @@ var $ = require('gulp-load-plugins')();
 var sym = require('gulp-sym');
 var sass = require('gulp-sass');
 
-gulp.task('compile', ['compile-js', 'compile-html', 'compile-sass', 'symlink']);
+gulp.task('compile', ['compile-js', 'compile-html', 'symlink', 'compile-sass']);
 
 gulp.task('compile-js', function(){
 	return gulp.src('src/**/*.{js,jsx}')
@@ -26,5 +26,5 @@ gulp.task('compile-sass', function(){
 
 gulp.task('symlink', function(){
 	gulp.src('node_modules/font-awesome/fonts')
-	.pipe(sym('dest/renderer/fonts', {force:true}));
+	.pipe(sym('dest/renderer/mock/fonts', {force:true}));
 });

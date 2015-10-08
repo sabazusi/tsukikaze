@@ -11,7 +11,7 @@ export default class MainWindow
 			frame: false,
 			resizable: false
 		};
-		const renderFilePath = "file://" + __dirname + "/../../renderer/main.html";
+		const renderFilePath = "file://" + __dirname + "/../../renderer/mock/main.html";
 
 		this.window = new BrowserWindow(windowProperty);
 
