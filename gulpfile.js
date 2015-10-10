@@ -3,7 +3,11 @@ var $ = require('gulp-load-plugins')();
 var sym = require('gulp-sym');
 var sass = require('gulp-sass');
 
-gulp.task('compile', ['compile-js', 'compile-html', 'symlink', 'compile-sass']);
+gulp.task('compile', ['copy-assets', 'compile-js', 'compile-html', 'symlink', 'compile-sass']);
+
+gulp.task('copy-assets', function(){
+	return gulp.src('src/**/*.json').pipe(gulp.dest('dest'));
+})
 
 gulp.task('compile-js', function(){
 	return gulp.src('src/**/*.{js,jsx}')
