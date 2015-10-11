@@ -1,26 +1,28 @@
-import { EventEmitter } from 'events'
 import Fs from 'fs'
 import Path from 'path'
 
-export default class MockDataLoader extends EventEmitter
+export default class MockDataLoader
 {
 	constructor()
 	{
-		super();
 	}
 
-	load()
+	load(emitter)
 	{
 		var filePath = Path.normalize(__dirname + "/assets/dummy_timeline.json");
-		console.log("-----------");
-		console.log(filePath);
 		Fs.access(filePath, function(error)
 					{
 						if (error)
 						{
 							console.log("error");
 						}
-						console.log("ok");
+						else
+						{
+							Fs.readFile(filePath, function(error, data)
+								{
+									emitter.emit("dummy_data_loaded", JSON.parse(data));
+								});
+						}
 					}
 				);
 	}
