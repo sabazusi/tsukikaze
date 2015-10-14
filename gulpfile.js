@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var sym = require('gulp-sym');
 var sass = require('gulp-sass');
+var electron = require('electron-connect').server.create();
 
 gulp.task('compile', ['copy-assets', 'compile-js', 'compile-html', 'symlink', 'compile-sass']);
 
@@ -31,4 +32,11 @@ gulp.task('compile-sass', function(){
 gulp.task('symlink', function(){
 	gulp.src('node_modules/font-awesome/fonts')
 	.pipe(sym('dest/renderer/mock/fonts', {force:true}));
+});
+
+gulp.task('start', ['compile'], function(){
+	electron.start();
+
+	gulp.watch("src/**/*.{js,html}", ['compile']);
+	gulp.watch("dest/browser/tsukikaze.js", electron.restart);
 });

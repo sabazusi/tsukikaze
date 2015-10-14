@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/sabazusi/tsukikaze#readme",
   "devDependencies": {
+    "electron-connect": "^0.3.3",
     "electron-packager": "^5.1.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
