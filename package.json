@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "gulp compile",
     "package": "electron-packager dest tsukikaze --platform=darwin --arch=x64 --version=0.33.6 --icon=resources/tsukikaze.icns  --overwrite",
-    "start": "gulp compile && electron ."
+    "start": "gulp start"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "electron-connect": "^0.3.3",
     "electron-packager": "^5.1.0",
+    "electron-prebuilt": "^0.33.8",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
     "gulp-load-plugins": "^0.10.0",

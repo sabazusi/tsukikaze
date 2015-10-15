@@ -8,7 +8,7 @@ export default class MainWindow
 		{
 			width: 400,
 			height: 700,
-			frame: false,
+			frame: true,
 			resizable: false
 		};
 		const renderFilePath = "file://" + __dirname + "/../../renderer/mock/main.html";
