@@ -38,5 +38,5 @@ gulp.task('start', ['compile'], function(){
 	electron.start();
 
 	gulp.watch("src/**/*.{js,html}", ['compile']);
-	gulp.watch("dest/browser/tsukikaze.js", electron.restart);
+	gulp.watch("dest/main/tsukikaze.js", electron.restart);
 });

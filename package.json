@@ -2,7 +2,7 @@
   "name": "tsukikaze",
   "version": "0.0.1",
   "description": "simple twitter client.",
-  "main": "dest/browser/tsukikaze.js",
+  "main": "dest/main/tsukikaze.js",
   "scripts": {
     "compile": "gulp compile",
     "package": "electron-packager dest tsukikaze --platform=darwin --arch=x64 --version=0.33.6 --icon=resources/tsukikaze.icns  --overwrite",
