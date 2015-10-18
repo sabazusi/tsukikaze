@@ -31,7 +31,8 @@ gulp.task('compile-sass', function(){
 
 gulp.task('symlink', function(){
 	gulp.src('node_modules/font-awesome/fonts')
-	.pipe(sym('dest/renderer/mock/fonts', {force:true}));
+	.pipe(sym('dest/renderer/fonts', {force:true}));
+	//.pipe(sym('dest/renderer/mock/fonts', {force:true}));
 });
 
 gulp.task('start', ['compile'], function(){

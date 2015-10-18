@@ -5,7 +5,7 @@ import MockDataLoader from './loader'
 
 let emitter = new EventEmitter;
 emitter.on('dummy_data_loaded', function(data){
-	console.log("data_received");
+    console.log("data_received");
 });
 
 new MockDataLoader().load(emitter);
