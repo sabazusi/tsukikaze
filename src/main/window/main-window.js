@@ -1,9 +1,9 @@
-import BrowserWindow from 'browser-window'
+import electronWindow from 'electron-window'
+import path from 'path'
 
 export default class MainWindow
 {
-	constructor()
-	{
+	constructor() {
 		const windowProperty = 
 		{
 			width: 400,
@@ -11,15 +11,15 @@ export default class MainWindow
 			frame: true,
 			resizable: false
 		};
-		const renderFilePath = "file://" + __dirname + "/../../renderer/mock/main.html";
 
-		this.window = new BrowserWindow(windowProperty);
+		this._window = electronWindow.createWindow(windowProperty);
+		this.show();
+	}
 
-		this.window.loadUrl(renderFilePath);
-
-		this.window.on('closed', () =>
-		{
-			this.window = null;
+	show () {
+		const renderFilePath = path.resolve(__dirname, '../../', 'renderer', 'main.html');
+		this._window.showUrl(renderFilePath, {}, function() {
+			console.log('window created.');
 		});
 	}
 }

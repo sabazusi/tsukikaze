@@ -1,7 +1,6 @@
 {
   "name": "tsukikaze",
   "version": "0.0.1",
-  "description": "simple twitter client.",
   "main": "dest/main/tsukikaze.js",
   "scripts": {
     "compile": "gulp compile",
@@ -29,6 +28,7 @@
     "gulp-sym": "0.0.14"
   },
   "dependencies": {
+    "electron-window": "^0.6.0",
     "font-awesome": "^4.4.0"
   }
 }
