@@ -2,3 +2,4 @@ dest
 node_modules
 .DS_Store
 tsukikaze-darwin-x64
+npm-debug.log
