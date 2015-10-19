@@ -1,10 +1,19 @@
 import ipc from 'ipc'
+import ApplicationInitializer from '../initializer'
 
-if (localStorage.getItem("twitter-credential")){
-    console.log(localStorage.getItem("twitter-credential"));
+ipc.on('login-succeeded', function(e, args) {
+    // login succeeded
+    new ApplicationInitializer().run();
+});
+
+ipc.on('login-succeeded-with-authentication', function(e, newKey) {
+    // login succeeded with new authentication.
+    localStorage.setItem('twitter-login-keys', newKey);
+});
+
+let loginKeys = localStorage.getItem('twitter-login-keys');
+if (loginKeys) {
+    ipc.send('login-twitter', loginKeys);
 } else {
-    ipc.send('need-authentication');
-    localStorage.setItem("twitter-credential", 123);
+    ipc.send('authenticate-twitter');
 }
-
-localStorage.clear();

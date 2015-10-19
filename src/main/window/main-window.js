@@ -16,10 +16,14 @@ export default class MainWindow
 		this.show();
 	}
 
-	show () {
+	show() {
 		const renderFilePath = path.resolve(__dirname, '../../', 'renderer', 'main.html');
 		this._window.showUrl(renderFilePath, {}, function() {
 			console.log('window created.');
 		});
+	}
+
+	send(...args) {
+		this._window.webContents.send(...args);
 	}
 }

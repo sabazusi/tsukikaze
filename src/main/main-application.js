@@ -10,7 +10,7 @@ export default class MainApplication
 	}
 
 	start() {
-		ipc.on('need-authentication', this._authentication.bind(this));
+		ipc.on('authenticate-twitter', this._authentication.bind(this));
 		app.on('ready', this._onReady.bind(this));
 	}
 
@@ -23,5 +23,7 @@ export default class MainApplication
 
 		this.authenticationWindow = new AuthenticationWindow();
 		this.authenticationWindow.show();
+
+		this.mainWindow.send('login-succeeded');
 	}
 }
