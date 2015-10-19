@@ -17,7 +17,7 @@ export default class MainWindow
 	}
 
 	show() {
-		const renderFilePath = path.resolve(__dirname, '../../', 'renderer', 'main.html');
+		let renderFilePath = path.resolve(__dirname, '../../', 'renderer', 'main.html');
 		this._window.showUrl(renderFilePath, {}, function() {
 			console.log('window created.');
 		});

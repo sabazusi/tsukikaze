@@ -19,10 +19,12 @@ export default class MainApplication
 	}
 
 	_authentication() {
-		console.log("authentication start.");
+		console.log('authentication start.');
 
-		this.authenticationWindow = new AuthenticationWindow();
-		this.authenticationWindow.show();
+		setTimeout(function(){
+			this.authenticationWindow = new AuthenticationWindow();
+			this.authenticationWindow.show();
+		}, 1000);
 
 		this.mainWindow.send('login-succeeded');
 	}
