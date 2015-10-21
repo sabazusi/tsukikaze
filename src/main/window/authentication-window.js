@@ -12,6 +12,7 @@ export default class AuthenticationWindow
             height: 500,
             frame: false,
             resizable: false,
+            'node-integration' : false,
             'always-on-top': true
         };
 
@@ -27,6 +28,21 @@ export default class AuthenticationWindow
             consumerSecret: credential.consumerSecret,
             callback: credential.callback
         });
-        this._window.showUrl(credentialFilePath);
+
+        twitterAPI.getRequestToken((error, requestToken, requestTokenSecret) => {
+            this._window.webContents.on('will-navigate', (event, url) => {
+                event.preventDefault();
+                var matched;
+                if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/))
+                {
+                    twitterAPI.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
+                        // get access token.
+                    });
+                }
+            });
+
+            let url = twitterAPI.getAuthUrl(requestToken) + '&force_login=true';
+            this._window.showUrl(url);
+        });
     }
 }
