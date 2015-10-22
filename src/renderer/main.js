@@ -14,7 +14,7 @@ ipc.on('login-succeeded-with-authentication', function(e, newKey) {
 localStorage.clear();
 let loginKeys = localStorage.getItem('twitter-login-keys');
 if (loginKeys) {
-    ipc.send('login-twitter', loginKeys);
+    ipc.send('login-twitter', loginKeys.accessToken, loginKeys.accessTokenSecrent);
 } else {
     ipc.send('authenticate-twitter');
 }

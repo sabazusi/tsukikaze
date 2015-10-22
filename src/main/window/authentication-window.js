@@ -1,11 +1,11 @@
+import { EventEmitter } from 'events'
 import electronWindow from 'electron-window'
 import TwitterAPI from 'node-twitter-api'
-import jsonLoader from 'jsonloader'
-import path from 'path'
 
-export default class AuthenticationWindow
+export default class AuthenticationWindow extends EventEmitter
 {
     constructor() {
+        super();
         const windowProperty = 
         {
             width: 400,
@@ -19,10 +19,7 @@ export default class AuthenticationWindow
         this._window = electronWindow.createWindow(windowProperty);
     }
 
-    show () {
-        let credentialFilePath = path.resolve(__dirname, '../../../', 'resources', 'authentication', 'twitter-credential.json');
-        let credential = new jsonLoader(credentialFilePath);
-
+    show (credential) {
         let twitterAPI = new TwitterAPI({
             consumerKey: credential.consumerKey,
             consumerSecret: credential.consumerSecret,
@@ -37,6 +34,7 @@ export default class AuthenticationWindow
                 {
                     twitterAPI.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
                         // get access token.
+                        this.emit('get-access-token', accessToken, accessTokenSecret);
                     });
                 }
             });
