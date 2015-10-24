@@ -1,11 +1,12 @@
 import ipc from 'ipc'
 import ApplicationInitializer from './initializer'
+import TwitterClient from '../util/twitter-client'
 
 // debug
-// localStorage.clear();
-ipc.on('login-succeeded', function(newAccessToken, newAccessTokenSecrent) {
+//localStorage.clear();
+ipc.on('login-succeeded', function(newAccessToken, newAccessTokenSecrent, twitterClient) {
     // login succeeded
-//    new ApplicationInitializer().run();
+    ipc.send('log', JSON.stringify(twitterClient));
     let newKey = JSON.stringify({
         accessToken: newAccessToken,
         accessTokenSecrent: newAccessTokenSecrent
@@ -16,7 +17,24 @@ ipc.on('login-succeeded', function(newAccessToken, newAccessTokenSecrent) {
 
 let loginKeys = JSON.parse(localStorage.getItem('twitter-login-keys'));
 if (loginKeys) {
-    ipc.send('login-twitter', loginKeys.accessToken, loginKeys.accessTokenSecrent);
+    ipc.on('consumer-keys', function(credential){
+        new ApplicationInitializer().run( new TwitterClient(
+            loginKeys.accessToken,
+            loginKeys.accessTokenSecrent,
+            credential.consumerKey,
+            credential.consumerSecret
+        ));
+    });
+    ipc.send('require-consumer-keys', loginKeys.accessToken, loginKeys.accessTokenSecrent);
+
 } else {
+    ipc.on('consumer-and-access-keys', function(accessToken, accessTokenSecrent, credential){
+        new ApplicationInitializer().run( new TwitterClient(
+            accessToken,
+            accessTokenSecrent,
+            credential.consumerKey,
+            credential.consumerKeySecret
+        ));
+    });
     ipc.send('authenticate-twitter');
 }

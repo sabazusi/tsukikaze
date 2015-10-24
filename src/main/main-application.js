@@ -14,11 +14,12 @@ export default class MainApplication
     start() {
         ipc.on('log', this._log);
         ipc.on('authenticate-twitter', this._authentication.bind(this));
-        ipc.on('login-twitter', this._loginTwitterWithSavedKey.bind(this));
+        ipc.on('require-consumer-keys', this._sendConsumerKeys.bind(this));
         app.on('ready', this._onReady.bind(this));
     }
 
     _onReady() {
+        this.twitterClient = null;
         this._loadCredential();
         this.mainWindow = new MainWindow();
     }
@@ -32,25 +33,20 @@ export default class MainApplication
     _authentication() {
         console.log('authentication start.');
         let credential = this._credential;
-        let callback = this._loginTwitter;
         let mainWindow = this.mainWindow;
 
         setTimeout(function(){
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on('get-access-token', function(accessToken, accessTokenSecret){
-                callback(mainWindow, accessToken, accessTokenSecret);
+                mainWindow.send('consumer-and-access-keys', accessToken, accessTokenSecret, credential);
             });
             this.authenticationWindow.show(credential);
         }, 1000);
 
     }
 
-    _loginTwitter(mainWindow, accessToken, accessTokenSecret) {
-        mainWindow.send('login-succeeded', accessToken, accessTokenSecret);
-    }
-
-    _loginTwitterWithSavedKey(accessToken, accessTokenSecret) {
-        this._loginTwitter(this.mainWindow, accessToken, accessTokenSecret);
+    _sendConsumerKeys(e) {
+        this.mainWindow.send('consumer-keys', this._credential);
     }
 
     _log(event, args) {

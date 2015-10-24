@@ -1,9 +1,12 @@
+import ipc from 'ipc'
+
 export default class ApplicationInitializer {
     constructor() {
-        console.log("start");
     }
 
-    run() {
-        console.log("start2");
+    run(twitterClient) {
+        twitterClient.lists().then(({lists}) => {
+            console.log(lists);
+        });
     }
 }
