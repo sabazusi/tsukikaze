@@ -31,6 +31,8 @@
     "electron-window": "^0.6.0",
     "font-awesome": "^4.4.0",
     "jsonloader": "^1.0.1",
-    "node-twitter-api": "^1.6.1"
+    "node-twitter-api": "^1.6.1",
+    "twitter": "^1.2.5",
+    "twitter-text": "^1.13.2"
   }
 }

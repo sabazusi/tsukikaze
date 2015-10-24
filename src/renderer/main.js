@@ -1,18 +1,20 @@
 import ipc from 'ipc'
 import ApplicationInitializer from './initializer'
 
-ipc.on('login-succeeded', function(e) {
+// debug
+// localStorage.clear();
+ipc.on('login-succeeded', function(newAccessToken, newAccessTokenSecrent) {
     // login succeeded
 //    new ApplicationInitializer().run();
-});
-
-ipc.on('login-succeeded-with-authentication', function(e, newKey) {
-    // login succeeded with new authentication.
+    let newKey = JSON.stringify({
+        accessToken: newAccessToken,
+        accessTokenSecrent: newAccessTokenSecrent
+    });
     localStorage.setItem('twitter-login-keys', newKey);
+    ipc.send('log', 'login succeeded:');
 });
 
-localStorage.clear();
-let loginKeys = localStorage.getItem('twitter-login-keys');
+let loginKeys = JSON.parse(localStorage.getItem('twitter-login-keys'));
 if (loginKeys) {
     ipc.send('login-twitter', loginKeys.accessToken, loginKeys.accessTokenSecrent);
 } else {
