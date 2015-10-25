@@ -5,8 +5,8 @@ export default class ApplicationInitializer {
     }
 
     run(twitterClient) {
-        twitterClient.lists().then(({lists}) => {
-            console.log(lists);
+        twitterClient.verifyCredential().then(({user, response}) => {
+            console.log(user);
         });
     }
 }

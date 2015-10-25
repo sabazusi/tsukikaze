@@ -10,6 +10,17 @@ export default class TwitterClient {
         });
     }
 
+    verifyCredential() {
+        return new Promise((resolve, reject) => {
+            this.twitter.get(
+                'account/verify_credentials',
+                (error, user, response) => {
+                    resolve({user:user, response:response});
+                }
+            )
+        });
+    }
+
     lists() {
         return new Promise((resolve, reject) => {
             this.twitter.get(
