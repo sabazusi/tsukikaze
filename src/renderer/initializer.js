@@ -1,12 +1,15 @@
 import ipc from 'ipc'
+import Rx from 'rx'
 
 export default class ApplicationInitializer {
     constructor() {
     }
 
     run(twitterClient) {
-        twitterClient.verifyCredential().then(({user, response}) => {
-            console.log(user);
-        });
+        Rx.Observable.fromPromise(twitterClient.verifyCredential())
+            .subscribe(({user, response}) => {
+                console.log(user);
+            }
+        );
     }
 }
