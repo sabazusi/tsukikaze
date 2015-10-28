@@ -3,6 +3,12 @@ import Rx from 'rx'
 
 export default class ApplicationInitializer {
     constructor() {
+        setTimeout( () => {
+            let preLoad = document.getElementById("preLoad");
+            while(preLoad.firstChild){
+                preLoad.removeChild(preLoad.firstChild);
+            }
+        }, 1000);
     }
 
     run(twitterClient) {
