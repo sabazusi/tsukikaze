@@ -32,6 +32,7 @@
     "font-awesome": "^4.4.0",
     "jsonloader": "^1.0.1",
     "node-twitter-api": "^1.6.1",
+    "react": "^0.14.1",
     "rx": "^4.0.6",
     "twitter": "^1.2.5",
     "twitter-text": "^1.13.2"
