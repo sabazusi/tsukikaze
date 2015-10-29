@@ -1,14 +1,9 @@
 import ipc from 'ipc'
 import Rx from 'rx'
+import Renderer from './renderer'
 
 export default class ApplicationInitializer {
     constructor() {
-        setTimeout( () => {
-            let preLoad = document.getElementById("preLoad");
-            while(preLoad.firstChild){
-                preLoad.removeChild(preLoad.firstChild);
-            }
-        }, 1000);
     }
 
     run(twitterClient) {
@@ -17,5 +12,12 @@ export default class ApplicationInitializer {
                 console.log(user);
             }
         );
+        setTimeout( () => {
+            let preLoad = document.getElementById("preLoad");
+            while(preLoad.firstChild){
+                preLoad.removeChild(preLoad.firstChild);
+            }
+            new Renderer().render();
+        }, 1000);
     }
 }
