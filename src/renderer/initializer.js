@@ -12,12 +12,14 @@ export default class ApplicationInitializer {
                 console.log(user);
             }
         );
-        setTimeout( () => {
-            let preLoad = document.getElementById("preLoad");
-            while(preLoad.firstChild){
-                preLoad.removeChild(preLoad.firstChild);
-            }
-            new Renderer().render();
-        }, 1000);
+        setTimeout(this._start, 1000);
+    }
+
+    _start() {
+        let preLoad = document.getElementById("preLoad");
+        while(preLoad.firstChild){
+            preLoad.removeChild(preLoad.firstChild);
+        }
+        new Renderer().render();
     }
 }
