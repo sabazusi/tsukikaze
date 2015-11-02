@@ -31,4 +31,18 @@ export default class TwitterClient {
             )
         });
     }
+
+    homeTimeLine({screenName}) {
+        return new Promise((resolve, reject) => {
+            this.twitter.get(
+                'statuses/home_timeline',
+                {
+                    screen_name: screenName
+                },
+                (error, tweets, response) => {
+                    resolve({ tweets: tweets, response: response });
+                }
+            );
+        });
+    }
 }

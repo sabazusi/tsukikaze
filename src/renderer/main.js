@@ -1,6 +1,6 @@
 import ipc from 'ipc'
 import ApplicationInitializer from './initializer'
-import TwitterClient from '../util/twitter-client'
+import TwitterClient from './actions/observables/twitter-client'
 
 // debug
 //localStorage.clear();

@@ -8,8 +8,8 @@ export default class ApplicationInitializer {
 
     run(twitterClient) {
         Rx.Observable.fromPromise(twitterClient.verifyCredential())
-            .subscribe(({user, response}) => {
-                console.log(user);
+            .subscribe(({user}) => {
+                console.log({user});
             }
         );
         setTimeout(this._start, 1000);
