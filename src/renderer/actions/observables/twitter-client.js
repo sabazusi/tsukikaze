@@ -1,4 +1,4 @@
-const Twitter = require('twitter');
+import Twitter from 'twitter';
 
 export default class TwitterClient {
     constructor(accessToken, accessTokenSecret, consumerKey, consumerKeySecret) {

@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "electron-window": "^0.6.0",
+    "flux": "^2.1.1",
     "font-awesome": "^4.4.0",
     "jsonloader": "^1.0.1",
     "node-twitter-api": "^1.6.1",
