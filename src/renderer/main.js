@@ -2,19 +2,6 @@ import ipc from 'ipc'
 import ApplicationInitializer from './initializer'
 import TwitterClient from './actions/observables/twitter-client'
 
-// debug
-//localStorage.clear();
-ipc.on('login-succeeded', function(newAccessToken, newAccessTokenSecrent, twitterClient) {
-    // login succeeded
-    ipc.send('log', JSON.stringify(twitterClient));
-    let newKey = JSON.stringify({
-        accessToken: newAccessToken,
-        accessTokenSecrent: newAccessTokenSecrent
-    });
-    localStorage.setItem('twitter-login-keys', newKey);
-    ipc.send('log', 'login succeeded:');
-});
-
 let loginKeys = JSON.parse(localStorage.getItem('twitter-login-keys'));
 if (loginKeys) {
     ipc.on('consumer-keys', function(credential){
@@ -29,6 +16,12 @@ if (loginKeys) {
 
 } else {
     ipc.on('consumer-and-access-keys', function(accessToken, accessTokenSecrent, credential){
+        let newKey = JSON.stringify({
+            accessToken: accessToken,
+            accessTokenSecrent: accessTokenSecrent
+        });
+        localStorage.setItem('twitter-login-keys', newKey);
+
         new ApplicationInitializer().run( new TwitterClient(
             accessToken,
             accessTokenSecrent,

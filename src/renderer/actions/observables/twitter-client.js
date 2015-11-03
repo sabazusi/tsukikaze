@@ -45,4 +45,15 @@ export default class TwitterClient {
             );
         });
     }
+
+    userStream({user}) {
+        return new Promise((resolve, reject) => {
+            this.twitter.stream(
+                'user',
+                (stream) =>{
+                    resolve({stream: stream});
+                }
+            );
+        });
+    }
 }
