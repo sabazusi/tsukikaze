@@ -7,11 +7,12 @@ export default class ApplicationInitializer {
     }
 
     run(twitterClient) {
-        Rx.Observable.fromPromise(twitterClient.verifyCredential())
-            .subscribe(({user}) => {
-                console.log({user});
-            }
-        );
+        twitterClient.verifyCredential().then(({user}) => {
+            Rx.Observable.fromPromise(twitterClient.homeTimeLine({user})) 
+                .subscribe(({tweets}) => {
+                    console.log({tweets});
+                });
+        });
         setTimeout(this._start, 1000);
     }
 

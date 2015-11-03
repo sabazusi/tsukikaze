@@ -33,7 +33,7 @@ if (loginKeys) {
             accessToken,
             accessTokenSecrent,
             credential.consumerKey,
-            credential.consumerKeySecret
+            credential.consumerSecret
         ));
     });
     ipc.send('authenticate-twitter');
