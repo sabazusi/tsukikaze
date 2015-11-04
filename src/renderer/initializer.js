@@ -1,6 +1,7 @@
 import ipc from 'ipc'
 import Rx from 'rx'
 import Renderer from './renderer'
+import {Dispatcher as ActionDispatcher} from './dispatcher/action-dispatcher'
 
 export default class ApplicationInitializer {
     constructor() {
