@@ -1,16 +1,22 @@
 import ipc from 'ipc'
 import Rx from 'rx'
 import Renderer from './renderer'
-import {Dispatcher as ActionDispatcher} from './dispatcher/action-dispatcher'
+import Dispatcher from './dispatcher/action-dispatcher'
 
 export default class ApplicationInitializer {
     constructor() {
     }
 
     run(twitterClient) {
+        let dispatcher = Dispatcher;
         twitterClient.verifyCredential().then(({user}) => {
             twitterClient.userStream({user}).then(({stream}) => {
-                stream.on('data', (data) => {console.log(data);});
+                stream.on('data', (data) => {
+                    dispatcher.dispatch({
+                        actionType: "onData",
+                        text: data
+                    });
+                });
             });
         });
         setTimeout(this._start, 1000);
