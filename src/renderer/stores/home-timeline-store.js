@@ -1,12 +1,12 @@
 import Dispatcher from '../dispatcher/action-dispatcher'
+import EventEmitter from 'events'
 
-export default class TwitterHomeTimelineStore {
+export default class TwitterHomeTimelineStore extends EventEmitter {
     constructor() {
-        Dispatcher.register(
-            function(action) {
-                console.log("receive at store.");
-                console.log(action);
-            }
-        );
+        super();
+        Dispatcher.register(function(action){
+            this.tweets = action.tweets;
+            this.emit("updated", this.tweets);
+        });
     }
 }

@@ -16,7 +16,7 @@ export default class ApplicationInitializer {
                 stream.on('data', (data) => {
                     dispatcher.dispatch({
                         actionType: "onData",
-                        text: data
+                        tweets: data
                     });
                 });
             });
