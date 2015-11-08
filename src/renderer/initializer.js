@@ -4,6 +4,7 @@ import Renderer from './renderer'
 import ActionDispatcher from './dispatcher/action-dispatcher'
 import ViewDispatcher from './dispatcher/view-dispatcher'
 import TwitterHomeTimelineStore from './stores/home-timeline-store'
+import HomeTimelineAction from './actions/home-timeline-action'
 
 export default class ApplicationInitializer {
     constructor() {
@@ -11,6 +12,19 @@ export default class ApplicationInitializer {
     }
 
     run(twitterClient) {
+        // initialize stores.
+        let homeTimelineStore = new TwitterHomeTimelineStore();
+
+        // initialize components.
+
+        // initialize actions.
+        let homeTimelineAction = new HomeTimelineAction();
+
+        // start application.
+
+
+
+
         let dispatcher = ActionDispatcher;
         twitterClient.verifyCredential().then(({user}) => {
             twitterClient.userStream({user}).then(({stream}) => {

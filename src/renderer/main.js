@@ -4,7 +4,7 @@ import TwitterClient from './actions/observables/twitter-client'
 
 let loginKeys = JSON.parse(localStorage.getItem('twitter-login-keys'));
 if (loginKeys) {
-    ipc.on('consumer-keys', function(credential){
+    ipc.on('consumer-keys', (credential) => {
         new ApplicationInitializer().run( new TwitterClient(
             loginKeys.accessToken,
             loginKeys.accessTokenSecrent,
@@ -15,7 +15,7 @@ if (loginKeys) {
     ipc.send('require-consumer-keys', loginKeys.accessToken, loginKeys.accessTokenSecrent);
 
 } else {
-    ipc.on('consumer-and-access-keys', function(accessToken, accessTokenSecrent, credential){
+    ipc.on('consumer-and-access-keys', (accessToken, accessTokenSecrent, credential) => {
         let newKey = JSON.stringify({
             accessToken: accessToken,
             accessTokenSecrent: accessTokenSecrent
