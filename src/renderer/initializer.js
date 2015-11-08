@@ -1,7 +1,8 @@
 import ipc from 'ipc'
 import Rx from 'rx'
 import Renderer from './renderer'
-import Dispatcher from './dispatcher/action-dispatcher'
+import ActionDispatcher from './dispatcher/action-dispatcher'
+import ViewDispatcher from './dispatcher/view-dispatcher'
 import TwitterHomeTimelineStore from './stores/home-timeline-store'
 
 export default class ApplicationInitializer {
@@ -10,7 +11,7 @@ export default class ApplicationInitializer {
     }
 
     run(twitterClient) {
-        let dispatcher = Dispatcher;
+        let dispatcher = ActionDispatcher;
         twitterClient.verifyCredential().then(({user}) => {
             twitterClient.userStream({user}).then(({stream}) => {
                 stream.on('data', (data) => {
