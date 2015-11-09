@@ -9,4 +9,8 @@ export default class TwitterHomeTimelineStore extends EventEmitter {
             this.emit("updated", this.tweets);
         });
     }
+
+    getVal() {
+        return "hoeee";
+    }
 }

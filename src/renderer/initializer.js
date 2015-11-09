@@ -15,8 +15,6 @@ export default class ApplicationInitializer {
         // initialize stores.
         let homeTimelineStore = new TwitterHomeTimelineStore();
 
-        // initialize components.
-
         // initialize actions.
         let homeTimelineAction = new HomeTimelineAction();
 
@@ -36,14 +34,15 @@ export default class ApplicationInitializer {
                 });
             });
         });
-        setTimeout(this._start, 1000);
+        setTimeout(() => {
+            let preLoad = document.getElementById("preLoad");
+            while(preLoad.firstChild){
+                preLoad.removeChild(preLoad.firstChild);
+            }
+            new Renderer().render(homeTimelineStore);
+        }, 1000);
     }
 
     _start() {
-        let preLoad = document.getElementById("preLoad");
-        while(preLoad.firstChild){
-            preLoad.removeChild(preLoad.firstChild);
-        }
-        new Renderer().render();
     }
 }
