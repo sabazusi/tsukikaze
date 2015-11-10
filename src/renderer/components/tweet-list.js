@@ -10,6 +10,14 @@ export default class TweetList extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.timelineStore.on("updated", (newTweets) => {
+            this.setState({
+                val: newTweets.text
+            });
+        });
+    }
+
     render() {
         return (
             <div>

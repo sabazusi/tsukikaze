@@ -13,7 +13,9 @@ export default class ApplicationInitializer {
 
     run(twitterClient) {
         // initialize stores.
-        let homeTimelineStore = new TwitterHomeTimelineStore();
+        let stores = {
+            homeTimeline: new TwitterHomeTimelineStore()
+        }
 
         // initialize actions.
         let homeTimelineAction = new HomeTimelineAction();
@@ -39,7 +41,7 @@ export default class ApplicationInitializer {
             while(preLoad.firstChild){
                 preLoad.removeChild(preLoad.firstChild);
             }
-            new Renderer().render(homeTimelineStore);
+            new Renderer().render(stores);
         }, 1000);
     }
 
