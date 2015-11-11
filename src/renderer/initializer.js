@@ -8,7 +8,6 @@ import HomeTimelineAction from './actions/home-timeline-action'
 
 export default class ApplicationInitializer {
     constructor() {
-        new TwitterHomeTimelineStore();
     }
 
     run(twitterClient) {
@@ -18,33 +17,18 @@ export default class ApplicationInitializer {
         }
 
         // initialize actions.
-        let homeTimelineAction = new HomeTimelineAction();
+        let homeTimelineAction = new HomeTimelineAction(twitterClient);
 
         // start application.
 
 
-
-
-        let dispatcher = ActionDispatcher;
-        twitterClient.verifyCredential().then(({user}) => {
-            twitterClient.userStream({user}).then(({stream}) => {
-                stream.on('data', (data) => {
-                    dispatcher.dispatch({
-                        actionType: "onData",
-                        tweets: data
-                    });
-                });
-            });
-        });
         setTimeout(() => {
             let preLoad = document.getElementById("preLoad");
             while(preLoad.firstChild){
                 preLoad.removeChild(preLoad.firstChild);
             }
             new Renderer().render(stores);
+            homeTimelineAction.start();
         }, 1000);
-    }
-
-    _start() {
     }
 }

@@ -32,7 +32,7 @@ export default class TwitterClient {
         });
     }
 
-    homeTimeLine({screenName}) {
+    homeTimeline({screenName}) {
         return new Promise((resolve, reject) => {
             this.twitter.get(
                 'statuses/home_timeline',
