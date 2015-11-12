@@ -13,6 +13,14 @@ export default class HomeTimelineAction {
                     actionType: "initialTweet",
                     tweets: tweets
                 });
+                this.client.userStream({user}).then(({stream}) => {
+                    stream.on('data', (data) => {
+                        this.dispatcher.dispatch({
+                            actionType: "userStreamTweet",
+                            data: data
+                        });
+                    });
+                });
             });
         });
     }

@@ -7,10 +7,12 @@ export default class TwitterHomeTimelineStore extends EventEmitter {
         Dispatcher.register((action) => {
             switch(action.actionType) {
                 case "initialTweet":
+                      this.tweets = action.tweets;
+                      this.emit("updated", this.tweets);
+                      break;
+                case "userStreamTweet":
                       break;
             }
-            this.tweets = action.tweets;
-            this.emit("updated", this.tweets);
         });
     }
 
