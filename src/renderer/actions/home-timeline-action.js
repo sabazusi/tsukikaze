@@ -1,4 +1,5 @@
 import ActionDispatcher from '../dispatcher/action-dispatcher'
+import TwitterClientConstants from '../constants/twitter-client-constants'
 
 export default class HomeTimelineAction {
     constructor(client) {
@@ -10,13 +11,13 @@ export default class HomeTimelineAction {
         this.client.verifyCredential().then(({user}) => {
             this.client.homeTimeline({user}).then(({tweets}) => {
                 this.dispatcher.dispatch({
-                    actionType: "initialTweet",
+                    actionType: TwitterClientConstants.INITIAL_TWEET,
                     tweets: tweets
                 });
                 this.client.userStream({user}).then(({stream}) => {
                     stream.on('data', (data) => {
                         this.dispatcher.dispatch({
-                            actionType: "userStreamTweet",
+                            actionType: TwitterClientConstants.USER_STREAM_TWEET,
                             data: data
                         });
                     });

@@ -1,6 +1,7 @@
 class TwitterClientConstants {
     constructor() {
-        this.HOME_TIME_LINE = "homeTimeLine";
+        this.INITIAL_TWEET = "initialTweet";
+        this.USER_STREAM_TWEET = "userStreamTweet";
     }
 }
 

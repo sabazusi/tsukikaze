@@ -14,7 +14,7 @@ export default class ApplicationInitializer {
         // initialize stores.
         let stores = {
             homeTimeline: new TwitterHomeTimelineStore()
-        }
+        };
 
         // initialize actions.
         let homeTimelineAction = new HomeTimelineAction(twitterClient);
