@@ -12,10 +12,16 @@ class UserStreamActionFactory {
     }
 
     getData(data) {
-        return {
-            actionType: TwitterClientConstants.USER_STREAM_TWEET,
-            data: data
-        };
+        if (data.friend) {
+        } else if (data.event) {
+        } else if (data.delete) {
+        } else if (data.created_at) {
+            return {
+                actionType: TwitterClientConstants.USER_STREAM_TWEET,
+                data: data
+            };
+        }
+        return {};
     }
 }
 
