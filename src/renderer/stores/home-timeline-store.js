@@ -16,7 +16,7 @@ export default class TwitterHomeTimelineStore extends EventEmitter {
                       break;
 
                 case TwitterClientConstants.USER_STREAM_TWEET:
-                      this.homeTimelineTweets.push(action.tweet);
+                      this.homeTimelineTweets.unshift(action.tweet);
                       this.emit("updated");
                       break;
             }
