@@ -6,23 +6,28 @@ export default class TweetList extends React.Component {
         super(...args);
         this.timelineStore = this.props.timelineStore;
         this.state = {
-            val: this.timelineStore.getVal()
+            rawTweets: this.timelineStore.getVal()
         }
     }
 
     componentDidMount() {
-        this.timelineStore.on("updated", (newTweets) => {
+        this.timelineStore.on("updated", () => {
             this.setState({
-                val: newTweets.text
+                rawTweets: this.timelineStore.getVal()
             });
+        });
+    }
+
+    getTweets() {
+        return this.state.rawTweets.map((rawTweet) => {
+            return <Tweet body={rawTweet.text}/>;
         });
     }
 
     render() {
         return (
             <div>
-                {this.props.tweetList.map( (tweet) => {return <Tweet body={tweet}/>} )}
-                {this.state.val}
+                {this.getTweets()}
             </div>
         );
     }

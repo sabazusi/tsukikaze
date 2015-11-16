@@ -18,7 +18,7 @@ class UserStreamActionFactory {
         } else if (data.created_at) {
             return {
                 actionType: TwitterClientConstants.USER_STREAM_TWEET,
-                data: data
+                tweet: data
             };
         }
         return {};
