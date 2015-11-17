@@ -10,6 +10,7 @@ export default class ApplicationInitializer {
     constructor() {
     }
 
+
     run(twitterClient) {
         // initialize stores.
         let stores = {

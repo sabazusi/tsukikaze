@@ -26,7 +26,7 @@ export default class TweetList extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="tweetList">
                 {this.getTweets()}
             </div>
         );

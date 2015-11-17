@@ -1,8 +1,13 @@
 @import "font-awesome/scss/font-awesome";
 
+body
+    background: rgba(40, 40, 40, 1.0);
+    overflow: hidden;
+
 .controlPanel
     overflow: hidden;
     max-height: 200px;
+    background-color: #333333;
 
 .dummyTweetList
     position: relative;
@@ -14,13 +19,18 @@
     -ms-filter: blur(5px);
     -o-filter: blur(5px);
 
+.tweetList
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    overflow-y: scroll;
+
 .tweet
     background-color: #555555;
     margin: 5px 0px;
     color: #bbbbbb;
 
-.controlPanel
-    background-color: #333333;
 
 .preLoading
     position: absolute;
