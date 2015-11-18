@@ -20,7 +20,7 @@ export default class TweetList extends React.Component {
 
     getTweets() {
         return this.state.rawTweets.map((rawTweet) => {
-            return <Tweet body={rawTweet.text}/>;
+            return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
         });
     }
 
