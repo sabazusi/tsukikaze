@@ -28,7 +28,7 @@ export default class ApplicationInitializer {
             while(preLoad.firstChild){
                 preLoad.removeChild(preLoad.firstChild);
             }
-            new Renderer().render(stores);
+            Renderer.render(stores);
             homeTimelineAction.start();
         }, 1000);
     }
