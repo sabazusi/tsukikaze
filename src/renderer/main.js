@@ -1,6 +1,12 @@
 import ipc from 'ipc'
 import ApplicationInitializer from './initializer'
 import TwitterClient from './actions/observables/twitter-client'
+import Renderer from './renderer'
+
+
+setTimeout(() => {
+    Renderer.renderPreload();
+}, 100);
 
 let loginKeys = JSON.parse(localStorage.getItem('twitter-login-keys'));
 if (loginKeys) {
