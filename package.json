@@ -23,11 +23,13 @@
     "electron-prebuilt": "^0.33.8",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
+    "gulp-concat": "^2.6.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-sass": "^2.0.4",
     "gulp-sym": "0.0.14"
   },
   "dependencies": {
+    "bootstrap": "^3.3.5",
     "electron-window": "^0.6.0",
     "flux": "^2.1.1",
     "font-awesome": "^4.4.0",
@@ -35,6 +37,7 @@
     "node-twitter-api": "^1.6.1",
     "notie": "0.0.15",
     "react": "^0.14.1",
+    "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.1",
     "rx": "^4.0.6",
     "twitter": "^1.2.5",

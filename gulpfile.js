@@ -2,13 +2,14 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var sym = require('gulp-sym');
 var sass = require('gulp-sass');
+var concat = require('gulp-concat');
 var electron = require('electron-connect').server.create();
 
-gulp.task('compile', ['copy-assets', 'compile-js', 'compile-html', 'symlink', 'compile-sass']);
+gulp.task('compile', ['copy-assets', 'compile-js', 'compile-html', 'symlink', 'compile-sass', 'concat-vendor-css']);
 
 gulp.task('copy-assets', function(){
     return gulp.src('src/**/*.json').pipe(gulp.dest('dest'));
-})
+});
 
 gulp.task('compile-js', function(){
     return gulp.src('src/**/*.{js,jsx}')
@@ -33,6 +34,14 @@ gulp.task('symlink', function(){
     gulp.src('node_modules/font-awesome/fonts')
     .pipe(sym('dest/renderer/fonts', {force:true}));
     //.pipe(sym('dest/renderer/mock/fonts', {force:true}));
+});
+
+gulp.task('concat-vendor-css', function(){
+    gulp.src([
+        'node_modules/bootstrap/dist/css/bootstrap.min.css'
+        ])
+    .pipe(concat('vendors.css'))
+    .pipe(gulp.dest('dest/renderer/static/css'));
 });
 
 gulp.task('start', ['compile'], function(){
