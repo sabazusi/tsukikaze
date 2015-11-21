@@ -25,9 +25,7 @@ export default class ApplicationInitializer {
 
         setTimeout(() => {
             let preLoad = document.getElementById("preLoad");
-            while(preLoad.firstChild){
-                preLoad.removeChild(preLoad.firstChild);
-            }
+            document.body.removeChild(preLoad);
             Renderer.render(stores);
             homeTimelineAction.start();
         }, 1000);
