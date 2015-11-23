@@ -16,6 +16,9 @@ export default class HomeTimelineAction {
                         this.dispatcher.dispatch(UserStreamActionFactory.getData(data));
                     });
                 });
+                this.client.mentions({user}).then(({tweets}) => {
+                   this.dispatcher.dispatch({actionType:"mentions", mentions: tweets});
+                });
             });
         });
     }

@@ -46,6 +46,18 @@ export default class TwitterClient {
         });
     }
 
+    mentions({screen_name}) {
+        return new Promise((resolve, reject) => {
+            this.twitter.get('statuses/mentions_timeline',
+            {
+                screen_name:screen_name
+            },
+            (error, tweets, response) => {
+                resolve({tweets: tweets});
+            });
+        })
+    }
+
     userStream({user}) {
         return new Promise((resolve, reject) => {
             this.twitter.stream(
