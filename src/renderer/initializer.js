@@ -4,6 +4,7 @@ import Renderer from './renderer'
 import ActionDispatcher from './dispatcher/action-dispatcher'
 import ViewDispatcher from './dispatcher/view-dispatcher'
 import TwitterHomeTimelineStore from './stores/home-timeline-store'
+import TweetListStatusStore from './stores/tweet-list-status-store'
 import HomeTimelineAction from './actions/home-timeline-action'
 import TweetListSwitchAction from './actions/tweet-list-switch-action'
 
@@ -15,7 +16,8 @@ export default class ApplicationInitializer {
     run(twitterClient) {
         // initialize stores.
         let stores = {
-            homeTimeline: new TwitterHomeTimelineStore()
+            homeTimelineStore: new TwitterHomeTimelineStore(),
+            tweetListStatusStore: new TweetListStatusStore()
         };
 
         // initialize actions.

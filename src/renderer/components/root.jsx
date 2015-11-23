@@ -13,7 +13,7 @@ export default class Root extends React.Component {
             <div className="application">
                 <ControlPanel/>
                 <Switcher/>
-                <TweetList timelineStore={this.props.stores.homeTimeline}/>
+                <TweetList stores={this.props.stores}/>
             </div>
         )
     }
