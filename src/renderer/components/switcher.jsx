@@ -1,11 +1,15 @@
 import React from 'react'
 import { Button, ButtonToolbar, ButtonGroup } from 'react-bootstrap'
+import ViewDispatcher from '../dispatcher/view-dispatcher'
+import SwitcherConstants from '../constants/switcher-constants'
 
 export default class Switcher extends React.Component {
     constructor() {
         super();
         this.state = {
-            active: [true, false, false]
+            homeTimelineEnabled: true,
+            mentionEnabled: false,
+            directMailEnabled: false
         }
     }
 
@@ -14,30 +18,45 @@ export default class Switcher extends React.Component {
             <div className="switcher">
                 <ButtonToolbar>
                     <ButtonGroup>
-                        <Button active={this.state.active[0]} onClick={this.showA.bind(this)} bsSize="small">Timeline</Button>
-                        <Button active={this.state.active[1]} onClick={this.showB.bind(this)} bsSize="small">Mention</Button>
-                        <Button active={this.state.active[2]} onClick={this.showC.bind(this)} bsSize="small">DM</Button>
+                        <Button active={this.state.homeTimelineEnabled} onClick={this.showHomeTimeline.bind(this)} bsSize="small">Timeline</Button>
+                        <Button active={this.state.mentionEnabled} onClick={this.showMention.bind(this)} bsSize="small">Mention</Button>
+                        <Button active={this.state.directMailEnabled} onClick={this.showDirectMail.bind(this)} bsSize="small">DM</Button>
                     </ButtonGroup>
                 </ButtonToolbar>
             </div>
         );
     }
 
-    showA(e) {
+    showHomeTimeline(e) {
         this.setState({
-            active: [true, false, false]
+            homeTimelineEnabled: true,
+            mentionEnabled: false,
+            directMailEnabled: false
+        });
+        ViewDispatcher.dispatch({
+            actionType: SwitcherConstants.HOME_TIMELINE_SELECTED
         });
     }
 
-    showB(e) {
+    showMention(e) {
         this.setState({
-            active: [false, true, false]
+            homeTimelineEnabled: false,
+            mentionEnabled: true,
+            directMailEnabled: false
+        });
+        ViewDispatcher.dispatch({
+            actionType: SwitcherConstants.MENTION_SELECTED
         });
     }
 
-    showC(e) {
+    showDirectMail(e) {
         this.setState({
-            active: [false, false, true]
+            homeTimelineEnabled: false,
+            mentionEnabled: false,
+            directMailEnabled: true
+        });
+        ViewDispatcher.dispatch({
+            actionType: SwitcherConstants.DIRECT_MAIL_SELECTED
         });
     }
 }

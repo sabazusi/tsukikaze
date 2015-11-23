@@ -5,6 +5,7 @@ import ActionDispatcher from './dispatcher/action-dispatcher'
 import ViewDispatcher from './dispatcher/view-dispatcher'
 import TwitterHomeTimelineStore from './stores/home-timeline-store'
 import HomeTimelineAction from './actions/home-timeline-action'
+import TweetListSwitchAction from './actions/tweet-list-switch-action'
 
 export default class ApplicationInitializer {
     constructor() {
@@ -19,6 +20,7 @@ export default class ApplicationInitializer {
 
         // initialize actions.
         let homeTimelineAction = new HomeTimelineAction(twitterClient);
+        let TweetsSwitchAction = new TweetListSwitchAction();
 
         // start application.
 
