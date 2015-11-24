@@ -1,8 +1,8 @@
-import EventEmitter from 'events'
+import StoreBase from './store-base'
 import ActionDispatcher from '../dispatcher/action-dispatcher'
 import SwitcherConstants from '../constants/switcher-constants'
 
-export default class TweetListStatusStore extends EventEmitter {
+export default class TweetListStatusStore extends StoreBase {
 
     constructor() {
         super();
@@ -16,15 +16,15 @@ export default class TweetListStatusStore extends EventEmitter {
             switch(action.actionType) {
                 case SwitcherConstants.HOME_TIMELINE_SELECTED:
                     this._current = this.TIMELINE;
-                    this.emit("updated");
+                    this.emitChange();
                     break;
                 case SwitcherConstants.MENTION_SELECTED:
                     this._current = this.MENTION;
-                    this.emit("updated");
+                    this.emitChange();
                     break;
                 case SwitcherConstants.DIRECT_MAIL_SELECTED:
                     this._current = this.DIRECTMAIL;
-                    this.emit("updated");
+                    this.emitChange();
                     break;
                 default:
                     break;

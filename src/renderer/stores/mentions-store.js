@@ -1,7 +1,7 @@
-import EventEmitter from 'events'
+import StoreBase from './store-base'
 import ActionDispatcher from '../dispatcher/action-dispatcher'
 
-export default class MentionsStore extends EventEmitter {
+export default class MentionsStore extends StoreBase {
     constructor() {
         super();
         this.mentions = [];
@@ -11,7 +11,7 @@ export default class MentionsStore extends EventEmitter {
                     console.log(action.mentions);
                         this.mentions.push(tweet);
                     });
-                    this.emit("updated");
+                    this.emitChange();
                     break;
                 default:
                     break;
