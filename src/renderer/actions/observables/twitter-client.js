@@ -58,6 +58,18 @@ export default class TwitterClient {
         })
     }
 
+    directMessages({screen_name}) {
+        return new Promise((resolve, reject) => {
+            this.twitter.get('statuses/????',
+            {
+            },
+                (error, tweets, response) => {
+                    resolve({tweets: tweets});
+                }
+            );
+        });
+    }
+
     userStream({user}) {
         return new Promise((resolve, reject) => {
             this.twitter.stream(

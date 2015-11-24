@@ -35,7 +35,7 @@ export default class TweetList extends React.Component {
             return this.mentionsStore.getVal().map((rawTweet) => {
                 return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
-        } else if(this.statusStore.directMailEnabled()) {
+        } else if(this.statusStore.directMessageEnabled()) {
             return this.dmStore.getVal().map((rawTweet) => {
                 return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });

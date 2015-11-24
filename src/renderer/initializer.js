@@ -27,7 +27,7 @@ export default class ApplicationInitializer {
 
         // initialize actions.
         let homeTimelineAction = new HomeTimelineAction(twitterClient);
-        let TweetsSwitchAction = new TweetListSwitchAction();
+        new TweetListSwitchAction();
 
         // start application.
 

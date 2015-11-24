@@ -9,7 +9,7 @@ export default class TweetListStatusStore extends StoreBase {
 
         this.TIMELINE = "timeline";
         this.MENTION = "mention";
-        this.DIRECTMAIL = "directMail";
+        this.DIRECTMESSAGE = "directMessage";
         this._current = this.TIMELINE;
 
         ActionDispatcher.register((action) => {
@@ -22,8 +22,8 @@ export default class TweetListStatusStore extends StoreBase {
                     this._current = this.MENTION;
                     this.emitChange();
                     break;
-                case SwitcherConstants.DIRECT_MAIL_SELECTED:
-                    this._current = this.DIRECTMAIL;
+                case SwitcherConstants.DIRECT_MESSAGE_SELECTED:
+                    this._current = this.DIRECTMESSAGE;
                     this.emitChange();
                     break;
                 default:
@@ -40,7 +40,7 @@ export default class TweetListStatusStore extends StoreBase {
         return this._current == this.MENTION;
     }
 
-    directMailEnabled() {
-        return this._current == this.DIRECTMAIL;
+    directMessageEnabled() {
+        return this._current == this.DIRECTMESSAGE;
     }
 }

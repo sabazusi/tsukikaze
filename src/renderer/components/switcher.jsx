@@ -9,7 +9,7 @@ export default class Switcher extends React.Component {
         this.state = {
             homeTimelineEnabled: true,
             mentionEnabled: false,
-            directMailEnabled: false
+            directMessageEnabled: false
         }
     }
 
@@ -20,7 +20,7 @@ export default class Switcher extends React.Component {
                     <ButtonGroup>
                         <Button active={this.state.homeTimelineEnabled} onClick={this.showHomeTimeline.bind(this)} bsSize="small">Timeline</Button>
                         <Button active={this.state.mentionEnabled} onClick={this.showMention.bind(this)} bsSize="small">Mention</Button>
-                        <Button active={this.state.directMailEnabled} onClick={this.showDirectMail.bind(this)} bsSize="small">DM</Button>
+                        <Button active={this.state.directMessageEnabled} onClick={this.showDirectMessage.bind(this)} bsSize="small">DM</Button>
                     </ButtonGroup>
                 </ButtonToolbar>
             </div>
@@ -31,7 +31,7 @@ export default class Switcher extends React.Component {
         this.setState({
             homeTimelineEnabled: true,
             mentionEnabled: false,
-            directMailEnabled: false
+            directMessageEnabled: false
         });
         ViewDispatcher.dispatch({
             actionType: SwitcherConstants.HOME_TIMELINE_SELECTED
@@ -42,21 +42,21 @@ export default class Switcher extends React.Component {
         this.setState({
             homeTimelineEnabled: false,
             mentionEnabled: true,
-            directMailEnabled: false
+            directMessageEnabled: false
         });
         ViewDispatcher.dispatch({
             actionType: SwitcherConstants.MENTION_SELECTED
         });
     }
 
-    showDirectMail(e) {
+    showDirectMessage(e) {
         this.setState({
             homeTimelineEnabled: false,
             mentionEnabled: false,
-            directMailEnabled: true
+            directMessageEnabled: true
         });
         ViewDispatcher.dispatch({
-            actionType: SwitcherConstants.DIRECT_MAIL_SELECTED
+            actionType: SwitcherConstants.DIRECT_MESSAGE_SELECTED
         });
     }
 }

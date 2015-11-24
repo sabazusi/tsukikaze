@@ -8,7 +8,7 @@ export default class TweetListSwitchAction {
             switch(action.actionType) {
                 case SwitcherConstants.HOME_TIMELINE_SELECTED:
                 case SwitcherConstants.MENTION_SELECTED:
-                case SwitcherConstants.DIRECT_MAIL_SELECTED:
+                case SwitcherConstants.DIRECT_MESSAGE_SELECTED:
                     ActionDispatcher.dispatch(action);
                     break;
 
