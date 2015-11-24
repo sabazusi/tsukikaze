@@ -6,6 +6,7 @@ export default class TweetList extends React.Component {
         super(...args);
         this.timelineStore = this.props.stores.homeTimelineStore;
         this.mentionsStore = this.props.stores.mentionsStore;
+        this.dmStore = this.props.stores.directMessageStore;
         this.statusStore = this.props.stores.tweetListStatusStore;
         this.state = {}
     }
@@ -20,6 +21,9 @@ export default class TweetList extends React.Component {
         this.mentionsStore.on("updated", () => {
             this.setState();
         });
+        this.dmStore.on("updated", () => {
+            this.setState();
+        });
     }
 
     getTweets() {
@@ -32,7 +36,9 @@ export default class TweetList extends React.Component {
                 return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
         } else if(this.statusStore.directMailEnabled()) {
-            return "";
+            return this.dmStore.getVal().map((rawTweet) => {
+                return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+            });
         }
     }
 

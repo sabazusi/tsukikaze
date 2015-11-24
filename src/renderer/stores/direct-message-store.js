@@ -1,15 +1,14 @@
 import StoreBase from './store-base'
 import ActionDispatcher from '../dispatcher/action-dispatcher'
 
-export default class MentionsStore extends StoreBase {
+export default class DirectMessageStore extends StoreBase {
     constructor() {
         super();
-        this.mentions = [];
+        this.dms = [];
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
-                case "mentions":
-                    console.log(action.mentions);
-                    this.mentions.push(tweet);
+                case "directMessages":
+                    this.dms.push(tweet);
                     this.emitChange();
                     break;
 
@@ -20,6 +19,6 @@ export default class MentionsStore extends StoreBase {
     }
 
     getVal() {
-        return this.mentions;
+        return this.dms;
     }
 }
