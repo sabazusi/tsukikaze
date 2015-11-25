@@ -60,7 +60,7 @@ export default class TwitterClient {
 
     directMessages({screen_name}) {
         return new Promise((resolve, reject) => {
-            this.twitter.get('statuses/????',
+            this.twitter.get('direct_messages',
             {
             },
                 (error, tweets, response) => {

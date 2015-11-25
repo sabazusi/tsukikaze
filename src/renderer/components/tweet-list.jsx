@@ -12,16 +12,16 @@ export default class TweetList extends React.Component {
     }
 
     componentDidMount() {
-        this.statusStore.on("updated", () => {
+        this.statusStore.on("change", () => {
             this.setState();
         });
-        this.timelineStore.on("updated", () => {
+        this.timelineStore.on("change", () => {
             this.setState();
         });
-        this.mentionsStore.on("updated", () => {
+        this.mentionsStore.on("change", () => {
             this.setState();
         });
-        this.dmStore.on("updated", () => {
+        this.dmStore.on("change", () => {
             this.setState();
         });
     }

@@ -8,8 +8,9 @@ export default class MentionsStore extends StoreBase {
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
                 case "mentions":
-                    console.log(action.mentions);
-                    this.mentions.push(tweet);
+                    action.mentions.map((mention) => {
+                        this.mentions.push(mention);
+                    });                    
                     this.emitChange();
                     break;
 
