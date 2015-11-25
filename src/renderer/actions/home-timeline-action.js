@@ -19,6 +19,9 @@ export default class HomeTimelineAction {
                 this.client.mentions({user}).then(({tweets}) => {
                    this.dispatcher.dispatch({actionType:"mentions", mentions: tweets});
                 });
+                this.client.directMessages({user}).then(({tweets}) => {
+                   this.dispatcher.dispatch({actionType:"directMessages", dms: tweets});
+                });
             });
         });
     }

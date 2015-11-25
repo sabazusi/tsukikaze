@@ -8,7 +8,9 @@ export default class DirectMessageStore extends StoreBase {
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
                 case "directMessages":
-                    this.dms.push(tweet);
+                    action.dms.map((dm) => {
+                        this.dms.push(dm);
+                    });
                     this.emitChange();
                     break;
 
