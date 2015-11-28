@@ -8,4 +8,8 @@ export default class StoreBase extends EventEmitter {
     emitChange() {
         this.emit("change");
     }
+
+    onChange(callback) {
+        this.on("change", callback);
+    }
 }

@@ -12,16 +12,16 @@ export default class TweetList extends React.Component {
     }
 
     componentDidMount() {
-        this.statusStore.on("updated", () => {
+        this.statusStore.onChange(() => {
             this.setState();
         });
-        this.timelineStore.on("updated", () => {
+        this.timelineStore.onChange(() => {
             this.setState();
         });
-        this.mentionsStore.on("updated", () => {
+        this.mentionsStore.onChange(() => {
             this.setState();
         });
-        this.dmStore.on("updated", () => {
+        this.dmStore.onChange(() => {
             this.setState();
         });
     }
@@ -37,7 +37,7 @@ export default class TweetList extends React.Component {
             });
         } else if(this.statusStore.directMessageEnabled()) {
             return this.dmStore.getVal().map((rawTweet) => {
-                return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+                return <Tweet text={rawTweet.text} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
             });
         }
     }
