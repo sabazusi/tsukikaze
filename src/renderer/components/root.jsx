@@ -13,7 +13,7 @@ export default class Root extends React.Component {
         return (
             <div className="application">
                 <ControlPanel/>
-                <Editor/>
+                <Editor stores={this.props.stores}/>
                 <Switcher/>
                 <TweetList stores={this.props.stores}/>
             </div>
