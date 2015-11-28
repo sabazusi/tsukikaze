@@ -4,20 +4,19 @@ import UserStreamActionFactory from '../utils/userstream-action-factory'
 export default class HomeTimelineAction {
     constructor(client) {
         this.client = client;
-        this.dispatcher = ActionDispatcher;
     }
 
     start() {
         this.client.verifyCredential().then(({user}) => {
             this.client.homeTimeline({user}).then(({tweets}) => {
-                this.dispatcher.dispatch(UserStreamActionFactory.getInitial(tweets));
+                ActionDispatcher.dispatch(UserStreamActionFactory.getInitial(tweets));
                 this.client.userStream({user}).then(({stream}) => {
                     stream.on('data', (data) => {
-                        this.dispatcher.dispatch(UserStreamActionFactory.getData(data));
+                        ActionDispatcher.dispatch(UserStreamActionFactory.getData(data));
                     });
                 });
                 this.client.mentions({user}).then(({tweets}) => {
-                   this.dispatcher.dispatch({actionType:"mentions", mentions: tweets});
+                   ActionDispatcher.dispatch({actionType:"mentions", mentions: tweets});
                 });
             });
         });
