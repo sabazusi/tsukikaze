@@ -9,6 +9,7 @@ export default class EditorAction {
                 case EditorConstants.OPEN_EDITOR:
                 case EditorConstants.CLOSE_EDITOR:
                 case EditorConstants.POST_TWEET:
+                case EditorConstants.CHANGE_TEXTAREA:
                     ActionDispatcher.dispatch(action);
                     break;
 

@@ -8,7 +8,7 @@ import TweetListStatusStore from './stores/tweet-list-status-store'
 import MentionsStore from './stores/mentions-store'
 import EditorStore from './stores/editor-store'
 import DirectMessageStore from './stores/direct-message-store'
-import HomeTimelineAction from './actions/home-timeline-action'
+import TwitterClientAction from './actions/twitter-client-action'
 import TweetListSwitchAction from './actions/tweet-list-switch-action'
 import EditorAction from './actions/editor-action'
 
@@ -28,7 +28,7 @@ export default class ApplicationInitializer {
         };
 
         // initialize actions.
-        let homeTimelineAction = new HomeTimelineAction(twitterClient);
+        let twitterClientAction = new TwitterClientAction(twitterClient);
         new TweetListSwitchAction();
         new EditorAction();
 
@@ -39,7 +39,7 @@ export default class ApplicationInitializer {
             let preLoad = document.getElementById("preLoad");
             document.body.removeChild(preLoad);
             Renderer.render(stores);
-            homeTimelineAction.start();
+            twitterClientAction.start();
         }, 1000);
     }
 }

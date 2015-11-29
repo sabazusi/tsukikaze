@@ -1,7 +1,7 @@
 import ActionDispatcher from '../dispatcher/action-dispatcher'
 import UserStreamActionFactory from '../utils/userstream-action-factory'
 
-export default class HomeTimelineAction {
+export default class TwitterClientAction {
     constructor(client) {
         this.client = client;
     }

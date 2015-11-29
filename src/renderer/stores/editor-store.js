@@ -29,6 +29,10 @@ export default class EditorStore extends StoreBase {
                     this.emitChange();
                     break;
 
+                case EditorConstants.CHANGE_TEXTAREA:
+                    this._editorText = action.text;
+                    this.emitChange();
+
                 default:
                     break;
             }

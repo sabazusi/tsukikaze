@@ -27,12 +27,14 @@ export default class Editor extends React.Component {
         if(this.state.isActiveEditor) {
             return (
                 <div>
-                    <button><i className="fa fa-pencil fa-2x" onClick={this.onCloseButtonClicked.bind(this)}></i></button>
-                    <textarea rows="2" cols="40" placeholder="tweet...">{this.state.editorText}</textarea>;
+                    <button><i className="fa fa-times fa-2x" onClick={this.onCloseButtonClicked.bind(this)}></i></button>
+                    <button><i className="fa fa-paper-plane-o fa-2x" onClick={this.onPostButtonClicked.bind(this)}></i></button>
+                    <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
                 </div>
             );
         } else {
-            return <button><i className="fa fa-pencil fa-2x" onClick={this.onOpenButtonClicked.bind(this)}></i></button>;
+
+            return <button><i className="fa fa-pencil fa-2x" onClick={this.onOpenButtonClicked.bind(this)}></i></button>
         }
     }
 
@@ -45,6 +47,22 @@ export default class Editor extends React.Component {
     onCloseButtonClicked(e) {
         ViewDispatcher.dispatch({
             actionType: EditorConstants.CLOSE_EDITOR
+        });
+    }
+
+    onPostButtonClicked(e) {
+        if (this.editorStore.editorText().length > 0) {
+            ViewDispatcher.dispatch({
+                actionType: EditorConstants.POST_TWEET,
+                tweet: this.editorStore.editorText()
+            });
+        }
+    }
+
+    onChangeTextArea(e) {
+        ViewDispatcher.dispatch({
+            actionType: EditorConstants.CHANGE_TEXTAREA,
+            text: e.target.value
         });
     }
 
