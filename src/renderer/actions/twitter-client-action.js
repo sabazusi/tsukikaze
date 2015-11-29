@@ -1,9 +1,27 @@
 import ActionDispatcher from '../dispatcher/action-dispatcher'
+import ViewDispatcher from '../dispatcher/view-dispatcher'
 import UserStreamActionFactory from '../utils/userstream-action-factory'
+import EditorConstants from '../constants/editor-constants'
+import TwitterClientConstants from '../constants/twitter-client-constants'
 
 export default class TwitterClientAction {
     constructor(client) {
         this.client = client;
+
+        ViewDispatcher.register((action) => {
+            switch(action.actionType) {
+                case EditorConstants.POST_TWEET:
+                    this.client.post(action.tweet).then(({tweet}) => {
+                        ActionDispatcher.dispatch({
+                            actionType: TwitterClientConstants.POST_COMPLETED
+                        });
+                    });
+                    break;
+
+                default:
+                    break;
+            }
+        });
     }
 
     start() {

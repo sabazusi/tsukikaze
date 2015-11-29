@@ -21,6 +21,20 @@ export default class TwitterClient {
         });
     }
 
+    post(tweet) {
+        return new Promise((resolve, reject) => {
+           this.twitter.post(
+               'statuses/update',
+               {
+                   status: tweet
+               },
+               (error, tweet, response) => {
+                   resove({tweet: tweet, response: response});
+               }
+           );
+        });
+    }
+
     lists() {
         return new Promise((resolve, reject) => {
             this.twitter.get(

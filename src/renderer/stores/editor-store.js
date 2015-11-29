@@ -1,5 +1,6 @@
 import ActionDispatcher from '../dispatcher/action-dispatcher'
 import EditorConstants from '../constants/editor-constants'
+import TwitterClientConstants from '../constants/twitter-client-constants'
 import StoreBase from './store-base'
 
 export default class EditorStore extends StoreBase {
@@ -32,6 +33,14 @@ export default class EditorStore extends StoreBase {
                 case EditorConstants.CHANGE_TEXTAREA:
                     this._editorText = action.text;
                     this.emitChange();
+                    break;
+
+                case TwitterClientConstants.POST_COMPLETED:
+                    console.log("kitade-");
+                    this._editorText = "";
+                    this._isControllable = true;
+                    this.emitChange();
+                    break;
 
                 default:
                     break;

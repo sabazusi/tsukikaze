@@ -51,7 +51,7 @@ export default class Editor extends React.Component {
     }
 
     onPostButtonClicked(e) {
-        if (this.editorStore.editorText().length > 0) {
+        if (this.editorStore.editorText()) {
             ViewDispatcher.dispatch({
                 actionType: EditorConstants.POST_TWEET,
                 tweet: this.editorStore.editorText()
