@@ -1,3 +1,4 @@
+import remote from 'remote'
 import ipc from 'ipc'
 import Rx from 'rx'
 import Renderer from './renderer'
@@ -32,9 +33,16 @@ export default class ApplicationInitializer {
         new TweetListSwitchAction();
         new EditorAction();
 
+        // initialize context menu.
+        let Menu = remote.require('menu');
+        let MenuItem = remote.require('menu-item');
+
+        let menu = new Menu();
+        window.addEventListener('contextmenu', (e) => {
+            // TODO: e.targetの内容を見てmenuItemを出し分ける
+        });
+
         // start application.
-
-
         setTimeout(() => {
             let preLoad = document.getElementById("preLoad");
             document.body.removeChild(preLoad);
