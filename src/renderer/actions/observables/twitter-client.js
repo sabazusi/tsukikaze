@@ -29,7 +29,7 @@ export default class TwitterClient {
                    status: tweet
                },
                (error, tweet, response) => {
-                   resove({tweet: tweet, response: response});
+                   resolve({tweet: tweet, response: response});
                }
            );
         });

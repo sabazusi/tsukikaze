@@ -1,6 +1,7 @@
 import ViewDispatcher from '../dispatcher/view-dispatcher'
 import EditorConstants from '../constants/editor-constants'
 import React from 'react'
+import remote from 'remote'
 
 export default class Editor extends React.Component {
     constructor(...args) {
@@ -21,6 +22,7 @@ export default class Editor extends React.Component {
                 editorText: this.editorStore.editorText()
             });
         });
+        this.dialog = remote.require('dialog');
     }
 
     getTweetArea() {
@@ -52,9 +54,20 @@ export default class Editor extends React.Component {
 
     onPostButtonClicked(e) {
         if (this.editorStore.editorText()) {
-            ViewDispatcher.dispatch({
-                actionType: EditorConstants.POST_TWEET,
-                tweet: this.editorStore.editorText()
+            let options = {
+                type: "info",
+                buttons: ["書き込む", "やめる"],
+                title: "投稿",
+                message: "以下の内容で書き込みます。よろしいですか?",
+                detail: this.editorStore.editorText()
+            }
+            this.dialog.showMessageBox(remote.getCurrentWindow(), options, (e) => {
+                if (e == 0) {
+                    ViewDispatcher.dispatch({
+                        actionType: EditorConstants.POST_TWEET,
+                        tweet: this.editorStore.editorText()
+                    });
+                }
             });
         }
     }
