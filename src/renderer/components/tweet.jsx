@@ -20,12 +20,12 @@ export default class Tweet extends React.Component {
             index = entity.indices[1];
         });
         result.push(origin.substring(index, origin.length));
-        return result.join("");
+        return result;
     }
 
     getTargetComponent(targetText, entity) {
         if (entity.url) {
-            return <a href={entity.url} dangerouslySetInnerHTML={targetText}/>;
+            return <a href={entity.url} dangerouslySetInnerHTML={{__html: targetText}}/>;
         } else {
             return targetText;
         }
