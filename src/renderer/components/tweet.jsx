@@ -23,7 +23,7 @@ class UrlText extends React.Component {
 
 export default class Tweet extends React.Component {
     getTweetBody() {
-        const origin = this.props.text;
+        const origin = this.props.tweet.text;
         const result = [];
         const images = [];
         let index = 0;

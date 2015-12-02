@@ -29,7 +29,7 @@ export default class TweetList extends React.Component {
     getTweets() {
         if (this.statusStore.homeTimelineEnabled()) {
             return this.timelineStore.getVal().map((rawTweet) => {
-                return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+                return <Tweet tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
         } else if(this.statusStore.mentionEnabled()) {
             return this.mentionsStore.getVal().map((rawTweet) => {
