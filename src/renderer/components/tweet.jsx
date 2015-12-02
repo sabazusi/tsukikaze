@@ -1,5 +1,25 @@
 import React from 'react'
+import ViewDispatcher from '../dispatcher/view-dispatcher'
+import TweetBodyConstants from '../constants/tweet-body-constants'
 import twitterText from 'twitter-text'
+
+class UrlText extends React.Component {
+    onClickedLink(event) {
+        event.preventDefault();
+        ViewDispatcher.dispatch({
+            actionType: TweetBodyConstants.OPEN_LINK,
+            url: event.currentTarget.href
+        });
+    }
+
+    render() {
+        return <a
+                   href={this.props.href}
+                   onClick={this.onClickedLink.bind(this)}
+                   dangerouslySetInnerHTML={{__html: this.props.text}}
+               />
+    }
+}
 
 export default class Tweet extends React.Component {
     getTweetBody() {
@@ -25,7 +45,7 @@ export default class Tweet extends React.Component {
 
     getTargetComponent(targetText, entity) {
         if (entity.url) {
-            return <a href={entity.url} dangerouslySetInnerHTML={{__html: targetText}}/>;
+            return <UrlText href={entity.url} text={targetText}/>;
         } else {
             return targetText;
         }

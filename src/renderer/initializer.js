@@ -10,6 +10,7 @@ import MentionsStore from './stores/mentions-store'
 import EditorStore from './stores/editor-store'
 import DirectMessageStore from './stores/direct-message-store'
 import TwitterClientAction from './actions/twitter-client-action'
+import ExternalAction from './actions/external-action'
 import TweetListSwitchAction from './actions/tweet-list-switch-action'
 import EditorAction from './actions/editor-action'
 
@@ -32,6 +33,7 @@ export default class ApplicationInitializer {
         let twitterClientAction = new TwitterClientAction(twitterClient);
         new TweetListSwitchAction();
         new EditorAction();
+        new ExternalAction();
 
         // initialize context menu.
         let Menu = remote.require('menu');
