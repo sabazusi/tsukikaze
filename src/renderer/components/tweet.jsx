@@ -25,6 +25,7 @@ export default class Tweet extends React.Component {
     getTweetBody() {
         const origin = this.props.text;
         const result = [];
+        const images = [];
         let index = 0;
         twitterText.extractEntitiesWithIndices(
             origin, 
@@ -46,6 +47,9 @@ export default class Tweet extends React.Component {
     getTargetComponent(targetText, entity) {
         if (entity.url) {
             return <UrlText href={entity.url} text={targetText}/>;
+        } else if(entity.screenName) {
+            let url = "http://twitter.com/" + entity.screenName;
+            return <UrlText href={url} text={targetText}/>;
         } else {
             return targetText;
         }
