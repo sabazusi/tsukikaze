@@ -4,7 +4,7 @@ import TweetBodyConstants from '../constants/tweet-body-constants'
 import twitterText from 'twitter-text'
 
 class UrlText extends React.Component {
-    onClickedLink(event) {
+    onLinkClicked(event) {
         event.preventDefault();
         ViewDispatcher.dispatch({
             actionType: TweetBodyConstants.OPEN_LINK,
@@ -15,9 +15,32 @@ class UrlText extends React.Component {
     render() {
         return <a
                    href={this.props.href}
-                   onClick={this.onClickedLink.bind(this)}
+                   onClick={this.onLinkClicked.bind(this)}
                    dangerouslySetInnerHTML={{__html: this.props.text}}
                />
+    }
+}
+
+class ExtendedEntities {
+    constructor(rawEntities) {
+        this.mediaUrls = [];
+        if (rawEntities && rawEntities.media){
+            rawEntities.media.forEach((media) => {
+                if (media.type === 'photo') {
+                    this.mediaUrls.push(media.media_url);
+                }
+            });
+        }
+    }
+
+    getMediaUrls (){
+        return this.mediaUrls;
+    }
+}
+
+class Image extends React.Component {
+    render() {
+        return <img src={this.props.imageUrl} width={60} height={60}/>;
     }
 }
 
@@ -26,6 +49,8 @@ export default class Tweet extends React.Component {
         const origin = this.props.tweet.text;
         const result = [];
         const images = [];
+
+        const extended = new ExtendedEntities(this.props.tweet.extended_entities);
         let index = 0;
         twitterText.extractEntitiesWithIndices(
             origin, 
@@ -41,7 +66,19 @@ export default class Tweet extends React.Component {
             index = entity.indices[1];
         });
         result.push(origin.substring(index, origin.length));
+        if (extended.getMediaUrls().length > 0) {
+            result.push(this.getImageBlock(extended.getMediaUrls()));
+        }
         return result;
+    }
+
+    getImageBlock(imageUrls) {
+        const images = imageUrls.map((url) => {
+            return <Image imageUrl={url}/>;
+        });
+        return (<div>
+                {images}
+                </div>);
     }
 
     getTargetComponent(targetText, entity) {
