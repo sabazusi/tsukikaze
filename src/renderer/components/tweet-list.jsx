@@ -33,11 +33,11 @@ export default class TweetList extends React.Component {
             });
         } else if(this.statusStore.mentionEnabled()) {
             return this.mentionsStore.getVal().map((rawTweet) => {
-                return <Tweet text={rawTweet.text} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+                return <Tweet tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
         } else if(this.statusStore.directMessageEnabled()) {
             return this.dmStore.getVal().map((rawTweet) => {
-                return <Tweet text={rawTweet.text} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
+                return <Tweet tweet={rawTweet} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
             });
         }
     }
