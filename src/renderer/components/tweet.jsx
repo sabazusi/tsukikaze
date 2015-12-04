@@ -27,7 +27,11 @@ class ExtendedEntities {
         if (rawEntities && rawEntities.media){
             rawEntities.media.forEach((media) => {
                 if (media.type === 'photo') {
-                    this.mediaUrls.push(media.media_url);
+                    this.mediaUrls.push({
+                        url: media.media_url,
+                        width: media.sizes.large.w,
+                        height: media.sizes.large.h
+                    });
                 }
             });
         }
@@ -40,7 +44,7 @@ class ExtendedEntities {
 
 class Image extends React.Component {
     render() {
-        return <img src={this.props.imageUrl} width={60} height={60}/>;
+        return <img src={this.props.imageUrl} width={this.props.width} height={this.props.height}/>;
     }
 }
 
@@ -74,7 +78,10 @@ export default class Tweet extends React.Component {
 
     getImageBlock(imageUrls) {
         const images = imageUrls.map((url) => {
-            return <Image imageUrl={url}/>;
+            let scale = 200 / Math.max(url.width, url.height);
+            let width = Math.floor(url.width * scale);
+            let height = Math.floor(url.height * scale);
+            return <Image imageUrl={url.url} width={width} height={height}/>;
         });
         return (<div>
                 {images}

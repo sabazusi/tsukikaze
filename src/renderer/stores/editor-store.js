@@ -36,7 +36,6 @@ export default class EditorStore extends StoreBase {
                     break;
 
                 case TwitterClientConstants.POST_COMPLETED:
-                    console.log("kitade-");
                     this._editorText = "";
                     this._isControllable = true;
                     this.emitChange();

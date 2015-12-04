@@ -60,7 +60,7 @@ export default class Editor extends React.Component {
                 title: "投稿",
                 message: "以下の内容で書き込みます。よろしいですか?",
                 detail: this.editorStore.editorText()
-            }
+            };
             this.dialog.showMessageBox(remote.getCurrentWindow(), options, (e) => {
                 if (e == 0) {
                     ViewDispatcher.dispatch({
