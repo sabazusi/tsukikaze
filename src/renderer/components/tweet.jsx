@@ -2,6 +2,7 @@ import React from 'react'
 import ViewDispatcher from '../dispatcher/view-dispatcher'
 import TweetBodyConstants from '../constants/tweet-body-constants'
 import twitterText from 'twitter-text'
+import TweetOption from './tweet-option'
 
 class UrlText extends React.Component {
     onLinkClicked(event) {
@@ -107,6 +108,7 @@ export default class Tweet extends React.Component {
                     </div>
                     <div className="tweet-body">
                         {this.getTweetBody()}
+                        <TweetOption/>
                     </div>
                 </div>);
     }
