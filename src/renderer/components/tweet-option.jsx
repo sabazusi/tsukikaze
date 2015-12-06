@@ -6,6 +6,30 @@ export default class TweetOption extends React.Component {
         super();
     }
 
+    onFavClicked() {
+        ViewDispatcher.dispatch({
+            actionType: ""
+        });
+    }
+
+    onRetweetClicked() {
+        ViewDispatcher.dispatch({
+            actionType: ""
+        });
+    }
+
+    onMentionClicked() {
+        ViewDispatcher.dispatch({
+            actionType: ""
+        });
+    }
+
+    onDMClicked() {
+        ViewDispatcher.dispatch({
+            actionType: ""
+        });
+    }
+
     render() {
         return (<div>
                     <button>hoge</button>
