@@ -2,6 +2,7 @@ import ActionDispatcher from '../dispatcher/action-dispatcher'
 import EditorConstants from '../constants/editor-constants'
 import TwitterClientConstants from '../constants/twitter-client-constants'
 import StoreBase from './store-base'
+import TweetOptionConstants from '../constants/tweet-option-constants'
 
 export default class EditorStore extends StoreBase {
     constructor() {
@@ -37,6 +38,20 @@ export default class EditorStore extends StoreBase {
 
                 case TwitterClientConstants.POST_COMPLETED:
                     this._editorText = "";
+                    this._isControllable = true;
+                    this.emitChange();
+                    break;
+
+                case TweetOptionConstants.OPEN_MENTION:
+                    this._editorText = "@" + action.screenName + " ";
+                    this._isActiveEditor = true;
+                    this._isControllable = true;
+                    this.emitChange();
+                    break;
+
+                case TweetOptionConstants.OPEN_DM:
+                    this._editorText = "D @" + action.screenName + " ";
+                    this._isActiveEditor = true;
                     this._isControllable = true;
                     this.emitChange();
                     break;

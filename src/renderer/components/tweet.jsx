@@ -108,7 +108,7 @@ export default class Tweet extends React.Component {
                     </div>
                     <div className="tweet-body">
                         {this.getTweetBody()}
-                        <TweetOption/>
+                        <TweetOption tweet={this.props.tweet}/>
                     </div>
                 </div>);
     }
