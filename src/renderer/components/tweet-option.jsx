@@ -35,7 +35,9 @@ export default class TweetOption extends React.Component {
 
     onFavClicked() {
         ViewDispatcher.dispatch({
-            actionType: TweetOptionConstants.FAV_TWEET
+            actionType: TweetOptionConstants.FAV_TWEET,
+            tweetId: this.props.tweet.id_str,
+            isFav: true
         });
     }
 

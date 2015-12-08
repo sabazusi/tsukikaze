@@ -10,6 +10,19 @@ export default class TwitterClient {
         });
     }
 
+    favorite(tweetId, isFav) {
+        let method = isFav ? 'create' : 'destroy';
+        return new Promise((resolve, reject) => {
+            this.twitter.post(
+                'favorites/' + method,
+                {id: tweetId},
+                (error, tweet, response) => {
+                    resolve({tweet: tweet});
+                }
+            );
+        });
+    }
+
     verifyCredential() {
         return new Promise((resolve, reject) => {
             this.twitter.get(

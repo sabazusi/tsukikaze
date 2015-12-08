@@ -3,6 +3,7 @@ import ViewDispatcher from '../dispatcher/view-dispatcher'
 import UserStreamActionFactory from '../utils/userstream-action-factory'
 import EditorConstants from '../constants/editor-constants'
 import TwitterClientConstants from '../constants/twitter-client-constants'
+import TweetOptionConstants from '../constants/tweet-option-constants'
 
 export default class TwitterClientAction {
     constructor(client) {
@@ -16,6 +17,18 @@ export default class TwitterClientAction {
                             actionType: TwitterClientConstants.POST_COMPLETED
                         });
                     });
+                    break;
+
+                case TweetOptionConstants.FAV_TWEET:
+                    this.client.favorite(
+                        action.tweetId,
+                        action.isFav
+                    ).then(({tweet}) => {
+                        console.log("faved");
+                    });
+                    break;
+
+                case TweetOptionConstants.RT_TWEET:
                     break;
 
                 default:
