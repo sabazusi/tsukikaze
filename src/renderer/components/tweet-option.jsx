@@ -43,7 +43,8 @@ export default class TweetOption extends React.Component {
 
     onRetweetClicked() {
         ViewDispatcher.dispatch({
-            actionType: TweetOptionConstants.RT_TWEET
+            actionType: TweetOptionConstants.RT_TWEET,
+            tweetId: this.props.tweet.id_str
         });
     }
 

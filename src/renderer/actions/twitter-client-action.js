@@ -29,6 +29,11 @@ export default class TwitterClientAction {
                     break;
 
                 case TweetOptionConstants.RT_TWEET:
+                    this.client.retweet(
+                        action.tweetId
+                    ).then(({tweet}) => {
+                        console.log("rtweeted");
+                    });
                     break;
 
                 default:

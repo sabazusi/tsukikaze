@@ -23,6 +23,18 @@ export default class TwitterClient {
         });
     }
 
+    retweet(tweetId) {
+        return new Promise((resolve, reject) => {
+            this.twitter.post(
+                'statuses/retweet',
+                {id: tweetId},
+                (error, tweet, response) => {
+                    resolve({tweet: tweet});
+                }
+            );
+        });
+    }
+
     verifyCredential() {
         return new Promise((resolve, reject) => {
             this.twitter.get(
