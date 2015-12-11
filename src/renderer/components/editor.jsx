@@ -31,6 +31,7 @@ export default class Editor extends React.Component {
                 <div>
                     <button><i className="fa fa-times fa-2x" onClick={this.onCloseButtonClicked.bind(this)}></i></button>
                     <button><i className="fa fa-paper-plane-o fa-2x" onClick={this.onPostButtonClicked.bind(this)}></i></button>
+                    <button><i className="fa fa-file-image-o fa-2x" onClick={this.onMediaButtonClicked.bind(this)}></i></button>
                     <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
                 </div>
             );
@@ -51,7 +52,6 @@ export default class Editor extends React.Component {
             actionType: EditorConstants.CLOSE_EDITOR
         });
     }
-
     onPostButtonClicked(e) {
         if (this.editorStore.editorText()) {
             let options = {
@@ -70,6 +70,16 @@ export default class Editor extends React.Component {
                 }
             });
         }
+    }
+
+    onMediaButtonClicked(e) {
+        let options = {};
+        this.dialog.showOpenDialog(remote.getCurrentWindow(), options, (e) => {
+            ViewDispatcher.dispatch({
+                actionType: EditorConstants.UPLOAD_MEDIA,
+                path: e[0]
+            });
+        });
     }
 
     onChangeTextArea(e) {

@@ -1,6 +1,7 @@
 import ActionDispatcher from '../dispatcher/action-dispatcher'
 import ViewDispatcher from '../dispatcher/view-dispatcher'
 import UserStreamActionFactory from '../utils/userstream-action-factory'
+import MediaUtil from '../utils/media-util'
 import EditorConstants from '../constants/editor-constants'
 import TwitterClientConstants from '../constants/twitter-client-constants'
 import TweetOptionConstants from '../constants/tweet-option-constants'
@@ -17,6 +18,11 @@ export default class TwitterClientAction {
                             actionType: TwitterClientConstants.POST_COMPLETED
                         });
                     });
+                    break;
+
+                case EditorConstants.UPLOAD_MEDIA:
+                    let media = MediaUtil.getMediaByFilePath(action.path);
+                    console.log("はい");
                     break;
 
                 case TweetOptionConstants.FAV_TWEET:

@@ -2,6 +2,8 @@ import Twitter from 'twitter';
 
 export default class TwitterClient {
     constructor(accessToken, accessTokenSecret, consumerKey, consumerKeySecret) {
+        this.accessToken = accessToken;
+        this.accessTokenSecret = accessTokenSecret;
         this.twitter = new Twitter({
             access_token_key: accessToken,
             access_token_secret: accessTokenSecret,
@@ -115,6 +117,20 @@ export default class TwitterClient {
                 'user',
                 (stream) =>{
                     resolve({stream: stream});
+                }
+            );
+        });
+    }
+
+
+    uploadMedia(media, isBase64) {
+        return new Promise((resolve, reject) => {
+            this.twitter.uploadMedia(
+                {media: media, isBase64: isBase64},
+                this.accessToken,
+                this.accessTokenSecret,
+                (error, data, response) => {
+                    console.log("uploaded");
                 }
             );
         });
