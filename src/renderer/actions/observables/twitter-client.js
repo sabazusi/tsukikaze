@@ -130,7 +130,7 @@ export default class TwitterClient {
                 this.accessToken,
                 this.accessTokenSecret,
                 (error, data, response) => {
-                    console.log("uploaded");
+                    resolve({data:data});
                 }
             );
         });

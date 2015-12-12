@@ -4,6 +4,13 @@ import TwitterClientConstants from '../constants/twitter-client-constants'
 import StoreBase from './store-base'
 import TweetOptionConstants from '../constants/tweet-option-constants'
 
+class Media {
+    constructor(media_id, path) {
+        this.media_id = media_id;
+        this.path = path;
+    }
+}
+
 export default class EditorStore extends StoreBase {
     constructor() {
         super();
@@ -11,6 +18,7 @@ export default class EditorStore extends StoreBase {
         this._isActiveEditor = false;
         this._isControllable = false;
         this._editorText = "";
+        this._mediaList = [];
 
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
@@ -39,6 +47,7 @@ export default class EditorStore extends StoreBase {
                 case TwitterClientConstants.POST_COMPLETED:
                     this._editorText = "";
                     this._isControllable = true;
+                    this._mediaList = [];
                     this.emitChange();
                     break;
 
@@ -55,6 +64,9 @@ export default class EditorStore extends StoreBase {
                     this._isControllable = true;
                     this.emitChange();
                     break;
+
+                case TwitterClientConstants.MEDIA_UPLOADED:
+                    this._mediaList.push(new Media(action.media_id, action.path));
 
                 default:
                     break;

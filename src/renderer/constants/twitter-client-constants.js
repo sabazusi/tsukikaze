@@ -3,6 +3,7 @@ class TwitterClientConstants {
         this.INITIAL_TWEET = "initialTweet";
         this.USER_STREAM_TWEET = "userStreamTweet";
         this.POST_COMPLETED = "postCompleted";
+        this.MEDIA_UPLOADED = "mediaUploaded";
     }
 }
 

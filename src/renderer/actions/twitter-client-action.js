@@ -22,7 +22,13 @@ export default class TwitterClientAction {
 
                 case EditorConstants.UPLOAD_MEDIA:
                     let media = MediaUtil.getMediaByFilePath(action.path);
-                    console.log("はい");
+                    this.client.uploadMedia(media, true).then(({data}) => {
+                        ActionDispatcher.dispatch({
+                            actionType: TwitterClientConstants.MEDIA_UPLOADED,
+                            media_id: data.media_id,
+                            path: action.path
+                        });
+                    });
                     break;
 
                 case TweetOptionConstants.FAV_TWEET:
