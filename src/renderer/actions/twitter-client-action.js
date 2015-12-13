@@ -22,7 +22,7 @@ export default class TwitterClientAction {
 
                 case EditorConstants.UPLOAD_MEDIA:
                     let media = MediaUtil.getMediaByFilePath(action.path);
-                    this.client.uploadMedia(media, true).then(({data}) => {
+                    this.client.uploadMedia(media).then(({data}) => {
                         ActionDispatcher.dispatch({
                             actionType: TwitterClientConstants.MEDIA_UPLOADED,
                             media_id: data.media_id,

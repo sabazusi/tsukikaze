@@ -1,9 +1,12 @@
+import Fs from 'fs'
+
 class MediaUtil {
     constructor() {
     }
 
     getMediaByFilePath(path) {
-        return null;
+        let file = Fs.readFileSync(path);
+        return new Buffer(file).toString("base64");
     }
 }
 

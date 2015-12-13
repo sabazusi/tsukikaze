@@ -123,12 +123,11 @@ export default class TwitterClient {
     }
 
 
-    uploadMedia(media, isBase64) {
+    uploadMedia(media) {
         return new Promise((resolve, reject) => {
-            this.twitter.uploadMedia(
-                {media: media, isBase64: isBase64},
-                this.accessToken,
-                this.accessTokenSecret,
+            this.twitter.post(
+                'media/upload',
+                {media_data: media},
                 (error, data, response) => {
                     resolve({data:data});
                 }
