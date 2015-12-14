@@ -85,4 +85,8 @@ export default class EditorStore extends StoreBase {
     editorText() {
         return this._editorText;
     }
+
+    mediaList() {
+        return this._mediaList;
+    }
 }

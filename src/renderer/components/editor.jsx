@@ -65,7 +65,10 @@ export default class Editor extends React.Component {
                 if (e == 0) {
                     ViewDispatcher.dispatch({
                         actionType: EditorConstants.POST_TWEET,
-                        tweet: this.editorStore.editorText()
+                        tweet: this.editorStore.editorText(),
+                        media: this.editorStore.mediaList().map((media) =>{
+                            return media.media_id;
+                        })
                     });
                 }
             });

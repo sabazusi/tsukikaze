@@ -34,7 +34,7 @@
     "flux": "^2.1.1",
     "font-awesome": "^4.4.0",
     "jsonloader": "^1.0.1",
-    "node-twitter-api": "^1.6.1",
+    "node-twitter-api": "^1.6.2",
     "react": "^0.14.3",
     "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.1",

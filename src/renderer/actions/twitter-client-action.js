@@ -13,7 +13,7 @@ export default class TwitterClientAction {
         ViewDispatcher.register((action) => {
             switch(action.actionType) {
                 case EditorConstants.POST_TWEET:
-                    this.client.post(action.tweet).then(({tweet}) => {
+                    this.client.post(action.tweet, action.media).then(({tweet}) => {
                         ActionDispatcher.dispatch({
                             actionType: TwitterClientConstants.POST_COMPLETED
                         });
