@@ -32,6 +32,7 @@ export default class Editor extends React.Component {
                     <button><i className="fa fa-times fa-2x" onClick={this.onCloseButtonClicked.bind(this)}></i></button>
                     <button><i className="fa fa-paper-plane-o fa-2x" onClick={this.onPostButtonClicked.bind(this)}></i></button>
                     <button><i className="fa fa-file-image-o fa-2x" onClick={this.onMediaButtonClicked.bind(this)}></i></button>
+                    {this.editorStore.remainTextCount()}
                     <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
                 </div>
             );
@@ -53,7 +54,7 @@ export default class Editor extends React.Component {
         });
     }
     onPostButtonClicked(e) {
-        if (this.editorStore.editorText()) {
+        if (this.editorStore.editorText() && this.editorStore.remainTextCount() > -1) {
             let options = {
                 type: "info",
                 buttons: ["書き込む", "やめる"],
