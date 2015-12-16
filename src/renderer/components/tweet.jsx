@@ -100,6 +100,10 @@ export default class Tweet extends React.Component {
         }
     }
 
+    getTweetProfileImageUrl() {
+        return this.props.tweet.sender ? this.props.tweet.sender.profile_image_url : this.props.tweet.user.profile_image_url;
+    }
+
     render() {
         return (
                 <div className="tweet">
@@ -107,7 +111,7 @@ export default class Tweet extends React.Component {
                         {this.props.name} @{this.props.screenName} <br />
                     </div>
                     <div className="user-image">
-                        <Image imageUrl={this.props.tweet.user.profile_image_url} width={50} height={50} />
+                        <Image imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
                     </div>
                     <div className="tweet-body">
                         {this.getTweetBody()}
