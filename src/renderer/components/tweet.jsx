@@ -106,8 +106,13 @@ export default class Tweet extends React.Component {
                     <div className="tweet-user">
                         {this.props.name} @{this.props.screenName} <br />
                     </div>
+                    <div className="user-image">
+                        <Image imageUrl={this.props.tweet.user.profile_image_url} width={50} height={50} />
+                    </div>
                     <div className="tweet-body">
                         {this.getTweetBody()}
+                    </div>
+                    <div className="tweet-option">
                         <TweetOption tweet={this.props.tweet}/>
                     </div>
                 </div>);
