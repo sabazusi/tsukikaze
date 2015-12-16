@@ -13,31 +13,31 @@ export default class TweetList extends React.Component {
 
     componentDidMount() {
         this.statusStore.onChange(() => {
-            this.setState();
+            this.forceUpdate();
         });
         this.timelineStore.onChange(() => {
-            this.setState();
+            this.forceUpdate();
         });
         this.mentionsStore.onChange(() => {
-            this.setState();
+            this.forceUpdate();
         });
         this.dmStore.onChange(() => {
-            this.setState();
+            this.forceUpdate();
         });
     }
 
     getTweets() {
         if (this.statusStore.homeTimelineEnabled()) {
             return this.timelineStore.getVal().map((rawTweet) => {
-                return <Tweet tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+                return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
         } else if(this.statusStore.mentionEnabled()) {
             return this.mentionsStore.getVal().map((rawTweet) => {
-                return <Tweet tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+                return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
         } else if(this.statusStore.directMessageEnabled()) {
             return this.dmStore.getVal().map((rawTweet) => {
-                return <Tweet tweet={rawTweet} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
+                return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
             });
         }
     }

@@ -53,7 +53,6 @@ export default class Tweet extends React.Component {
     getTweetBody() {
         const origin = this.props.tweet.text;
         const result = [];
-        const images = [];
 
         const extended = new ExtendedEntities(this.props.tweet.extended_entities);
         let index = 0;
@@ -91,10 +90,10 @@ export default class Tweet extends React.Component {
 
     getTargetComponent(targetText, entity) {
         if (entity.url) {
-            return <UrlText href={entity.url} text={targetText}/>;
+            return <UrlText href={entity.url} text={targetText} key={this.props.tweet.id}/>;
         } else if(entity.screenName) {
             let url = "http://twitter.com/" + entity.screenName;
-            return <UrlText href={url} text={targetText}/>;
+            return <UrlText href={url} text={targetText} key={this.props.tweet.id}/>;
         } else {
             return targetText;
         }
