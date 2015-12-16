@@ -19,7 +19,6 @@ export default class MainApplication
     }
 
     _onReady() {
-        this.twitterClient = null;
         this._loadCredential();
         this.mainWindow = new MainWindow();
     }

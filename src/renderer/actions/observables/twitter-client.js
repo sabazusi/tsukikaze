@@ -49,12 +49,13 @@ export default class TwitterClient {
     }
 
     post(tweet, media) {
+        console.log(media);
         return new Promise((resolve, reject) => {
            this.twitter.post(
                'statuses/update',
                {
                    status: tweet,
-                   media_ids: media
+                   media_ids: media ? media : {}
                },
                (error, tweet, response) => {
                    resolve({tweet: tweet, response: response});

@@ -13,7 +13,7 @@ export default class TwitterClientAction {
         ViewDispatcher.register((action) => {
             switch(action.actionType) {
                 case EditorConstants.POST_TWEET:
-                    this.client.post(action.tweet, action.media).then(({tweet}) => {
+                    this.client.post(action.tweet, action.media.join(",")).then(({tweet}) => {
                         ActionDispatcher.dispatch({
                             actionType: TwitterClientConstants.POST_COMPLETED
                         });
@@ -25,7 +25,7 @@ export default class TwitterClientAction {
                     this.client.uploadMedia(media).then(({data}) => {
                         ActionDispatcher.dispatch({
                             actionType: TwitterClientConstants.MEDIA_UPLOADED,
-                            media_id: data.media_id,
+                            media_id: data.media_id_string,
                             path: action.path
                         });
                     });
