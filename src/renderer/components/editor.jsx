@@ -25,6 +25,12 @@ export default class Editor extends React.Component {
         this.dialog = remote.require('dialog');
     }
 
+    getRemainCount() {
+        let count = this.editorStore.remainTextCount();
+        let countClass = count >= 0 ? "postable" : "over";
+        return <span className={countClass}>{count}</span>;
+    }
+
     getTweetArea() {
         if(this.state.isActiveEditor) {
             return (
@@ -32,7 +38,7 @@ export default class Editor extends React.Component {
                     <button><i className="fa fa-times fa-2x" onClick={this.onCloseButtonClicked.bind(this)}></i></button>
                     <button><i className="fa fa-paper-plane-o fa-2x" onClick={this.onPostButtonClicked.bind(this)}></i></button>
                     <button><i className="fa fa-file-image-o fa-2x" onClick={this.onMediaButtonClicked.bind(this)}></i></button>
-                    {this.editorStore.remainTextCount()}
+                    {this.getRemainCount()}
                     <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
                 </div>
             );
