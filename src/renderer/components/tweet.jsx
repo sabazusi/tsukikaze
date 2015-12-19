@@ -3,6 +3,7 @@ import ViewDispatcher from '../dispatcher/view-dispatcher'
 import TweetBodyConstants from '../constants/tweet-body-constants'
 import twitterText from 'twitter-text'
 import TweetOption from './tweet-option'
+import PostDateLabelFactory from '../utils/post-date-label-factory'
 
 class UrlText extends React.Component {
     onLinkClicked(event) {
@@ -103,6 +104,11 @@ export default class Tweet extends React.Component {
         return this.props.tweet.sender ? this.props.tweet.sender.profile_image_url : this.props.tweet.user.profile_image_url;
     }
 
+    getTweetDate() {
+        let date = new Date(Date.parse(this.props.tweet.created_at));
+        return PostDateLabelFactory.create(date)
+    }
+
     render() {
         return (
                 <div className="tweet">
@@ -117,6 +123,9 @@ export default class Tweet extends React.Component {
                     </div>
                     <div className="tweet-option">
                         <TweetOption tweet={this.props.tweet}/>
+                    </div>
+                    <div className="tweet-date">
+                        {this.getTweetDate()}
                     </div>
                 </div>);
     }
