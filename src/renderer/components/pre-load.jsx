@@ -15,29 +15,44 @@ export default class PreLoad extends React.Component {
                     </div>
                     <div className="dummyTweetList">
                         <div className="tweet">
-                            @username<br/>
                             <br/>
-                            Tweets now loading.........
-                        </div>
-                        <div className="tweet">
-                            @username<br/>
                             <br/>
-                            Tweets now loading.........
-                        </div>
-                        <div className="tweet">
-                            @username<br/>
                             <br/>
-                            Tweets now loading.........
-                        </div>
-                        <div className="tweet">
-                            @username<br/>
                             <br/>
-                            Tweets now loading.........
-                        </div>
-                        <div className="tweet">
-                            @username<br/>
                             <br/>
-                            Tweets now loading.........
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                         </div>
                     </div>
                 </div>
