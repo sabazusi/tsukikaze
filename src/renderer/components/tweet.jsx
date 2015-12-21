@@ -112,21 +112,41 @@ export default class Tweet extends React.Component {
     render() {
         return (
                 <div className="tweet">
-                    <div className="tweet-user">
-                        {this.props.name} @{this.props.screenName} <br />
-                    </div>
-                    <div className="user-image">
-                        <Image imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
-                    </div>
-                    <div className="tweet-body">
-                        {this.getTweetBody()}
-                    </div>
-                    <div className="tweet-option">
-                        <TweetOption tweet={this.props.tweet}/>
-                    </div>
-                    <div className="tweet-date">
-                        {this.getTweetDate()}
-                    </div>
-                </div>);
+                    <table>
+                        <tr>
+                            <td>
+                                <div className="tweet-user">
+                                    {this.props.name} @{this.props.screenName} <br />
+                                </div>
+                            </td>
+                            <td>
+                                <div className="tweet-date">
+                                    {this.getTweetDate()}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr>
+                            <td>
+                                <div className="user-image">
+                                    <Image imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
+                                </div>
+                            </td>
+                            <td>
+                                <div className="tweet-body">
+                                    {this.getTweetBody()}
+                                </div>
+                            </td>
+                            <td>
+                                <div className="tweet-option">
+                                    <TweetOption tweet={this.props.tweet}/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            );
     }
 }
