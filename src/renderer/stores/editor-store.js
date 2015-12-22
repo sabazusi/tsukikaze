@@ -53,17 +53,23 @@ export default class EditorStore extends StoreBase {
                     break;
 
                 case TweetOptionConstants.OPEN_MENTION:
-                    this._editorText = "@" + action.screenName + " ";
-                    this._isActiveEditor = true;
-                    this._isControllable = true;
-                    this.emitChange();
+                    if (action.screenName)
+                    {
+                        this._editorText = "@" + action.screenName + " ";
+                        this._isActiveEditor = true;
+                        this._isControllable = true;
+                        this.emitChange();
+                    }
                     break;
 
                 case TweetOptionConstants.OPEN_DM:
-                    this._editorText = "D @" + action.screenName + " ";
-                    this._isActiveEditor = true;
-                    this._isControllable = true;
-                    this.emitChange();
+                    if (action.screenName)
+                    {
+                        this._editorText = "D @" + action.screenName + " ";
+                        this._isActiveEditor = true;
+                        this._isControllable = true;
+                        this.emitChange();
+                    }
                     break;
 
                 case TwitterClientConstants.MEDIA_UPLOADED:
