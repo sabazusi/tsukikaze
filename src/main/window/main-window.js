@@ -4,13 +4,15 @@ import path from 'path'
 export default class MainWindow
 {
     constructor() {
-        const windowProperty = 
+        let windowProperty = 
         {
             width: 400,
             height: 700,
             frame: true
             //resizable: false
         };
+        windowProperty["min-width"] = 400;
+        windowProperty["min-height"] = 400;
 
         this._window = electronWindow.createWindow(windowProperty);
         this.show();
