@@ -67,7 +67,7 @@ export default class TweetOption extends React.Component {
                                 <a href="javascript:void(0)" onClick={this.onRetweetClicked.bind(this)}>Retweet</a>
                             </Popover>}
                         >
-                            <Button ref="button">></Button>
+                            <Button bsStyle="info" ref="button" bsSize="small">></Button>
                         </OverlayTrigger>
                     </ButtonToolbar>
                 </div>
