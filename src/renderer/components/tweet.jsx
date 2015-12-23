@@ -79,7 +79,7 @@ export default class Tweet extends React.Component {
 
     getImageBlock(imageUrls) {
         const images = imageUrls.map((url) => {
-            let scale = 200 / Math.max(url.width, url.height);
+            let scale = 120 / Math.max(url.width, url.height);
             let width = Math.floor(url.width * scale);
             let height = Math.floor(url.height * scale);
             return <Image imageUrl={url.url} width={width} height={height}/>;
