@@ -43,7 +43,6 @@ export default class Editor extends React.Component {
                 </div>
             );
         } else {
-
             return <button><i className="fa fa-pencil fa-2x" onClick={this.onOpenButtonClicked.bind(this)}></i></button>
         }
     }

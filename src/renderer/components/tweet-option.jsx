@@ -1,7 +1,7 @@
 import React from 'react'
 import TweetOptionConstants from '../constants/tweet-option-constants'
 import ViewDispatcher from '../dispatcher/view-dispatcher'
-import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'
+import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap'
 
 export default class TweetOption extends React.Component {
     constructor() {
@@ -20,6 +20,7 @@ export default class TweetOption extends React.Component {
     }
 
     onMentionClicked() {
+        React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.OPEN_MENTION,
             screenName: this.getUser().screen_name
@@ -27,6 +28,7 @@ export default class TweetOption extends React.Component {
     }
 
     onDMClicked() {
+        React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.OPEN_DM,
             screenName: this.getUser().screen_name
@@ -34,6 +36,7 @@ export default class TweetOption extends React.Component {
     }
 
     onFavClicked() {
+        React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.FAV_TWEET,
             tweetId: this.props.tweet.id_str,
@@ -42,6 +45,7 @@ export default class TweetOption extends React.Component {
     }
 
     onRetweetClicked() {
+        React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.RT_TWEET,
             tweetId: this.props.tweet.id_str
@@ -52,12 +56,19 @@ export default class TweetOption extends React.Component {
         let favLabel = this.props.tweet.favorited ? "Unfavorite" : "Favorite";
         return (<div>
                     <ButtonToolbar>
-                        <DropdownButton bsSize="small" title="" id="tweet-option-button">
-                            <MenuItem eventKey="1" onClick={this.onMentionClicked.bind(this)}>Mention</MenuItem>
-                            <MenuItem eventKey="2" onClick={this.onDMClicked.bind(this)}>DirectMessage</MenuItem>
-                            <MenuItem eventKey="3" onClick={this.onFavClicked.bind(this)}>{favLabel}</MenuItem>
-                            <MenuItem eventKey="4" onClick={this.onRetweetClicked.bind(this)}>ReTweet</MenuItem>
-                        </DropdownButton>
+                        <OverlayTrigger
+                            trigger="click"
+                            placement="left"
+                            rootClose overlay={
+                            <Popover>
+                                <a href="javascript:void(0)" onClick={this.onMentionClicked.bind(this)}>Mention</a><br/>
+                                <a href="javascript:void(0)" onClick={this.onDMClicked.bind(this)}>DM</a><br/>
+                                <a href="javascript:void(0)" onClick={this.onFavClicked.bind(this)}>{favLabel}</a><br/>
+                                <a href="javascript:void(0)" onClick={this.onRetweetClicked.bind(this)}>Retweet</a>
+                            </Popover>}
+                        >
+                            <Button ref="button">></Button>
+                        </OverlayTrigger>
                     </ButtonToolbar>
                 </div>
             );
