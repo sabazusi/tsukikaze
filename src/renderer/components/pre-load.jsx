@@ -9,7 +9,6 @@ export default class PreLoad extends React.Component {
     render() {
         return (
                 <div className="application">
-                    <ControlPanel/>
                     <div className="preLoading">
                         <img src="../../resources/loading.gif"/>
                     </div>

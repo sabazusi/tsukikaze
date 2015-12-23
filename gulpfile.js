@@ -47,6 +47,6 @@ gulp.task('concat-vendor-css', function(){
 gulp.task('start', ['compile'], function(){
     electron.start();
 
-    gulp.watch("src/**/*.{js,jsx,html}", ['compile']);
+    gulp.watch("src/**/*.{js,jsx,html,sass}", ['compile']);
     gulp.watch("dest/main/tsukikaze.js", electron.restart);
 });

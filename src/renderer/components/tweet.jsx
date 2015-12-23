@@ -46,7 +46,7 @@ class ExtendedEntities {
 
 class Image extends React.Component {
     render() {
-        return <img src={this.props.imageUrl} width={this.props.width} height={this.props.height}/>;
+        return <img className="userimg" src={this.props.imageUrl} width={this.props.width} height={this.props.height}/>;
     }
 }
 
@@ -112,7 +112,7 @@ export default class Tweet extends React.Component {
     render() {
         return (
                 <div className="tweet">
-                    <table>
+                    <table className="tweet-body-header">
                         <tr>
                             <td>
                                 <div className="tweet-user">
@@ -127,20 +127,20 @@ export default class Tweet extends React.Component {
                         </tr>
                     </table>
 
-                    <table>
+                    <table className="tweet-body-contents">
                         <tr>
-                            <td>
-                                <div className="user-image">
+                            <td className="user-image">
+                                <div>
                                     <Image imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
                                 </div>
                             </td>
-                            <td>
-                                <div className="tweet-body">
+                            <td className="tweet-body">
+                                <div>
                                     {this.getTweetBody()}
                                 </div>
                             </td>
-                            <td>
-                                <div className="tweet-option">
+                            <td className="tweet-option">
+                                <div>
                                     <TweetOption tweet={this.props.tweet}/>
                                 </div>
                             </td>

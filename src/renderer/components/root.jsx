@@ -12,7 +12,6 @@ export default class Root extends React.Component {
     render() {
         return (
             <div className="application">
-                <ControlPanel/>
                 <Editor stores={this.props.stores}/>
                 <Switcher/>
                 <TweetList stores={this.props.stores}/>
