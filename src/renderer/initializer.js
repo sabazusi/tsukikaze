@@ -1,6 +1,5 @@
 import remote from 'remote'
 import ipc from 'ipc'
-import Rx from 'rx'
 import Renderer from './renderer'
 import ActionDispatcher from './dispatcher/action-dispatcher'
 import ViewDispatcher from './dispatcher/view-dispatcher'
