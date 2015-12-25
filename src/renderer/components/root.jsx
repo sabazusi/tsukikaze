@@ -22,7 +22,7 @@ export default class Root extends React.Component {
     }
 
     getTweetsMaxHeight(windowHeight) {
-		// remove editor, window-bar height.
+        // remove editor, window-bar height.
         return windowHeight - 83;
     }
 
