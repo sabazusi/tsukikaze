@@ -16,6 +16,9 @@ export default class MainWindow
 
         this._window = electronWindow.createWindow(windowProperty);
         this.show();
+        this._window.on("resize", (e)=> {
+            this.send("resize", this._window.getSize());
+        });
     }
 
     show() {
