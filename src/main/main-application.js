@@ -34,9 +34,9 @@ export default class MainApplication
         let credential = this._credential;
         let mainWindow = this.mainWindow;
 
-        setTimeout(function(){
+        setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
-            this.authenticationWindow.on('get-access-token', function(accessToken, accessTokenSecret){
+            this.authenticationWindow.on('get-access-token', (accessToken, accessTokenSecret) => {
                 mainWindow.send('consumer-and-access-keys', accessToken, accessTokenSecret, credential);
             });
             this.authenticationWindow.show(credential);

@@ -9,7 +9,6 @@ export default class MainWindow
             width: 400,
             height: 700,
             frame: true
-            //resizable: false
         };
         windowProperty["min-width"] = 400;
         windowProperty["min-height"] = 400;
@@ -23,7 +22,7 @@ export default class MainWindow
 
     show() {
         let renderFilePath = path.resolve(__dirname, '../../', 'renderer', 'main.html');
-        this._window.showUrl(renderFilePath, {}, function() {
+        this._window.showUrl(renderFilePath, {}, () => {
             console.log('window created.');
         });
     }
