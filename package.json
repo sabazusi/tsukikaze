@@ -4,7 +4,7 @@
   "main": "dest/main/tsukikaze.js",
   "scripts": {
     "compile": "gulp compile",
-    "package": "electron-packager dest tsukikaze --platform=darwin --arch=x64 --version=0.33.6 --icon=resources/tsukikaze.icns  --overwrite",
+    "package": "electron-packager ./dest tsukikaze --platform=darwin --arch=x64 --version=0.36.1 --icon=./resources/tsukikaze.icns  --overwrite",
     "start": "gulp start"
   },
   "repository": {
