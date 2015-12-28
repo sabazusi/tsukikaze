@@ -3,7 +3,7 @@
 twitter client for desktop.
 
 ## screenshots
-[](resources/screenshots/tsukikaze-sc.png)
+![screenshot](resources/screenshots/tsukikaze-sc.png)
 
 ## download
 
