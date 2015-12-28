@@ -12,7 +12,6 @@ export default class MainApplication
     }
 
     start() {
-        ipc.on('log', this._log);
         ipc.on('authenticate-twitter', this._authentication.bind(this));
         ipc.on('require-consumer-keys', this._sendConsumerKeys.bind(this));
         app.on('ready', this._onReady.bind(this));
@@ -46,9 +45,5 @@ export default class MainApplication
 
     _sendConsumerKeys(e) {
         this.mainWindow.send('consumer-keys', this._credential);
-    }
-
-    _log(event, args) {
-        console.log("[Renderer]" + args);
     }
 }
