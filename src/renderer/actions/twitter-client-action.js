@@ -64,10 +64,10 @@ export default class TwitterClientAction {
                     });
                 });
                 this.client.mentions({user}).then(({tweets}) => {
-                   ActionDispatcher.dispatch({actionType:"mentions", mentions: tweets});
+                    ActionDispatcher.dispatch({actionType:"mentions", mentions: tweets});
                 });
                 this.client.directMessages({user}).then(({tweets}) => {
-                   ActionDispatcher.dispatch({actionType:"directMessages", dms: tweets});
+                    ActionDispatcher.dispatch({actionType:"directMessages", dms: tweets});
                 });
             });
         });

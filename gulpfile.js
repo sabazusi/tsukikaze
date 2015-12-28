@@ -4,6 +4,7 @@ var sym = require('gulp-sym');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var electron = require('electron-connect').server.create();
+var eslint = require('gulp-eslint');
 
 gulp.task('compile', ['copy-assets', 'compile-js', 'compile-html', 'symlink', 'compile-sass', 'concat-vendor-css']);
 
@@ -33,7 +34,6 @@ gulp.task('compile-sass', function(){
 gulp.task('symlink', function(){
     gulp.src('node_modules/font-awesome/fonts')
     .pipe(sym('dest/renderer/fonts', {force:true}));
-    //.pipe(sym('dest/renderer/mock/fonts', {force:true}));
 });
 
 gulp.task('concat-vendor-css', function(){
@@ -50,3 +50,10 @@ gulp.task('start', ['compile'], function(){
     gulp.watch("src/**/*.{js,jsx,html,sass}", ['compile']);
     gulp.watch("dest/main/tsukikaze.js", electron.restart);
 });
+
+gulp.task('lint', function(){
+    return gulp.src(["src/**/*.{js, jsx}"])
+           .pipe(eslint())
+           .pipe(eslint.format())
+           .pipe(eslint.failAfterError());
+})

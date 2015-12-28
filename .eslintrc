@@ -1,0 +1,22 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "ecmaFeatures": {
+    "modules": true,
+    "jsx": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/jsx-uses-vars": 1,
+    "no-var": 2,
+    "no-constant-condition": 1,
+    "indent": [2, 4, {
+      'SwitchCase': 1,
+    }],
+    "no-alert": 0
+  }
+}

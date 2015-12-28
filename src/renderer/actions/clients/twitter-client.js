@@ -51,16 +51,16 @@ export default class TwitterClient {
     post(tweet, media) {
         console.log(media);
         return new Promise((resolve, reject) => {
-           this.twitter.post(
-               'statuses/update',
-               {
-                   status: tweet,
-                   media_ids: media ? media : {}
-               },
-               (error, tweet, response) => {
-                   resolve({tweet: tweet, response: response});
-               }
-           );
+            this.twitter.post(
+                'statuses/update',
+                {
+                    status: tweet,
+                    media_ids: media ? media : {}
+                },
+                (error, tweet, response) => {
+                    resolve({tweet: tweet, response: response});
+                }
+            );
         });
     }
 
@@ -91,21 +91,22 @@ export default class TwitterClient {
 
     mentions({screen_name}) {
         return new Promise((resolve, reject) => {
-            this.twitter.get('statuses/mentions_timeline',
-            {
-                screen_name:screen_name
-            },
-            (error, tweets, response) => {
-                resolve({tweets: tweets});
-            });
+            this.twitter.get(
+                'statuses/mentions_timeline',
+                {
+                    screen_name:screen_name
+                },
+                (error, tweets, response) => {
+                    resolve({tweets: tweets});
+                });
         })
     }
 
     directMessages({screen_name}) {
         return new Promise((resolve, reject) => {
-            this.twitter.get('direct_messages',
-            {
-            },
+            this.twitter.get(
+                'direct_messages',
+                {},
                 (error, tweets, response) => {
                     resolve({tweets: tweets});
                 }
