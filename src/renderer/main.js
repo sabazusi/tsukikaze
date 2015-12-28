@@ -1,6 +1,6 @@
 import ipc from 'ipc'
 import ApplicationInitializer from './initializer'
-import TwitterClient from './actions/observables/twitter-client'
+import TwitterClient from './actions/clients/twitter-client'
 import Renderer from './renderer'
 
 
