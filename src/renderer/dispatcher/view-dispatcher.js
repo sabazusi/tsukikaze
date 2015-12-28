@@ -1,3 +1,3 @@
-var ViewDispatcher = require('flux').Dispatcher;
+let ViewDispatcher = require('flux').Dispatcher;
 
 export default new ViewDispatcher();

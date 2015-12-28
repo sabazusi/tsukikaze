@@ -1,3 +1,3 @@
-var ActionDispatcher = require('flux').Dispatcher;
+let ActionDispatcher = require('flux').Dispatcher;
 
 export default new ActionDispatcher();

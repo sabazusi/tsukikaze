@@ -4,8 +4,7 @@ import path from 'path'
 export default class MainWindow
 {
     constructor() {
-        let windowProperty = 
-        {
+        let windowProperty = {
             width: 400,
             height: 700,
             frame: true

@@ -6,8 +6,7 @@ export default class AuthenticationWindow extends EventEmitter
 {
     constructor() {
         super();
-        const windowProperty = 
-        {
+        const windowProperty = {
             width: 400,
             height: 500,
             frame: false,
@@ -28,9 +27,8 @@ export default class AuthenticationWindow extends EventEmitter
 
         twitterAPI.getRequestToken((error, requestToken, requestTokenSecret) => {
             this._window.webContents.on('will-navigate', (event, url) => {
-                var matched;
-                if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/))
-                {
+                let matched;
+                if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
                     twitterAPI.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
                         // get access token.
                         this.emit('get-access-token', accessToken, accessTokenSecret);
