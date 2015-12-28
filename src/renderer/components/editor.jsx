@@ -2,6 +2,7 @@ import ViewDispatcher from '../dispatcher/view-dispatcher'
 import EditorConstants from '../constants/editor-constants'
 import React from 'react'
 import remote from 'remote'
+import {Button} from 'react-bootstrap'
 
 export default class Editor extends React.Component {
     constructor(...args) {
@@ -13,6 +14,7 @@ export default class Editor extends React.Component {
             editorText: this.editorStore.editorText()
         };
     }
+
 
     componentDidMount() {
         this.editorStore.onChange(() => {
@@ -35,15 +37,16 @@ export default class Editor extends React.Component {
         if(this.state.isActiveEditor) {
             return (
                 <div>
-                    <button><i className="fa fa-times fa-2x" onClick={this.onCloseButtonClicked.bind(this)}></i></button>
-                    <button><i className="fa fa-paper-plane-o fa-2x" onClick={this.onPostButtonClicked.bind(this)}></i></button>
-                    <button><i className="fa fa-file-image-o fa-2x" onClick={this.onMediaButtonClicked.bind(this)}></i></button>
-                    {this.getRemainCount()}
+                    <Button bsStyle="danger" bsSize="small" className="closeEditor" onClick={this.onCloseButtonClicked.bind(this)}><i className="fa fa-times fa-2x"></i></Button>
+                    <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
+                    <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>
+                    <br/>
                     <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
+                    {this.getRemainCount()}
                 </div>
             );
         } else {
-            return <button><i className="fa fa-pencil fa-2x" onClick={this.onOpenButtonClicked.bind(this)}></i></button>
+            return <Button bsStyle="primary" bsSize="small" className="openEditor" onClick={this.onOpenButtonClicked.bind(this)}><i className="fa fa-pencil fa-2x"></i></Button>
         }
     }
 
