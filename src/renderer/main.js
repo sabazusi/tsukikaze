@@ -13,24 +13,24 @@ if (loginKeys) {
     ipc.on('consumer-keys', (credential) => {
         new ApplicationInitializer().run( new TwitterClient(
             loginKeys.accessToken,
-            loginKeys.accessTokenSecrent,
+            loginKeys.accessTokenSecret,
             credential.consumerKey,
             credential.consumerSecret
         ));
     });
-    ipc.send('require-consumer-keys', loginKeys.accessToken, loginKeys.accessTokenSecrent);
+    ipc.send('require-consumer-keys', loginKeys.accessToken, loginKeys.accessTokenSecret);
 
 } else {
-    ipc.on('consumer-and-access-keys', (accessToken, accessTokenSecrent, credential) => {
+    ipc.on('consumer-and-access-keys', (accessToken, accessTokenSecret, credential) => {
         let newKey = JSON.stringify({
             accessToken: accessToken,
-            accessTokenSecrent: accessTokenSecrent
+            accessTokenSecret: accessTokenSecret
         });
         localStorage.setItem('twitter-login-keys', newKey);
 
         new ApplicationInitializer().run( new TwitterClient(
             accessToken,
-            accessTokenSecrent,
+            accessTokenSecret,
             credential.consumerKey,
             credential.consumerSecret
         ));

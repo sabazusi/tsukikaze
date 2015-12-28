@@ -2,7 +2,7 @@ import ViewDispatcher from '../dispatcher/view-dispatcher'
 import EditorConstants from '../constants/editor-constants'
 import React from 'react'
 import remote from 'remote'
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 export default class Editor extends React.Component {
     constructor(...args) {
