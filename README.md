@@ -3,7 +3,21 @@
 twitter client for desktop.
 
 ## screenshots
-<img src="resources/screenshots/tsukikaze-1.png" style="width:250px;float:left;">
-<img src="resources/screenshots/tsukikaze-2.png" style="width:250px;">
+[](resources/screenshots/tsukikaze-sc.png)
 
 ## download
+
+## development
+```bash
+# setup
+npm install
+
+# compile
+npm compile
+
+# run with gulp-watch
+npm start
+
+# packaging
+npm run package
+```
