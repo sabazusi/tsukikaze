@@ -4,7 +4,7 @@
   "main": "dest/main/tsukikaze.js",
   "scripts": {
     "compile": "gulp compile",
-    "package": "electron-packager ./dest tsukikaze --platform=darwin --arch=x64 --version=0.36.1 --icon=./resources/tsukikaze.icns  --overwrite",
+    "package": "electron-zip-packager . tsukikaze --platform=darwin --arch=x64 --version=0.36.1 --icon=./resources/tsukikaze.icns  --overwrite",
     "start": "gulp start"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "electron-connect": "^0.3.3",
     "electron-packager": "^5.1.0",
     "electron-prebuilt": "^0.33.8",
+    "electron-zip-packager": "^1.0.4",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.13.1",
     "gulp": "^3.9.0",

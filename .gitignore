@@ -4,3 +4,4 @@ node_modules
 tsukikaze-darwin-x64
 npm-debug.log
 .idea
+*.zip
