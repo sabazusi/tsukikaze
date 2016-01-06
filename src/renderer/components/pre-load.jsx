@@ -1,5 +1,4 @@
 import React from 'react'
-import ControlPanel from './control-panel'
 
 export default class PreLoad extends React.Component {
     constructor() {

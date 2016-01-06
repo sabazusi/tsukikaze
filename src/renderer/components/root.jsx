@@ -1,5 +1,4 @@
 import React from 'react'
-import ControlPanel from './control-panel'
 import TweetList from './tweet-list'
 import Switcher from './switcher'
 import Editor from './editor'
