@@ -135,7 +135,7 @@ export default class Tweet extends React.Component {
                                 </div>
                             </td>
                             <td className="tweet-body">
-                                <div>
+                                <div className="tweet-body-text">
                                     {this.getTweetBody()}
                                 </div>
                             </td>

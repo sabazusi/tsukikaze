@@ -3,6 +3,8 @@
 body
     background: rgba(40, 40, 40, 1.0);
     overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
 
 .dummyTweetList
     position: relative;
@@ -64,6 +66,9 @@ body
 
 .tweet-body-contents
     width: 100%;
+
+.tweet-body-text
+    -webkit-user-select: auto;
 
 .tweet-user
     text-align: left;
