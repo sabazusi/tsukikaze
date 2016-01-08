@@ -44,7 +44,7 @@ export default class TweetList extends React.Component {
 
     render() {
         let style = {};
-        style["max-height"] = this.props.maxHeight;
+        style["maxHeight"] = this.props.maxHeight;
         return (
             <div className="tweetList" style={style}>
                 {this.getTweets()}
