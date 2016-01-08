@@ -10,6 +10,7 @@ export default class TwitterHomeTimelineStore extends StoreBase {
             switch(action.actionType) {
                 case TwitterClientConstants.INITIAL_TWEET:
                     action.tweets.map((tweet) => {
+                        tweet.selected = false;
                         this.homeTimelineTweets.push(tweet);
                     });
                     this.emitChange();
