@@ -60,7 +60,7 @@ export default class TweetOption extends React.Component {
                             trigger="click"
                             placement="left"
                             rootClose overlay={
-                            <Popover>
+                            <Popover id="tweet-option">
                                 <a href="javascript:void(0)" onClick={this.onMentionClicked.bind(this)}>Mention</a><br/>
                                 <a href="javascript:void(0)" onClick={this.onDMClicked.bind(this)}>DM</a><br/>
                                 <a href="javascript:void(0)" onClick={this.onFavClicked.bind(this)}>{favLabel}</a><br/>
