@@ -4,11 +4,14 @@ import MainWindow from './window/main-window.js'
 import AuthenticationWindow from './window/authentication-window.js'
 import app from 'app'
 import ipc from 'ipc'
+import BrowserProcessStorage from './storage/browser-storage'
 
 export default class MainApplication
 {
     constructor() {
         this.window = null;
+        this.storage = new BrowserProcessStorage();
+        console.log("hai");
     }
 
     start() {
@@ -19,7 +22,7 @@ export default class MainApplication
 
     _onReady() {
         this._loadCredential();
-        this.mainWindow = new MainWindow();
+        this.mainWindow = new MainWindow(this.storage);
     }
 
     _loadCredential() {
