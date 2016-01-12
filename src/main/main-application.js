@@ -11,7 +11,6 @@ export default class MainApplication
     constructor() {
         this.window = null;
         this.storage = new BrowserProcessStorage();
-        console.log("hai");
     }
 
     start() {
