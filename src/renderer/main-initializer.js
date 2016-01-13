@@ -13,7 +13,7 @@ import ExternalAction from './actions/external-action'
 import TweetListSwitchAction from './actions/tweet-list-switch-action'
 import EditorAction from './actions/editor-action'
 
-export default class ApplicationInitializer {
+export default class MainApplicationInitializer {
     constructor() {
     }
 

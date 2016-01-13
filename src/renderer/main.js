@@ -1,5 +1,5 @@
 import ipc from 'ipc'
-import ApplicationInitializer from './initializer'
+import MainApplicationInitializer from './main-initializer'
 import TwitterClient from './actions/clients/twitter-client'
 import Renderer from './renderer'
 
@@ -9,7 +9,7 @@ setTimeout(() => {
 }, 100);
 
 const initialize = (aToken, aSecret, cKey, cSecret) => {
-    new ApplicationInitializer().run( new TwitterClient(
+    new MainApplicationInitializer().run( new TwitterClient(
         aToken,
         aSecret,
         cKey,
