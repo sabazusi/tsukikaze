@@ -5,10 +5,10 @@ export default class InitialWindow {
     constructor() {
         let windowProperty = {
             width: 300,
-            height: 300,
+            height: 350,
             frame: false,
             resizable: false
-        }
+        };
 
         this._window = electronWindow.createWindow(windowProperty);
         let renderFilePath = path.resolve(__dirname, '../../', 'renderer', 'initial.html');

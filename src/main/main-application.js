@@ -1,16 +1,15 @@
-import jsonLoader from 'jsonloader'
-import path from 'path'
-import MainWindow from './window/main-window.js'
-import AuthenticationWindow from './window/authentication-window.js'
-import app from 'app'
-import ipc from 'ipc'
-import BrowserProcessStorage from './storage/browser-storage'
+import jsonLoader from 'jsonloader';
+import path from 'path';
+import MainWindow from './window/main-window.js';
+import AuthenticationWindow from './window/authentication-window.js';
+import app from 'app';
+import ipc from 'ipc';
+import InitialWindow from './window/initial-window';
 
 export default class MainApplication
 {
     constructor() {
         this.window = null;
-        this.storage = new BrowserProcessStorage();
     }
 
     start() {
@@ -21,7 +20,8 @@ export default class MainApplication
 
     _onReady() {
         this._loadCredential();
-        this.mainWindow = new MainWindow(this.storage);
+ //       this.mainWindow = new MainWindow(this.storage);
+        this.initialWindow = new InitialWindow();
     }
 
     _loadCredential() {

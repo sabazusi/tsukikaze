@@ -7,9 +7,27 @@ export default class BrowserProcessStorage {
         this._storage = {};
         this.data = "a";
 
+        new Promise((resolve, reject) => {
+            fs.accessSync(this.fileName, fs.R_OK & fs.W_OK, (error) => {
+                if (error) {
+                    this.data = "c";
+                } else {
+                    resolve();
+                }
+            });
+        }).catch((e) => {
+                console.log("aaaaa");
+                this.data = "c";
+            }
+        ).then(() => {
+                this.data = "b";
+            }
+        );
+        /**
         try {
             fs.accessSync(this.fileName, fs.R_OK & fs.W_OK, (error) => {
                 fs.readFileSync(this.fileName, "utf8", (error, data) => {
+                    this.imp();
                     this.data = this.fileName;
                     this._storage = JSON.parse(data);
                 });
@@ -24,6 +42,9 @@ export default class BrowserProcessStorage {
             });
         }
 
+         */
+        console.log("hai...");
+        console.log(this.data);
 
         /**
         fs.access(this.fileName, fs.R_OK & fs.W_OK, (error) => {
@@ -48,6 +69,9 @@ export default class BrowserProcessStorage {
         });
          */
 
+    }
+    imp() {
+        this.data = "b";
     }
 
     getWindowSize() {
