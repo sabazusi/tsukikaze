@@ -1,5 +1,5 @@
 import ipc from 'ipc';
-import IpcConstants from './constants/ipc-constants';
+import IpcConstants from './../utils/ipc-constants';
 
 let loginKeys = JSON.parse(localStorage.getItem('twitter-login-keys'));
 let windowSize = JSON.parse(localStorage.getItem('window-size'));

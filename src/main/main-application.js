@@ -4,6 +4,7 @@ import MainWindow from './window/main-window.js';
 import AuthenticationWindow from './window/authentication-window.js';
 import app from 'app';
 import ipc from 'ipc';
+import IpcConstants from '../utils/ipc-constants';
 import InitialWindow from './window/initial-window';
 
 export default class MainApplication
@@ -13,15 +14,26 @@ export default class MainApplication
     }
 
     start() {
-        ipc.on('authenticate-twitter', this._authentication.bind(this));
-        ipc.on('require-consumer-keys', this._sendConsumerKeys.bind(this));
+ //       ipc.on('authenticate-twitter', this._authentication.bind(this));
+  //      ipc.on('require-consumer-keys', this._sendConsumerKeys.bind(this));
         app.on('ready', this._onReady.bind(this));
+        ipc.on(IpcConstants.INITIALIZE_WITH_LOGIN, this._startAuthentication);
+        ipc.on(IpcConstants.INITIALIZE_WITH_KEY, this._checkLoginKeys);
     }
 
     _onReady() {
         this._loadCredential();
  //       this.mainWindow = new MainWindow(this.storage);
         this.initialWindow = new InitialWindow();
+    }
+
+    _startAuthentication(event, windowSize) {
+        console.log("a");
+        console.log(windowSize);
+    }
+
+    _checkLoginKeys(event, keys, windowSize) {
+        console.log("aa");
     }
 
     _loadCredential() {
