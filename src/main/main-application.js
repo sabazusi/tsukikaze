@@ -14,25 +14,29 @@ export default class MainApplication
     }
 
     start() {
- //       ipc.on('authenticate-twitter', this._authentication.bind(this));
-  //      ipc.on('require-consumer-keys', this._sendConsumerKeys.bind(this));
         app.on('ready', this._onReady.bind(this));
-        ipc.on(IpcConstants.INITIALIZE_WITH_LOGIN, this._startAuthentication);
-        ipc.on(IpcConstants.INITIALIZE_WITH_KEY, this._checkLoginKeys);
+        ipc.on(IpcConstants.INITIALIZE_WITH_LOGIN, (event, windowSize) => {
+            this._startAuthentication(windowSize);
+        });
+        ipc.on(IpcConstants.INITIALIZE_WITH_KEY, (event, loginKeys, windowSize) => {
+            this._checkLoginKeys(loginKeys, windowSize);
+        });
     }
 
     _onReady() {
         this._loadCredential();
- //       this.mainWindow = new MainWindow(this.storage);
         this.initialWindow = new InitialWindow();
     }
 
-    _startAuthentication(event, windowSize) {
-        console.log("a");
-        console.log(windowSize);
+    _startAuthentication(windowSize) {
+        console.log(this._credential);
+        setTimeout(() => {
+            this.authenticationWindow = new AuthenticationWindow();
+            this.authenticationWindow.show(this._credential)
+        }, 1000);
     }
 
-    _checkLoginKeys(event, keys, windowSize) {
+    _checkLoginKeys(keys, windowSize) {
         console.log("aa");
     }
 
