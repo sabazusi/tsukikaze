@@ -32,6 +32,9 @@ export default class MainApplication
         console.log(this._credential);
         setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
+            this.authenticationWindow.on('get-access-token', (accessToken, accessTokenSecret) => {
+                this.initialWindow.send(IpcConstants.UPDATE_LOGIN_KEYS, accessToken, accessTokenSecret);
+            });
             this.authenticationWindow.show(this._credential)
         }, 1000);
     }
