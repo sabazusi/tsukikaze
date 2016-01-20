@@ -1,6 +1,6 @@
 import ipc from 'ipc'
 import MainApplicationInitializer from './main-initializer'
-import TwitterClient from './actions/clients/twitter-client'
+import TwitterClient from '../utils/twitter-client'
 import Renderer from './renderer'
 
 
