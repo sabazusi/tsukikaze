@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events'
 import electronWindow from 'electron-window'
 import TwitterAPI from 'node-twitter-api'
+import TwitterAuthConstants from '../../utils/twitter-auth-constants';
 
 export default class AuthenticationWindow extends EventEmitter
 {
@@ -31,7 +32,7 @@ export default class AuthenticationWindow extends EventEmitter
                 if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
                     twitterAPI.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
                         // get access token.
-                        this.emit('get-access-token', accessToken, accessTokenSecret);
+                        this.emit(TwitterAuthConstants.GET_ACCESS_TOKEN, accessToken, accessTokenSecret);
                     });
                     event.preventDefault();
                     setImmediate( () => {

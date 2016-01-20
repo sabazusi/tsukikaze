@@ -5,6 +5,7 @@ import AuthenticationWindow from './window/authentication-window.js';
 import app from 'app';
 import ipc from 'ipc';
 import IpcConstants from '../utils/ipc-constants';
+import TwitterAuthConstants from '../utils/twitter-auth-constants';
 import InitialWindow from './window/initial-window';
 
 export default class MainApplication
@@ -32,7 +33,7 @@ export default class MainApplication
         console.log(this._credential);
         setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
-            this.authenticationWindow.on('get-access-token', (accessToken, accessTokenSecret) => {
+            this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
                 this.initialWindow.send(IpcConstants.UPDATE_LOGIN_KEYS, accessToken, accessTokenSecret);
             });
             this.authenticationWindow.show(this._credential)
