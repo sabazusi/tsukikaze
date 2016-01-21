@@ -6,6 +6,7 @@ import app from 'app';
 import ipc from 'ipc';
 import IpcConstants from '../utils/ipc-constants';
 import TwitterAuthConstants from '../utils/twitter-auth-constants';
+import TwitterClient from '../utils/twitter-client';
 import InitialWindow from './window/initial-window';
 
 export default class MainApplication
@@ -30,7 +31,6 @@ export default class MainApplication
     }
 
     _startAuthentication(windowSize) {
-        console.log(this._credential);
         setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
@@ -41,7 +41,15 @@ export default class MainApplication
     }
 
     _checkLoginKeys(keys, windowSize) {
-        console.log("aa");
+        let client = new TwitterClient(
+                    keys.accessToken,
+                    keys.accessTokenSecret,
+                    this._credential.consumerKey,
+                    this._credential.consumerSecret
+                );
+        client.verifyCredential().then(({response}) => {
+            console.log("checked");
+        });
     }
 
     _loadCredential() {
