@@ -13,6 +13,7 @@ export default class MainApplication
 {
     constructor() {
         this.window = null;
+        this.windowSize = this._getDefaultWindowSize();
     }
 
     start() {
@@ -31,6 +32,7 @@ export default class MainApplication
     }
 
     _startAuthentication(windowSize) {
+        this._updateWindowSize(windowSize);
         setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
@@ -41,6 +43,7 @@ export default class MainApplication
     }
 
     _checkLoginKeys(keys, windowSize) {
+        this._updateWindowSize(windowSize);
         let client = new TwitterClient(
                     keys.accessToken,
                     keys.accessTokenSecret,
@@ -49,6 +52,8 @@ export default class MainApplication
                 );
         client.verifyCredential().then(({response}) => {
             console.log("checked");
+        }).catch((error) => {
+            this._startAuthentication({});
         });
     }
 
@@ -75,5 +80,16 @@ export default class MainApplication
 
     _sendConsumerKeys(e) {
         this.mainWindow.send('consumer-keys', this._credential);
+    }
+
+    _getDefaultWindowSize() {
+        return {width: 400, height: 700};
+    }
+
+    _updateWindowSize(windowSize) {
+        if (windowSize && windowSize.height && windowSize.width) {
+            this.windowSize.height = windowSize.height;
+            this.windowSize.width = windowSize.width;
+        }
     }
 }
