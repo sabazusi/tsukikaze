@@ -7,7 +7,8 @@ export default class InitialWindow {
             width: 300,
             height: 350,
             frame: false,
-            resizable: false
+ //           resizable: false
+            resizable: true
         };
 
         this._window = electronWindow.createWindow(windowProperty);
@@ -15,5 +16,9 @@ export default class InitialWindow {
         this._window.showUrl(renderFilePath, {}, () => {
             console.log(' initial window created.');
         });
+    }
+
+    send(...args) {
+        this._window.webContents.send(...args);
     }
 }

@@ -37,6 +37,7 @@ export default class MainApplication
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
                 this.initialWindow.send(IpcConstants.UPDATE_LOGIN_KEYS, accessToken, accessTokenSecret);
+                this._openMainWindow();
             });
             this.authenticationWindow.show(this._credential)
         }, 1000);
@@ -51,8 +52,8 @@ export default class MainApplication
                     this._credential.consumerSecret
                 );
         client.verifyCredential().then(({response}) => {
-            console.log("checked");
-        }).catch((error) => {
+            this._openMainWindow();
+        }).catch(({error}) => {
             this._startAuthentication({});
         });
     }
@@ -63,23 +64,7 @@ export default class MainApplication
         this._credential = {consumerKey: credential.consumerKey, consumerSecret: credential.consumerSecret, callback:credential.callback};
     }
 
-    _authentication() {
-        console.log('authentication start.');
-        let credential = this._credential;
-        let mainWindow = this.mainWindow;
-
-        setTimeout(() => {
-            this.authenticationWindow = new AuthenticationWindow();
-            this.authenticationWindow.on('get-access-token', (accessToken, accessTokenSecret) => {
-                mainWindow.send('consumer-and-access-keys', accessToken, accessTokenSecret, credential);
-            });
-            this.authenticationWindow.show(credential);
-        }, 1000);
-
-    }
-
-    _sendConsumerKeys(e) {
-        this.mainWindow.send('consumer-keys', this._credential);
+    _openMainWindow() {
     }
 
     _getDefaultWindowSize() {
