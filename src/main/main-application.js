@@ -6,12 +6,14 @@ import app from 'app';
 import ipc from 'ipc';
 import IpcConstants from '../utils/ipc-constants';
 import TwitterAuthConstants from '../utils/twitter-auth-constants';
+import TwitterClient from '../utils/twitter-client';
 import InitialWindow from './window/initial-window';
 
 export default class MainApplication
 {
     constructor() {
         this.window = null;
+        this.windowSize = this._getDefaultWindowSize();
     }
 
     start() {
@@ -30,18 +32,30 @@ export default class MainApplication
     }
 
     _startAuthentication(windowSize) {
-        console.log(this._credential);
+        this._updateWindowSize(windowSize);
         setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
                 this.initialWindow.send(IpcConstants.UPDATE_LOGIN_KEYS, accessToken, accessTokenSecret);
+                this._openMainWindow();
             });
             this.authenticationWindow.show(this._credential)
         }, 1000);
     }
 
     _checkLoginKeys(keys, windowSize) {
-        console.log("aa");
+        this._updateWindowSize(windowSize);
+        let client = new TwitterClient(
+                    keys.accessToken,
+                    keys.accessTokenSecret,
+                    this._credential.consumerKey,
+                    this._credential.consumerSecret
+                );
+        client.verifyCredential().then(({response}) => {
+            this._openMainWindow();
+        }).catch(({error}) => {
+            this._startAuthentication({});
+        });
     }
 
     _loadCredential() {
@@ -50,22 +64,17 @@ export default class MainApplication
         this._credential = {consumerKey: credential.consumerKey, consumerSecret: credential.consumerSecret, callback:credential.callback};
     }
 
-    _authentication() {
-        console.log('authentication start.');
-        let credential = this._credential;
-        let mainWindow = this.mainWindow;
-
-        setTimeout(() => {
-            this.authenticationWindow = new AuthenticationWindow();
-            this.authenticationWindow.on('get-access-token', (accessToken, accessTokenSecret) => {
-                mainWindow.send('consumer-and-access-keys', accessToken, accessTokenSecret, credential);
-            });
-            this.authenticationWindow.show(credential);
-        }, 1000);
-
+    _openMainWindow() {
     }
 
-    _sendConsumerKeys(e) {
-        this.mainWindow.send('consumer-keys', this._credential);
+    _getDefaultWindowSize() {
+        return {width: 400, height: 700};
+    }
+
+    _updateWindowSize(windowSize) {
+        if (windowSize && windowSize.height && windowSize.width) {
+            this.windowSize.height = windowSize.height;
+            this.windowSize.width = windowSize.width;
+        }
     }
 }

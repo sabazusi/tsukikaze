@@ -42,14 +42,17 @@ export default class TwitterClient {
             this.twitter.get(
                 'account/verify_credentials',
                 (error, user, response) => {
-                    resolve({user:user, response:response});
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve({user:user, response:response});
+                    }
                 }
             )
         });
     }
 
     post(tweet, media) {
-        console.log(media);
         return new Promise((resolve, reject) => {
             this.twitter.post(
                 'statuses/update',
