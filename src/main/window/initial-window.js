@@ -21,4 +21,8 @@ export default class InitialWindow {
     send(...args) {
         this._window.webContents.send(...args);
     }
+
+    hide() {
+        this._window.hide();
+    }
 }

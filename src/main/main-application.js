@@ -4,8 +4,8 @@ import MainWindow from './window/main-window.js';
 import AuthenticationWindow from './window/authentication-window.js';
 import app from 'app';
 import ipc from 'ipc';
-import IpcConstants from '../utils/ipc-constants';
-import TwitterAuthConstants from '../utils/twitter-auth-constants';
+import IpcConstants from '../utils/constants/ipc-constants';
+import TwitterAuthConstants from '../utils/constants/twitter-auth-constants';
 import TwitterClient from '../utils/twitter-client';
 import InitialWindow from './window/initial-window';
 
@@ -54,6 +54,7 @@ export default class MainApplication
         client.verifyCredential().then(({response}) => {
             this._openMainWindow();
         }).catch(({error}) => {
+            // failed to login.
             this._startAuthentication({});
         });
     }
@@ -65,6 +66,9 @@ export default class MainApplication
     }
 
     _openMainWindow() {
+        this.initialWindow.hide();
+        // update initial window size
+        this.initialWindow.send(IpcConstants.UPDATE_WINDOW_SIZE, this.windowSize);
     }
 
     _getDefaultWindowSize() {
