@@ -23,7 +23,6 @@ ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
 ipc.on(IpcConstants.UPDATE_MESSAGE, (newMessage) => {
 });
 
-
 // send message to main process.
 if (loginKeys) {
     ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);

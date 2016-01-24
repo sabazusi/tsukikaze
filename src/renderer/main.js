@@ -3,6 +3,7 @@ import IpcConstants from '../utils/constants/ipc-constants';
 import MainApplicationInitializer from './main-initializer';
 import TwitterClient from '../utils/twitter-client';
 import Renderer from './renderer';
+import LocalStorageKeyConstants from './../utils/constants/local-storage-key-constants';
 
 
 setTimeout(() => {
@@ -25,6 +26,13 @@ ipc.on(IpcConstants.LOGIN_TWITTER, (credentials) => {
         credentials.accessTokenSecret,
         credentials.consumerKey,
         credentials.consumerSecret
+    );
+});
+
+ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
+    let newWindowSize = {width: width, height: height};
+    localStorage.setItem(
+        LocalStorageKeyConstants.INITIAL_WINDOW_SIZE, JSON.stringify(newWindowSize)
     );
 });
 

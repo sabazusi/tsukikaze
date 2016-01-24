@@ -1,5 +1,6 @@
-import electronWindow from 'electron-window'
-import path from 'path'
+import electronWindow from 'electron-window';
+import path from 'path';
+import IpcConstants from '../../utils/constants/ipc-constants';
 
 export default class MainWindow
 {
@@ -11,12 +12,6 @@ export default class MainWindow
         };
         this.windowProperty["min-width"] = 400;
         this.windowProperty["min-height"] = 400;
-
-        /**
-        this._window.on("resize", (e)=> {
-            this.send("resize", this._window.getSize());
-        });
-         */
     }
 
     start() {
@@ -24,6 +19,11 @@ export default class MainWindow
         let renderFilePath = path.resolve(__dirname, '../../', 'renderer', 'main.html');
         this._window.showUrl(renderFilePath, {}, () => {
             console.log('window created.');
+        });
+
+        this._window.on("resize", (e)=> {
+            let newSize = this._window.getSize();
+            this.send(IpcConstants.UPDATE_WINDOW_SIZE, newSize[0], newSize[1]);
         });
     }
 
