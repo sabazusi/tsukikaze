@@ -37,22 +37,25 @@ export default class MainApplication
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
                 this.initialWindow.send(IpcConstants.UPDATE_LOGIN_KEYS, accessToken, accessTokenSecret);
-                this._openMainWindow();
+                this._openMainWindow({
+                    accessToken: accessToken,
+                    accessTokenSecret: accessTokenSecret
+                });
             });
             this.authenticationWindow.show(this._credential)
         }, 1000);
     }
 
-    _checkLoginKeys(keys, windowSize) {
+    _checkLoginKeys(accessKeys, windowSize) {
         this._updateWindowSize(windowSize);
         let client = new TwitterClient(
-                    keys.accessToken,
-                    keys.accessTokenSecret,
+                    accessKeys.accessToken,
+                    accessKeys.accessTokenSecret,
                     this._credential.consumerKey,
                     this._credential.consumerSecret
                 );
         client.verifyCredential().then(({response}) => {
-            this._openMainWindow();
+            this._openMainWindow(accessKeys);
         }).catch(({error}) => {
             // failed to login.
             this._startAuthentication({});
@@ -65,10 +68,25 @@ export default class MainApplication
         this._credential = {consumerKey: credential.consumerKey, consumerSecret: credential.consumerSecret, callback:credential.callback};
     }
 
-    _openMainWindow() {
+    _openMainWindow(accessKeys) {
         this.initialWindow.hide();
         // update initial window size
-        this.initialWindow.send(IpcConstants.UPDATE_WINDOW_SIZE, this.windowSize);
+        this.initialWindow.send(IpcConstants.UPDATE_WINDOW_SIZE, this.windowSize.width, this.windowSize.height);
+
+        this.mainWindow = new MainWindow(
+            this.windowSize.width,
+            this.windowSize.height
+        );
+        ipc.on(IpcConstants.REQUIRE_CREDENTIALS, (event) => {
+            this.mainWindow.send(IpcConstants.LOGIN_TWITTER, {
+                consumerKey: this._credential.consumerKey,
+                consumerSecret: this._credential.consumerSecret,
+                accessToken: accessKeys.accessToken,
+                accessTokenSecret: accessKeys.accessTokenSecret
+            });
+        });
+
+        this.mainWindow.start();
     }
 
     _getDefaultWindowSize() {

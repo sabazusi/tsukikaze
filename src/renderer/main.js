@@ -1,7 +1,8 @@
-import ipc from 'ipc'
-import MainApplicationInitializer from './main-initializer'
-import TwitterClient from '../utils/twitter-client'
-import Renderer from './renderer'
+import ipc from 'ipc';
+import IpcConstants from '../utils/constants/ipc-constants';
+import MainApplicationInitializer from './main-initializer';
+import TwitterClient from '../utils/twitter-client';
+import Renderer from './renderer';
 
 
 setTimeout(() => {
@@ -18,34 +19,13 @@ const initialize = (aToken, aSecret, cKey, cSecret) => {
 };
 
 
-let loginKeys = JSON.parse(localStorage.getItem('twitter-login-keys'));
+ipc.on(IpcConstants.LOGIN_TWITTER, (credentials) => {
+    initialize(
+        credentials.accessToken,
+        credentials.accessTokenSecret,
+        credentials.consumerKey,
+        credentials.consumerSecret
+    );
+});
 
-if (loginKeys) {
-    ipc.on('consumer-keys', (credential) => {
-        initialize(
-            loginKeys.accessToken,
-            loginKeys.accessTokenSecret,
-            credential.consumerKey,
-            credential.consumerSecret
-        );
-    });
-    ipc.send('require-consumer-keys', loginKeys.accessToken, loginKeys.accessTokenSecret);
-
-} else {
-
-    ipc.on('consumer-and-access-keys', (accessToken, accessTokenSecret, credential) => {
-        let newKey = JSON.stringify({
-            accessToken: accessToken,
-            accessTokenSecret: accessTokenSecret
-        });
-        localStorage.setItem('twitter-login-keys', newKey);
-
-        initialize(
-            accessToken,
-            accessTokenSecret,
-            credential.consumerKey,
-            credential.consumerSecret
-        );
-    });
-    ipc.send('authenticate-twitter');
-}
+ipc.send(IpcConstants.REQUIRE_CREDENTIALS);

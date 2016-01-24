@@ -1,8 +1,8 @@
-class StorageKeyConstants {
+class LocalStorageKeyConstants {
     constructor() {
         this.TWITTER_LOGIN_KEYS = "twitterLoginKeys";
         this.INITIAL_WINDOW_SIZE = "initialWindowSize";
     }
 }
 
-export default new StorageKeyConstants();
+export default new LocalStorageKeyConstants();

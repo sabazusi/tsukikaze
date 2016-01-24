@@ -7,7 +7,6 @@ export default class InitialWindow {
             width: 300,
             height: 350,
             frame: false,
- //           resizable: false
             resizable: true
         };
 
