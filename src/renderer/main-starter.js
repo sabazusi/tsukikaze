@@ -13,12 +13,12 @@ import ExternalAction from './actions/external-action'
 import TweetListSwitchAction from './actions/tweet-list-switch-action'
 import EditorAction from './actions/editor-action'
 
-export default class MainApplicationInitializer {
+export default class MainApplicationStarter {
     constructor() {
     }
 
 
-    run(twitterClient) {
+    start(twitterClient) {
         // initialize stores.
         let stores = {
             homeTimelineStore: new TwitterHomeTimelineStore(),
