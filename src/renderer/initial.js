@@ -21,11 +21,14 @@ ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
 });
 
 ipc.on(IpcConstants.UPDATE_MESSAGE, (newMessage) => {
+    document.getElementById("sysmsg")
 });
 
 // send message to main process.
+/**
 if (loginKeys) {
     ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
 } else {
     ipc.send(IpcConstants.INITIALIZE_WITH_LOGIN, windowSize);
 }
+ */

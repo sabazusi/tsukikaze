@@ -4,8 +4,8 @@ import path from 'path'
 export default class InitialWindow {
     constructor() {
         let windowProperty = {
-            width: 300,
-            height: 350,
+            width: 400,
+            height: 220,
             frame: false,
             resizable: false
         };
