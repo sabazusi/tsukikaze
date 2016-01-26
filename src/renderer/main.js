@@ -1,6 +1,6 @@
 import ipc from 'ipc';
 import IpcConstants from '../utils/constants/ipc-constants';
-import MainApplicationInitializer from './main-initializer';
+import MainApplicationStarter from './main-starter';
 import TwitterClient from '../utils/twitter-client';
 import Renderer from './renderer';
 import LocalStorageKeyConstants from './../utils/constants/local-storage-key-constants';
@@ -11,7 +11,7 @@ setTimeout(() => {
 }, 100);
 
 const initialize = (aToken, aSecret, cKey, cSecret) => {
-    new MainApplicationInitializer().run( new TwitterClient(
+    new MainApplicationStarter().start(new TwitterClient(
         aToken,
         aSecret,
         cKey,
