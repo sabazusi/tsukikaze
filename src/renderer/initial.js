@@ -25,8 +25,12 @@ ipc.on(IpcConstants.UPDATE_MESSAGE, (newMessage) => {
 });
 
 // send message to main process.
-if (loginKeys) {
-    ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
-} else {
-    ipc.send(IpcConstants.INITIALIZE_WITH_LOGIN, windowSize);
-}
+setTimeout(() => {
+    document.getElementById("initial-loading").style.display="block";
+    document.getElementById("sysmsg").innerHTML = "Loading LoginKeys....";
+    if (loginKeys) {
+        ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
+    } else {
+        ipc.send(IpcConstants.INITIALIZE_WITH_LOGIN, windowSize);
+    }
+}, 500);
