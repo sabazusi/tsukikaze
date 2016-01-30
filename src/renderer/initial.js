@@ -26,8 +26,9 @@ ipc.on(IpcConstants.UPDATE_MESSAGE, (newMessage) => {
 
 // send message to main process.
 setTimeout(() => {
-    document.getElementById("initial-loading").style.display="block";
+    document.getElementById("initial-loading-logo").style.display="block";
     document.getElementById("sysmsg").innerHTML = "Loading LoginKeys....";
+	return;
     if (loginKeys) {
         ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
     } else {

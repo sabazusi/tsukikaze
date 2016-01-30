@@ -44,11 +44,7 @@ export default class MainApplicationStarter {
         });
 
         // start application.
-        setTimeout(() => {
-            let preLoad = document.getElementById("preLoad");
-            document.body.removeChild(preLoad);
-            Renderer.render(stores);
-            twitterClientAction.start();
-        }, 1000);
+        Renderer.render(stores);
+        twitterClientAction.start();
     }
 }

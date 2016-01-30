@@ -4,10 +4,11 @@ import path from 'path'
 export default class InitialWindow {
     constructor() {
         let windowProperty = {
-            width: 400,
-            height: 220,
+            width: 410,
+            height: 200,
             frame: false,
-            resizable: false
+            // resizable: false
+            resizable: true
         };
 
         this._window = electronWindow.createWindow(windowProperty);
