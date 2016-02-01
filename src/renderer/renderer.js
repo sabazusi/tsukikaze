@@ -12,9 +12,11 @@ class Renderer {
     }
 
     renderPreload() {
+        /**
         ReactDOM.render(
             <PreLoad/>, document.getElementById("preLoad")
         );
+         */
     }
 }
 

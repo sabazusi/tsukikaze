@@ -27,7 +27,9 @@ export default class TweetList extends React.Component {
     }
 
     getTweets() {
-        if (this.statusStore.homeTimelineEnabled()) {
+        if (!this.timelineStore.hasInitialized()) {
+            return <div></div>;
+        } else if (this.statusStore.homeTimelineEnabled()) {
             return this.timelineStore.getVal().map((rawTweet) => {
                 return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
