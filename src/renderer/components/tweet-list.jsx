@@ -29,14 +29,15 @@ export default class TweetList extends React.Component {
     getTweets() {
         if (!this.timelineStore.hasInitialized()) {
             return (
-                <div className="dummyTweetList">
+                <div>
                     <div className="preLoading">
                         <img src="../../resources/loading.gif"/>
                     </div>
-                    <div className="dummyTweet">
+                    <div className="dummyTweetList">
+                        <div className="dummyTweet">
+                        </div>
                     </div>
                 </div>
-
             );
         } else if (this.statusStore.homeTimelineEnabled()) {
             return this.timelineStore.getVal().map((rawTweet) => {
