@@ -7,7 +7,7 @@ export default class InitialWindow {
             width: 410,
             height: 200,
             frame: false,
-            resizable: false
+            resizable: true
         };
 
         this._window = electronWindow.createWindow(windowProperty);

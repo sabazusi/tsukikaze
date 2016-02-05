@@ -1,4 +1,6 @@
 import ipc from 'ipc';
+import path from 'path';
+import jsonLoader from 'jsonloader';
 import IpcConstants from './../utils/constants/ipc-constants';
 import LocalStorageKeyConstants from './../utils/constants/local-storage-key-constants';
 
@@ -24,12 +26,17 @@ ipc.on(IpcConstants.UPDATE_MESSAGE, (newMessage) => {
     document.getElementById("sysmsg").innerHTML = newMessage;
 });
 
+// get version.
+let versionFilePath = path.resolve(__dirname, '../../', 'resources', 'VERSION.json');
+let version = new jsonLoader(versionFilePath).current;
+
 // send message to main process.
 setTimeout(() => {
     document.getElementById("initial-loading-logo").style.display="block";
     document.getElementById("sysmsg").innerHTML = "Loading LoginKeys....";
+    document.getElementById("version-info").innerHTML = "VERSION: " + version;
     if (loginKeys) {
-        ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
+       ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
     } else {
         ipc.send(IpcConstants.INITIALIZE_WITH_LOGIN, windowSize);
     }
