@@ -22,21 +22,17 @@ ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
     );
 });
 
-ipc.on(IpcConstants.UPDATE_MESSAGE, (newMessage) => {
-    document.getElementById("sysmsg").innerHTML = newMessage;
-});
-
-// get version.
+// show version.
 let versionFilePath = path.resolve(__dirname, '../../', 'resources', 'VERSION.json');
 let version = new jsonLoader(versionFilePath).current;
+window.onload = () => {
+    document.getElementById("version-info").innerHTML = "VERSION: " + version;
+};
 
 // send message to main process.
 setTimeout(() => {
-    document.getElementById("initial-loading-logo").style.display="block";
-    document.getElementById("sysmsg").innerHTML = "Loading LoginKeys....";
-    document.getElementById("version-info").innerHTML = "VERSION: " + version;
     if (loginKeys) {
-       ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
+        ipc.send(IpcConstants.INITIALIZE_WITH_KEY, loginKeys, windowSize);
     } else {
         ipc.send(IpcConstants.INITIALIZE_WITH_LOGIN, windowSize);
     }
