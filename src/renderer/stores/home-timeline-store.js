@@ -5,10 +5,12 @@ import StoreBase from './store-base'
 export default class TwitterHomeTimelineStore extends StoreBase {
     constructor() {
         super();
+        this.initialized = false;
         this.homeTimelineTweets = [];
         Dispatcher.register((action) => {
             switch(action.actionType) {
                 case TwitterClientConstants.INITIAL_TWEET:
+                    this.initialized = true;
                     action.tweets.map((tweet) => {
                         tweet.selected = false;
                         this.homeTimelineTweets.push(tweet);
@@ -26,5 +28,9 @@ export default class TwitterHomeTimelineStore extends StoreBase {
 
     getVal() {
         return this.homeTimelineTweets;
+    }
+
+    hasInitialized() {
+        return this.initialized;
     }
 }

@@ -9,7 +9,7 @@ var eslint = require('gulp-eslint');
 gulp.task('compile', ['copy-assets', 'compile-js', 'compile-html', 'symlink', 'compile-sass', 'concat-vendor-css']);
 
 gulp.task('copy-assets', function(){
-    return gulp.src('src/**/*.json').pipe(gulp.dest('dest'));
+    return gulp.src('src/**/*.{json,css}').pipe(gulp.dest('dest'));
 });
 
 gulp.task('compile-js', function(){
@@ -47,7 +47,7 @@ gulp.task('concat-vendor-css', function(){
 gulp.task('start', ['compile'], function(){
     electron.start();
 
-    gulp.watch("src/**/*.{js,jsx,html,sass}", ['compile']);
+    gulp.watch("src/**/*.{js,jsx,html,sass,css}", ['compile']);
     gulp.watch("dest/main/tsukikaze.js", electron.restart);
 });
 

@@ -33,7 +33,6 @@ export default class MainApplication
 
     _startAuthentication(windowSize) {
         this._updateWindowSize(windowSize);
-        this.initialWindow.send(IpcConstants.UPDATE_MESSAGE, "Please Login Twitter.");
         setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
@@ -56,13 +55,11 @@ export default class MainApplication
                     this._credential.consumerSecret
                 );
         client.verifyCredential().then(({response}) => {
-            this.initialWindow.send(IpcConstants.UPDATE_MESSAGE, "Login Succeeded.");
             setTimeout(() => {
                 this._openMainWindow(accessKeys);
             }, 1000);
         }).catch(({error}) => {
             // failed to login.
-            this.initialWindow.send(IpcConstants.UPDATE_MESSAGE, "Login Failed.");
             setTimeout(() => {
                 this._startAuthentication({});
             }, 1000);

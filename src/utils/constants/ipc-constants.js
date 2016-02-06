@@ -4,7 +4,6 @@ class IpcConstants {
         this.INITIALIZE_WITH_LOGIN = "initializeWithLogin";
         this.UPDATE_LOGIN_KEYS = "updateLoginKeys";
         this.UPDATE_WINDOW_SIZE = "updateWindowSize";
-        this.UPDATE_MESSAGE = "updateMessage";
         this.LOGIN_TWITTER = "loginTwitter";
         this.REQUIRE_CREDENTIALS = "requireCredentials";
     }
