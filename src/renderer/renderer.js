@@ -10,14 +10,6 @@ class Renderer {
             <Root stores={stores}/>, document.getElementById("postLoad")
         );
     }
-
-    renderPreload() {
-        /**
-        ReactDOM.render(
-            <PreLoad/>, document.getElementById("preLoad")
-        );
-         */
-    }
 }
 
 export default new Renderer();
