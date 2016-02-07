@@ -6,10 +6,6 @@ import Renderer from './renderer';
 import LocalStorageKeyConstants from './../utils/constants/local-storage-key-constants';
 
 
-setTimeout(() => {
-    Renderer.renderPreload();
-}, 100);
-
 const initialize = (aToken, aSecret, cKey, cSecret) => {
     new MainApplicationStarter().start(new TwitterClient(
         aToken,
