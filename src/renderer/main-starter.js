@@ -45,6 +45,6 @@ export default class MainApplicationStarter {
 
         // start application.
         Renderer.render(stores);
- //       twitterClientAction.start();
+        twitterClientAction.start();
     }
 }
