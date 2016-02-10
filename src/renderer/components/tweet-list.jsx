@@ -27,19 +27,7 @@ export default class TweetList extends React.Component {
     }
 
     getTweets() {
-        if (!this.timelineStore.hasInitialized()) {
-            return (
-                <div>
-                    <div className="preLoading">
-                        <img src="../../resources/loading.gif"/>
-                    </div>
-                    <div className="dummyTweetList">
-                        <div className="dummyTweet">
-                        </div>
-                    </div>
-                </div>
-            );
-        } else if (this.statusStore.homeTimelineEnabled()) {
+        if (this.statusStore.homeTimelineEnabled()) {
             return this.timelineStore.getVal().map((rawTweet) => {
                 return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
@@ -54,13 +42,36 @@ export default class TweetList extends React.Component {
         }
     }
 
+
+    getDummyTweets() {
+        return (
+            <div>
+                <div className="preLoading">
+                    <div className="cssload-loader"></div>
+                </div>
+                <div className="dummyTweetList">
+                    <div className="dummyTweet">
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         let style = {};
         style["maxHeight"] = this.props.maxHeight;
-        return (
-            <div className="tweetList" style={style}>
-                {this.getTweets()}
-            </div>
-        );
+        if (!this.timelineStore.hasInitialized()) {
+            return (
+                <div>
+                    {this.getDummyTweets()}
+                </div>
+            );
+        } else {
+            return (
+                <div className="tweetList" style={style}>
+                    {this.getTweets()}
+                </div>
+            );
+        }
     }
 }

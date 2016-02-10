@@ -3,19 +3,20 @@ import TweetList from './tweet-list'
 import Switcher from './switcher'
 import Editor from './editor'
 import ipc from 'ipc'
+import IpcConstants from '../../utils/constants/ipc-constants';
 
 export default class Root extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tweetsMaxHeight: this.getTweetsMaxHeight(700)
+            tweetsMaxHeight: this.getTweetsMaxHeight(window.outerHeight)
         };
     }
 
     componentDidMount() {
-        ipc.on("resize", (bounds) => {
+        ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
             this.setState({
-                tweetsMaxHeight: this.getTweetsMaxHeight(bounds[1])
+                tweetsMaxHeight: this.getTweetsMaxHeight(height)
             });
         });
     }

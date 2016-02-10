@@ -7,7 +7,7 @@ import LocalStorageKeyConstants from './../utils/constants/local-storage-key-con
 let loginKeys = JSON.parse(localStorage.getItem(LocalStorageKeyConstants.TWITTER_LOGIN_KEYS));
 let windowSize = JSON.parse(localStorage.getItem(LocalStorageKeyConstants.INITIAL_WINDOW_SIZE));
 
-// listenr from main process.
+// listener from main process.
 ipc.on(IpcConstants.UPDATE_LOGIN_KEYS, (accessToken, accessTokenSecret) => {
     let newLoginKeys = {accessToken: accessToken, accessTokenSecret: accessTokenSecret};
     localStorage.setItem(
