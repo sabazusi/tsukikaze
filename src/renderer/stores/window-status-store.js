@@ -8,6 +8,7 @@ export default class WindowStatusStore extends StoreBase {
         super();
         this.width = window.outerWidth;
         this.height = window.outerHeight;
+        this.save(this.width, this.height);
 
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
