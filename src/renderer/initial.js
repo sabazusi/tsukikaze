@@ -15,13 +15,6 @@ ipc.on(IpcConstants.UPDATE_LOGIN_KEYS, (accessToken, accessTokenSecret) => {
     );
 });
 
-ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
-    let newWindowSize = {width: width, height: height};
-    localStorage.setItem(
-        LocalStorageKeyConstants.INITIAL_WINDOW_SIZE, JSON.stringify(newWindowSize)
-    );
-});
-
 // show version.
 let versionFilePath = path.resolve(__dirname, '../../', 'resources', 'VERSION.json');
 let version = new jsonLoader(versionFilePath).current;

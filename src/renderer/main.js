@@ -25,11 +25,4 @@ ipc.on(IpcConstants.LOGIN_TWITTER, (credentials) => {
     );
 });
 
-ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
-    let newWindowSize = {width: width, height: height};
-    localStorage.setItem(
-        LocalStorageKeyConstants.INITIAL_WINDOW_SIZE, JSON.stringify(newWindowSize)
-    );
-});
-
 ipc.send(IpcConstants.REQUIRE_CREDENTIALS);

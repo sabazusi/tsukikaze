@@ -7,12 +7,13 @@ export default class TweetList extends React.Component {
         this.timelineStore = this.props.stores.homeTimelineStore;
         this.mentionsStore = this.props.stores.mentionsStore;
         this.dmStore = this.props.stores.directMessageStore;
-        this.statusStore = this.props.stores.tweetListStatusStore;
+        this.tweetStatusStore = this.props.stores.tweetListStatusStore;
+        this.windowStatusStore = this.props.stores.windowStatusStore;
         this.state = {}
     }
 
     componentDidMount() {
-        this.statusStore.onChange(() => {
+        this.tweetStatusStore.onChange(() => {
             this.forceUpdate();
         });
         this.timelineStore.onChange(() => {
@@ -24,18 +25,21 @@ export default class TweetList extends React.Component {
         this.dmStore.onChange(() => {
             this.forceUpdate();
         });
+        this.windowStatusStore.onChange(() => {
+            this.forceUpdate();
+        });
     }
 
     getTweets() {
-        if (this.statusStore.homeTimelineEnabled()) {
+        if (this.tweetStatusStore.homeTimelineEnabled()) {
             return this.timelineStore.getVal().map((rawTweet) => {
                 return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
-        } else if(this.statusStore.mentionEnabled()) {
+        } else if(this.tweetStatusStore.mentionEnabled()) {
             return this.mentionsStore.getVal().map((rawTweet) => {
                 return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
-        } else if(this.statusStore.directMessageEnabled()) {
+        } else if(this.tweetStatusStore.directMessageEnabled()) {
             return this.dmStore.getVal().map((rawTweet) => {
                 return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
             });
@@ -59,7 +63,7 @@ export default class TweetList extends React.Component {
 
     render() {
         let style = {};
-        style["maxHeight"] = this.props.maxHeight;
+        style["maxHeight"] = this.windowStatusStore.getTweetListMaxHeight();
         if (!this.timelineStore.hasInitialized()) {
             return (
                 <div>

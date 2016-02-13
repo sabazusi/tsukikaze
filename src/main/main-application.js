@@ -74,8 +74,6 @@ export default class MainApplication
 
     _openMainWindow(accessKeys) {
         this.initialWindow.hide();
-        // update initial window size
-        this.initialWindow.send(IpcConstants.UPDATE_WINDOW_SIZE, this.windowSize.width, this.windowSize.height);
 
         this.mainWindow = new MainWindow(
             this.windowSize.width,
