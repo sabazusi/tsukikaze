@@ -13,6 +13,7 @@ import TwitterClientAction from './actions/twitter-client-action';
 import ExternalAction from './actions/external-action';
 import TweetListSwitchAction from './actions/tweet-list-switch-action';
 import EditorAction from './actions/editor-action';
+import IpcAction from './actions/ipc-action';
 
 export default class MainApplicationStarter {
     constructor() {
@@ -35,6 +36,7 @@ export default class MainApplicationStarter {
         new TweetListSwitchAction();
         new EditorAction();
         new ExternalAction();
+        new IpcAction();
 
         // initialize context menu.
         let Menu = remote.require('menu');
