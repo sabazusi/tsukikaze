@@ -6,7 +6,11 @@ import WindowConstants from '../constants/window-constants';
 export default class IpcAction {
     constructor() {
         ipc.on(IpcConstants.UPDATE_WINDOW_SIZE, (width, height) => {
-            ActionDispatcher.dispatch(WindowConstants.SIZE_CHANGED, width, height);
+            ActionDispatcher.dispatch({
+                actionType: WindowConstants.SIZE_CHANGED,
+                width: width,
+                height: height
+            });
         });
     }
 }
