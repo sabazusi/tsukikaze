@@ -58,7 +58,7 @@ export default class Tweet extends React.Component {
         const extended = new ExtendedEntities(this.props.tweet.extended_entities);
         let index = 0;
         twitterText.extractEntitiesWithIndices(
-            origin, 
+            origin,
             {extractUrlsWithoutProtocol:false}
         ).forEach((entity) => {
             if (index != entity.indices[0]) {
@@ -91,12 +91,12 @@ export default class Tweet extends React.Component {
 
     getTargetComponent(targetText, entity) {
         if (entity.url) {
-            return <UrlText href={entity.url} text={targetText} key={this.props.tweet.id}/>;
+            return <UrlText href={entity.url} text={targetText}/>;
         } else if(entity.screenName) {
             let url = "http://twitter.com/" + entity.screenName;
-            return <UrlText href={url} text={targetText} key={this.props.tweet.id}/>;
+            return <UrlText href={url} text={targetText}/>;
         } else {
-            return targetText;
+            return <div>{targetText}</div>;
         }
     }
 
@@ -111,7 +111,7 @@ export default class Tweet extends React.Component {
 
     render() {
         return (
-                <div className="tweet">
+                <div className="tweet" key={this.props.tweet.id_str}>
                     <table className="tweet-body-header">
                         <tbody>
                             <tr>

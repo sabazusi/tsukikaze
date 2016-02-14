@@ -33,15 +33,15 @@ export default class TweetList extends React.Component {
     getTweets() {
         if (this.tweetStatusStore.homeTimelineEnabled()) {
             return this.timelineStore.getVal().map((rawTweet) => {
-                return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+                return <Tweet key={"tl" + rawTweet.id_str} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
         } else if(this.tweetStatusStore.mentionEnabled()) {
             return this.mentionsStore.getVal().map((rawTweet) => {
-                return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
+                return <Tweet key={"mention"+rawTweet.id_str} tweet={rawTweet} name={rawTweet.user.name} screenName={rawTweet.user.screen_name}/>;
             });
         } else if(this.tweetStatusStore.directMessageEnabled()) {
             return this.dmStore.getVal().map((rawTweet) => {
-                return <Tweet key={rawTweet.id} tweet={rawTweet} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
+                return <Tweet key={"dm"+rawTweet.id_str} tweet={rawTweet} name={rawTweet.sender.name} screenName={rawTweet.sender.screen_name}/>;
             });
         }
     }
