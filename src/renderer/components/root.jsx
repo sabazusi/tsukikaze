@@ -1,7 +1,6 @@
 import React from 'react'
 import TweetList from './tweet-list'
 import Switcher from './switcher'
-import Editor from './editor'
 import ipc from 'ipc'
 import IpcConstants from '../../utils/constants/ipc-constants';
 
@@ -13,8 +12,7 @@ export default class Root extends React.Component {
     render() {
         return (
             <div className="application">
-                <Editor stores={this.props.stores}/>
-                <Switcher/>
+                <Switcher stores={this.props.stores}/>
                 <TweetList stores={this.props.stores}/>
             </div>
         )

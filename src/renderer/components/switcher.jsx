@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, ButtonToolbar, ButtonGroup } from 'react-bootstrap'
 import ViewDispatcher from '../dispatcher/view-dispatcher'
 import SwitcherConstants from '../constants/switcher-constants'
+import Editor from './editor'
 
 export default class Switcher extends React.Component {
     constructor() {
@@ -16,6 +17,7 @@ export default class Switcher extends React.Component {
     render() {
         return (
             <div className="switcher">
+                <Editor stores={this.props.stores}/>
                 <ButtonToolbar>
                     <ButtonGroup>
                         <Button active={this.state.homeTimelineEnabled} onClick={this.showHomeTimeline.bind(this)} bsSize="small">Timeline</Button>
