@@ -17,8 +17,12 @@ export default class EditorButton extends React.Component {
         this.dialog = remote.require('dialog');
     }
 
+    onEditorButtonClicked(e) {
+        // open editor message box.
+    }
+
     getButton() {
-        return null;
+        return <Button bsStyle="primary" bsSize="small" className="openEditor" onClick={this.onEditorButtonClicked.bind(this)}><i className="fa fa-pencil fa-2x"></i></Button>
     }
 
     render() {
