@@ -23,6 +23,10 @@ export default class EditorButton extends React.Component {
         // open editor message box.
         this.setState({isEditorOpen: true});
     }
+    onRequestClose() {
+        console.log("うむ");
+        this.setState({isEditorOpen: false});
+    }
 
     getButton() {
         return <Button bsStyle="primary" bsSize="small" className="openEditor" onClick={this.onEditorButtonClicked.bind(this)}><i className="fa fa-pencil fa-2x"></i></Button>
@@ -32,7 +36,8 @@ export default class EditorButton extends React.Component {
         return (
             <Modal
                 isOpen={this.state.isEditorOpen}
-                closeTimeoutMS={10}
+                closeTimeoutMS={50}
+                onRequestClose={this.onRequestClose.bind(this)}
             >
                 <div>aaaaaaaa</div>
             </Modal>
