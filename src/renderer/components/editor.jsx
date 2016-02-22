@@ -34,33 +34,17 @@ export default class Editor extends React.Component {
     }
 
     getTweetArea() {
-        if(this.state.isActiveEditor) {
-            return (
-                <div>
-                    <Button bsStyle="danger" bsSize="small" className="closeEditor" onClick={this.onCloseButtonClicked.bind(this)}><i className="fa fa-times fa-2x"></i></Button>
-                    <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
-                    <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>
-                    <br/>
-                    <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
-                    {this.getRemainCount()}
-                </div>
-            );
-        } else {
-            return <Button bsStyle="primary" bsSize="small" className="openEditor" onClick={this.onOpenButtonClicked.bind(this)}><i className="fa fa-pencil fa-2x"></i></Button>
-        }
+        return (
+            <div>
+                <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
+                <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>
+                <br/>
+                <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
+                {this.getRemainCount()}
+            </div>
+        );
     }
 
-    onOpenButtonClicked(e) {
-        ViewDispatcher.dispatch({
-            actionType: EditorConstants.OPEN_EDITOR
-        });
-    }
-
-    onCloseButtonClicked(e) {
-        ViewDispatcher.dispatch({
-            actionType: EditorConstants.CLOSE_EDITOR
-        });
-    }
     onPostButtonClicked(e) {
         if (this.editorStore.editorText() && this.editorStore.remainTextCount() > -1) {
             let options = {

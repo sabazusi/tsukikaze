@@ -4,6 +4,7 @@ import React from 'react'
 import remote from 'remote'
 import Modal from 'react-modal'
 import { Button } from 'react-bootstrap'
+import Editor from './editor'
 
 export default class EditorButton extends React.Component {
     constructor(...args) {
@@ -20,11 +21,16 @@ export default class EditorButton extends React.Component {
     }
 
     onEditorButtonClicked(e) {
-        // open editor message box.
+        ViewDispatcher.dispatch({
+            actionType: EditorConstants.OPEN_EDITOR
+        });
+
         this.setState({isEditorOpen: true});
     }
     onRequestClose() {
-        console.log("うむ");
+        ViewDispatcher.dispatch({
+            actionType: EditorConstants.CLOSE_EDITOR
+        });
         this.setState({isEditorOpen: false});
     }
 
@@ -39,7 +45,7 @@ export default class EditorButton extends React.Component {
                 closeTimeoutMS={50}
                 onRequestClose={this.onRequestClose.bind(this)}
             >
-                <div>aaaaaaaa</div>
+                <Editor stores={this.props.stores}/>
             </Modal>
         );
     }
