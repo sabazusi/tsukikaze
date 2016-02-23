@@ -17,7 +17,12 @@ export default class EditorButton extends React.Component {
     }
 
     componentDidMount() {
-        this.dialog = remote.require('dialog');
+        this.modalStyle = {
+            content: {
+                top: "30%",
+                bottom: "30%"
+            }
+        };
     }
 
     onEditorButtonClicked(e) {
@@ -44,6 +49,7 @@ export default class EditorButton extends React.Component {
                 isOpen={this.state.isEditorOpen}
                 closeTimeoutMS={50}
                 onRequestClose={this.onRequestClose.bind(this)}
+                style={this.modalStyle}
             >
                 <Editor stores={this.props.stores}/>
             </Modal>
