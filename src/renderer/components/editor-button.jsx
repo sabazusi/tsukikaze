@@ -1,10 +1,9 @@
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import EditorConstants from '../constants/editor-constants'
-import React from 'react'
-import remote from 'remote'
-import Modal from 'react-modal'
-import { Button } from 'react-bootstrap'
-import Editor from './editor'
+import ViewDispatcher from '../dispatcher/view-dispatcher';
+import EditorConstants from '../constants/editor-constants';
+import React from 'react';
+import Modal from 'react-modal';
+import { Button } from 'react-bootstrap';
+import Editor from './editor';
 
 export default class EditorButton extends React.Component {
     constructor(...args) {
@@ -18,6 +17,9 @@ export default class EditorButton extends React.Component {
 
     componentDidMount() {
         this.modalStyle = {
+            overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.75)"
+            },
             content: {
                 top: "30%",
                 bottom: "30%"
