@@ -33,18 +33,6 @@ export default class Editor extends React.Component {
         return <span className={countClass}>{count}</span>;
     }
 
-    getTweetArea() {
-        return (
-            <div>
-                <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
-                <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>
-                <br/>
-                <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
-                {this.getRemainCount()}
-            </div>
-        );
-    }
-
     onPostButtonClicked(e) {
         if (this.editorStore.editorText() && this.editorStore.remainTextCount() > -1) {
             let options = {
@@ -88,8 +76,12 @@ export default class Editor extends React.Component {
     render() {
         return (
             <div className="editor">
-                {this.getTweetArea()}
+                <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
+                <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>
+                <br/>
+                <textarea className="editorInput" rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
+                {this.getRemainCount()}
             </div>
-        )
+        );
     }
 }

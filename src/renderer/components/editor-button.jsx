@@ -22,7 +22,8 @@ export default class EditorButton extends React.Component {
             },
             content: {
                 top: "30%",
-                bottom: "30%"
+                bottom: "30%",
+                padding: "0px"
             }
         };
     }
@@ -60,7 +61,7 @@ export default class EditorButton extends React.Component {
 
     render() {
         return (
-            <div className="editor">
+            <div>
                 {this.getButton()}
                 {this.getEditor()}
             </div>
