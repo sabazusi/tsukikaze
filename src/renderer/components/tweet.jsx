@@ -1,9 +1,10 @@
-import React from 'react'
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import TweetBodyConstants from '../constants/tweet-body-constants'
-import twitterText from 'twitter-text'
-import TweetOption from './tweet-option'
-import PostDateLabelFactory from '../utils/post-date-label-factory'
+import React from 'react';
+import ViewDispatcher from '../dispatcher/view-dispatcher';
+import TweetBodyConstants from '../constants/tweet-body-constants';
+import twitterText from 'twitter-text';
+import TweetOption from './tweet-option';
+import PostDateLabelFactory from '../utils/post-date-label-factory';
+import TweetImage from './tweet/image';
 
 class UrlText extends React.Component {
     onLinkClicked(event) {
@@ -44,12 +45,6 @@ class ExtendedEntities {
     }
 }
 
-class Image extends React.Component {
-    render() {
-        return <img className="userimg" src={this.props.imageUrl} width={this.props.width} height={this.props.height}/>;
-    }
-}
-
 export default class Tweet extends React.Component {
     getTweetBody() {
         const origin = this.props.tweet.text;
@@ -82,7 +77,7 @@ export default class Tweet extends React.Component {
             let scale = 120 / Math.max(url.width, url.height);
             let width = Math.floor(url.width * scale);
             let height = Math.floor(url.height * scale);
-            return <Image imageUrl={url.url} width={width} height={height}/>;
+            return <TweetImage imageUrl={url.url} width={width} height={height}/>;
         });
         return (<div>
                 {images}
@@ -134,7 +129,7 @@ export default class Tweet extends React.Component {
                             <tr>
                                 <td className="user-image">
                                     <div>
-                                        <Image imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
+                                        <TweetImage imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
                                     </div>
                                 </td>
                                 <td className="tweet-body">
