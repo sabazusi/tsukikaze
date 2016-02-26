@@ -1,5 +1,5 @@
 import React from 'react'
-import Tweet from './tweet'
+import Tweet from './tweet/tweet'
 
 export default class TweetList extends React.Component {
     constructor(...args) {
