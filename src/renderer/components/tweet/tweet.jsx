@@ -129,7 +129,7 @@ export default class Tweet extends React.Component {
                             <tr>
                                 <td className="user-image">
                                     <div>
-                                        <TweetImage imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
+                                        <img className="profileimage" src={this.getTweetProfileImageUrl()} width={50} height={50} />
                                     </div>
                                 </td>
                                 <td className="tweet-body">
