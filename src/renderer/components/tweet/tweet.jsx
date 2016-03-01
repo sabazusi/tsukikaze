@@ -77,7 +77,7 @@ export default class Tweet extends React.Component {
             let scale = 120 / Math.max(url.width, url.height);
             let width = Math.floor(url.width * scale);
             let height = Math.floor(url.height * scale);
-            return <TweetImage imageUrl={url.url} width={width} height={height}/>;
+            return <TweetImage imageUrl={url.url} width={width} height={height} onClick={this.onImageClick.bind(this)}/>;
         });
         return (<div>
                 {images}
@@ -102,6 +102,9 @@ export default class Tweet extends React.Component {
     getTweetDate() {
         let date = new Date(Date.parse(this.props.tweet.created_at));
         return PostDateLabelFactory.create(date)
+    }
+
+    onImageClick(e) {
     }
 
     render() {
