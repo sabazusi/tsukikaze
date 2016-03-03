@@ -28,7 +28,31 @@ export default class TweetImage extends React.Component {
         });
     }
 
+    getImages() {
+        return this.props.urls.map((url) => {
+            let scale = 120 / Math.max(url.width, url.height);
+            let width = Math.floor(url.width * scale);
+            let height = Math.floor(url.height * scale);
+            return <img
+                className="userimg"
+                src={url.url}
+                width={width}
+                height={height}
+                onClick={this.onClickImage.bind(this)}
+            />;
+        });
+    }
+
     render() {
+        return (
+            <div>
+                {this.getImages()}
+            </div>
+        );
+    }
+
+    /**
+    render2() {
         return (
             <div>
                 <a href="">
@@ -51,5 +75,6 @@ export default class TweetImage extends React.Component {
             </div>
         );
     }
+     */
 }
 

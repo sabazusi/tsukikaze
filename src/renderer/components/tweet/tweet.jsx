@@ -73,15 +73,11 @@ export default class Tweet extends React.Component {
     }
 
     getImageBlock(imageUrls) {
-        const images = imageUrls.map((url) => {
-            let scale = 120 / Math.max(url.width, url.height);
-            let width = Math.floor(url.width * scale);
-            let height = Math.floor(url.height * scale);
-            return <TweetImage imageUrl={url.url} width={width} height={height} onClick={this.onImageClick.bind(this)}/>;
-        });
-        return (<div>
-                {images}
-                </div>);
+        return (
+            <TweetImage
+                urls={imageUrls}
+            />
+        );
     }
 
     getTargetComponent(targetText, entity) {
