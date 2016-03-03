@@ -61,6 +61,10 @@ export default class TweetList extends React.Component {
         );
     }
 
+    onImageClick(e) {
+    }
+
+
     render() {
         let style = {};
         style["maxHeight"] = this.windowStatusStore.getTweetListMaxHeight();
