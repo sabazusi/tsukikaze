@@ -6,7 +6,7 @@ export default class TweetImageStore extends StoreBase {
     constructor() {
         super();
 
-        this._imageModalEnabled = false;
+        this._reset();
 
         ActionDispatcher.register((action) => {
             switch(action) {
@@ -16,7 +16,21 @@ export default class TweetImageStore extends StoreBase {
                     break;
 
                 case TweetImageConstants.CLOSE_IMAGE:
-                    this._imageModalEnabled = false;
+                    this._reset();
+                    this.emitChange();
+                    break;
+
+                case TweetImageConstants.TRANSITION_FORWARD:
+                    if (this.transitionForwardEnabled()) {
+                        this.currentIndex++;
+                    }
+                    this.emitChange();
+                    break;
+
+                case TweetImageConstants.TRANSITION_BACKWARD:
+                    if (this.transitionBackwardEnabled()) {
+                        this.currentIndex--;
+                    }
                     this.emitChange();
                     break;
 
@@ -27,16 +41,30 @@ export default class TweetImageStore extends StoreBase {
         });
     }
 
+    _reset() {
+        this.images = [];
+        this.currentIndex = -1;
+        this._imageModalEnabled = false;
+    }
+
     imageModalEnabled() {
-        return this._imageModalEnabled;
+        return this._imageModalEnabled &&
+            this.currentIndex > -1 &&
+            this.images.length > 0;
     }
 
     currentImage() {
+        return this.imageModalEnabled() ?
+            this.images[this.currentIndex] : {};
     }
 
     transitionForwardEnabled() {
+        return this.imageModalEnabled() &&
+            this.currentIndex > 0;
     }
 
     transitionBackwardEnabled() {
+        return this.imageModalEnabled() &&
+            this.currentIndex < this.images.length - 1;
     }
 }
