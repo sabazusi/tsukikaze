@@ -8,8 +8,10 @@ import TweetListStatusStore from './stores/tweet-list-status-store';
 import MentionsStore from './stores/mentions-store';
 import EditorStore from './stores/editor-store';
 import DirectMessageStore from './stores/direct-message-store';
+import TweetImageStore from './stores/tweet-image-store';
 import WindowStatusStore from './stores/window-status-store';
 import TwitterClientAction from './actions/twitter-client-action';
+import TweetImageAction from './actions/tweet-image-action';
 import ExternalAction from './actions/external-action';
 import TweetListSwitchAction from './actions/tweet-list-switch-action';
 import EditorAction from './actions/editor-action';
@@ -28,7 +30,8 @@ export default class MainApplicationStarter {
             mentionsStore: new MentionsStore(),
             directMessageStore: new DirectMessageStore(),
             editorStore: new EditorStore(),
-            windowStatusStore: new WindowStatusStore()
+            windowStatusStore: new WindowStatusStore(),
+            tweetImageStore: new TweetImageStore()
         };
 
         // initialize actions.
@@ -37,6 +40,7 @@ export default class MainApplicationStarter {
         new EditorAction();
         new ExternalAction();
         new IpcAction();
+        new TweetImageAction();
 
         // initialize context menu.
         let Menu = remote.require('menu');
