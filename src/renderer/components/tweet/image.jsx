@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import TweetImageConstants from '../../constants/tweet-image-constants';
+import ViewDispatcher from '../../dispatcher/view-dispatcher';
 
 export default class TweetImage extends React.Component {
     constructor(...args) {
@@ -12,24 +14,23 @@ export default class TweetImage extends React.Component {
                 padding: "0px"
             }
         };
-        this.state = {
-            imageVisible: false
-        }
     }
     onClickImage(e) {
         e.preventDefault();
-        this.setState({
-            imageVisible: true
-        });
-    }
-    onRequestClose() {
-        this.setState({
-            imageVisible: false
+
+        let selectedIndex =
+            this.props.images.indexOf(this.props.images.filter((image) => {
+                return image.url == e.target.src
+            }).shift());
+        ViewDispatcher.dispatch({
+            actionType: TweetImageConstants.OPEN_IMAGE,
+            images: this.props.images,
+            index: selectedIndex
         });
     }
 
     getImages() {
-        return this.props.urls.map((url) => {
+        return this.props.images.map((url) => {
             let scale = 120 / Math.max(url.width, url.height);
             let width = Math.floor(url.width * scale);
             let height = Math.floor(url.height * scale);

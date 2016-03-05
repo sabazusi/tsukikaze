@@ -26,11 +26,11 @@ class UrlText extends React.Component {
 
 class ExtendedEntities {
     constructor(rawEntities) {
-        this.mediaUrls = [];
+        this.images = [];
         if (rawEntities && rawEntities.media){
             rawEntities.media.forEach((media) => {
                 if (media.type === 'photo') {
-                    this.mediaUrls.push({
+                    this.images.push({
                         url: media.media_url,
                         width: media.sizes.large.w,
                         height: media.sizes.large.h
@@ -41,7 +41,7 @@ class ExtendedEntities {
     }
 
     getMediaUrls (){
-        return this.mediaUrls;
+        return this.images;
     }
 }
 
@@ -72,10 +72,10 @@ export default class Tweet extends React.Component {
         return result;
     }
 
-    getImageBlock(imageUrls) {
+    getImageBlock(images) {
         return (
             <TweetImage
-                urls={imageUrls}
+                images={images}
             />
         );
     }
