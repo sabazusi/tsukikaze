@@ -1,9 +1,9 @@
-import ActionDispatcher from '../dispatcher/action-dispatcher'
-import EditorConstants from '../constants/editor-constants'
-import TwitterClientConstants from '../constants/twitter-client-constants'
-import StoreBase from './store-base'
-import TweetOptionConstants from '../constants/tweet-option-constants'
-import TwitterText from 'twitter-text'
+import ActionDispatcher from '../dispatcher/action-dispatcher';
+import EditorConstants from '../constants/editor-constants';
+import TwitterClientConstants from '../constants/twitter-client-constants';
+import StoreBase from './store-base';
+import TweetOptionConstants from '../constants/tweet-option-constants';
+import TwitterText from 'twitter-text';
 
 class Media {
     constructor(media_id, path) {

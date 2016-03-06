@@ -1,6 +1,6 @@
-import { EventEmitter } from 'events'
-import electronWindow from 'electron-window'
-import TwitterAPI from 'node-twitter-api'
+import { EventEmitter } from 'events';
+import electronWindow from 'electron-window';
+import TwitterAPI from 'node-twitter-api';
 import TwitterAuthConstants from '../../utils/constants/twitter-auth-constants';
 
 export default class AuthenticationWindow extends EventEmitter

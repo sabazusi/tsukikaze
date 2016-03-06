@@ -1,6 +1,6 @@
-import ActionDispatcher from '../dispatcher/action-dispatcher'
+import ActionDispatcher from '../dispatcher/action-dispatcher';
 import LocalStorageKeyConstants from './../../utils/constants/local-storage-key-constants';
-import StoreBase from './store-base'
+import StoreBase from './store-base';
 import WindowConstants from '../constants/window-constants';
 
 export default class WindowStatusStore extends StoreBase {

@@ -1,7 +1,7 @@
-import ActionDispatcher from '../dispatcher/action-dispatcher'
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import EditorConstants from '../constants/editor-constants'
-import TweetOptionConstants from '../constants/tweet-option-constants'
+import ActionDispatcher from '../dispatcher/action-dispatcher';
+import ViewDispatcher from '../dispatcher/view-dispatcher';
+import EditorConstants from '../constants/editor-constants';
+import TweetOptionConstants from '../constants/tweet-option-constants';
 
 export default class EditorAction {
     constructor() {

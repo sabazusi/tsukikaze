@@ -1,5 +1,5 @@
-import electronWindow from 'electron-window'
-import path from 'path'
+import electronWindow from 'electron-window';
+import path from 'path';
 
 export default class InitialWindow {
     constructor() {

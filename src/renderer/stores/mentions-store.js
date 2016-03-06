@@ -1,5 +1,5 @@
-import StoreBase from './store-base'
-import ActionDispatcher from '../dispatcher/action-dispatcher'
+import StoreBase from './store-base';
+import ActionDispatcher from '../dispatcher/action-dispatcher';
 
 export default class MentionsStore extends StoreBase {
     constructor() {
