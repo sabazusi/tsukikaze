@@ -9,6 +9,7 @@ export default class TweetList extends React.Component {
         this.dmStore = this.props.stores.directMessageStore;
         this.tweetStatusStore = this.props.stores.tweetListStatusStore;
         this.windowStatusStore = this.props.stores.windowStatusStore;
+        this.tweetImageStore = this.props.stores.tweetImageStore;
         this.state = {}
     }
 
@@ -26,6 +27,9 @@ export default class TweetList extends React.Component {
             this.forceUpdate();
         });
         this.windowStatusStore.onChange(() => {
+            this.forceUpdate();
+        });
+        this.tweetImageStore.onChange(() => {
             this.forceUpdate();
         });
     }
@@ -61,6 +65,9 @@ export default class TweetList extends React.Component {
         );
     }
 
+    getOverlayContents() {
+    }
+
 
     render() {
         let style = {};
@@ -75,6 +82,7 @@ export default class TweetList extends React.Component {
             return (
                 <div className="tweetList" style={style}>
                     {this.getTweets()}
+                    {this.getOverlayContents()}
                 </div>
             );
         }

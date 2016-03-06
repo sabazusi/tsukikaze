@@ -9,9 +9,11 @@ export default class TweetImageStore extends StoreBase {
         this._reset();
 
         ActionDispatcher.register((action) => {
-            switch(action) {
+            switch(action.actionType) {
                 case TweetImageConstants.OPEN_IMAGE:
                     this._imageModalEnabled = true;
+                    this.images = action.images;
+                    this.currentIndex = action.index;
                     this.emitChange();
                     break;
 
@@ -37,7 +39,6 @@ export default class TweetImageStore extends StoreBase {
                 default:
                     break;
             }
-
         });
     }
 
