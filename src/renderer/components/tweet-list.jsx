@@ -1,5 +1,8 @@
-import React from 'react'
-import Tweet from './tweet/tweet'
+import React from 'react';
+import Modal from 'react-modal';
+import Tweet from './tweet/tweet';
+import ViewDispatcher from '../dispatcher/view-dispatcher';
+import TweetImageConstants from '../constants/tweet-image-constants';
 
 export default class TweetList extends React.Component {
     constructor(...args) {
@@ -66,8 +69,34 @@ export default class TweetList extends React.Component {
     }
 
     getOverlayContents() {
+        let modalStyle = {
+            overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.75)"
+            },
+            content: {
+                padding: "0px"
+            }
+        };
+        return (
+            <Modal
+                isOpen={this.tweetImageStore.imageModalEnabled()}
+                closeTimeoutMS={50}
+                onRequestClose={this.onRequestClose.bind(this)}
+                style={modalStyle}
+            >
+                <img
+                    className="modalimage"
+                    src={this.tweetImageStore.currentImage().url}
+                />
+            </Modal>
+        );
     }
 
+    onRequestClose() {
+        ViewDispatcher.dispatch({
+            actionType: TweetImageConstants.CLOSE_IMAGE
+        });
+    }
 
     render() {
         let style = {};
