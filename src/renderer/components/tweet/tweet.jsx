@@ -2,7 +2,7 @@ import React from 'react';
 import ViewDispatcher from '../../dispatcher/view-dispatcher';
 import TweetBodyConstants from '../../constants/tweet-body-constants';
 import twitterText from 'twitter-text';
-import TweetOption from './../tweet-option';
+import TweetOption from './tweet-option';
 import PostDateLabelFactory from '../../utils/post-date-label-factory';
 import TweetImage from './image';
 

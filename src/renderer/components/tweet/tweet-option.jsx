@@ -1,6 +1,6 @@
 import React from 'react';
-import TweetOptionConstants from '../constants/tweet-option-constants';
-import ViewDispatcher from '../dispatcher/view-dispatcher';
+import TweetOptionConstants from '../../constants/tweet-option-constants';
+import ViewDispatcher from '../../dispatcher/view-dispatcher';
 import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default class TweetOption extends React.Component {
