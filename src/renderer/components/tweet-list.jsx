@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import Tweet from './tweet/tweet';
 import ViewDispatcher from '../dispatcher/view-dispatcher';
 import TweetImageConstants from '../constants/tweet-image-constants';
+import ImageResizer from '../utils/image-resizer';
 
 export default class TweetList extends React.Component {
     constructor(...args) {
@@ -77,6 +78,10 @@ export default class TweetList extends React.Component {
                 padding: "0px"
             }
         };
+
+        let currentImage = this.tweetImageStore.currentImage();
+        let imageSize = ImageResizer.getImageSize(currentImage);
+
         return (
             <Modal
                 isOpen={this.tweetImageStore.imageModalEnabled()}
@@ -86,7 +91,9 @@ export default class TweetList extends React.Component {
             >
                 <img
                     className="modalimage"
-                    src={this.tweetImageStore.currentImage().url}
+                    src={currentImage.url}
+                    width={imageSize.width}
+                    height={imageSize.height}
                 />
             </Modal>
         );
