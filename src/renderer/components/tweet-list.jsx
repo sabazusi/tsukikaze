@@ -80,7 +80,10 @@ export default class TweetList extends React.Component {
         };
 
         let currentImage = this.tweetImageStore.currentImage();
-        let imageSize = ImageResizer.getModalImageSize(currentImage);
+        let imageSize = ImageResizer.getModalImageSize(
+            currentImage,
+            this.windowStatusStore.getWindowSize()
+        );
 
         modalStyle["content"]["top"] = imageSize.verticalMargin;
         modalStyle["content"]["bottom"] = imageSize.verticalMargin;

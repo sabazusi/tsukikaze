@@ -2,14 +2,14 @@ class ImageResizer {
     constructor() {
     }
 
-    getModalImageSize(image) {
-        let modalImageWidth = window.outerWidth * 0.9;
+    getModalImageSize(image, windowSize) {
+        let modalImageWidth = windowSize.width * 0.9;
         let modalImageHeight = modalImageWidth / image.width * image.height;
         return {
             width: modalImageWidth,
             height: modalImageHeight,
-            verticalMargin: (window.outerWidth - modalImageWidth) / 2,
-            horizontalMargin: (window.outerHeight - modalImageHeight) / 2
+            verticalMargin: (windowSize.width - modalImageWidth) / 2,
+            horizontalMargin: (windowSize.height - modalImageHeight) / 2
         }
     }
 }
