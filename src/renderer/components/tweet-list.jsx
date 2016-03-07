@@ -75,7 +75,8 @@ export default class TweetList extends React.Component {
                 backgroundColor: "rgba(0, 0, 0, 0.75)"
             },
             content: {
-                padding: "0px"
+                backgroundColor: "rgba(1,1,1,0)",
+                padding: "0px",
             }
         };
 
@@ -84,7 +85,6 @@ export default class TweetList extends React.Component {
             currentImage,
             this.windowStatusStore.getWindowSize()
         );
-
         modalStyle["content"]["top"] = imageSize.verticalMargin;
         modalStyle["content"]["bottom"] = imageSize.verticalMargin;
         modalStyle["content"]["left"] = imageSize.horizontalMargin;

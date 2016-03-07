@@ -38,8 +38,8 @@ export default class WindowStatusStore extends StoreBase {
 
     getWindowSize() {
         return {
-            width: this.width,
-            height: this.height
+            width: this.innerWidth,
+            height: window.innerHeight
         };
     }
 }
