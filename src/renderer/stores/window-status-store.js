@@ -13,8 +13,8 @@ export default class WindowStatusStore extends StoreBase {
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
                 case WindowConstants.SIZE_CHANGED:
-                    this.width = action.width;
-                    this.height = action.height;
+                    this.width = window.innerWidth;
+                    this.height = window.innerHeight;
                     this.save(action.width, action.height);
                     this.emitChange();
                     break;
@@ -38,8 +38,8 @@ export default class WindowStatusStore extends StoreBase {
 
     getWindowSize() {
         return {
-            width: this.innerWidth,
-            height: window.innerHeight
+            width: this.width,
+            height: this.height
         };
     }
 }
