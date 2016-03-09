@@ -1,7 +1,13 @@
 class ImageResizer {
     getModalImageSize(image, windowSize) {
-        let modalImageWidth = windowSize.width * 0.9;
-        let modalImageHeight = modalImageWidth / image.width * image.height;
+        let maxWidth = windowSize.width * 0.9;
+        let maxHeight = windowSize.height * 0.9;
+        let resizeRate = Math.min(
+            maxWidth / image.width,
+            maxHeight / image.height
+        );
+        let modalImageWidth = image.width * resizeRate;
+        let modalImageHeight = image.height * resizeRate;
         return {
             width: modalImageWidth,
             height: modalImageHeight,
