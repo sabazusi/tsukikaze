@@ -33,7 +33,7 @@ export default class WindowStatusStore extends StoreBase {
     }
 
     getTweetListMaxHeight() {
-        return this.height - 83;
+        return window.outerHeight - 84;
     }
 
     getWindowSize() {
