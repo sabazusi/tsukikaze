@@ -120,12 +120,11 @@ export default class TweetList extends React.Component {
                 });
             };
             arrow = (
-                <div className="modal-arrow-backward">
-                    <a
-                        href=""
-                        onClick={onBackward}
-                    >{mark}</a>
-                </div>
+                <a href="" onClick={onBackward}>
+                    <div className="modal-arrow-backward">
+                        {mark}
+                    </div>
+                </a>
             );
         }
         return arrow;
@@ -135,19 +134,18 @@ export default class TweetList extends React.Component {
         let arrow = "";
         if (this.tweetImageStore.transitionForwardEnabled()) {
             let mark = ">";
-            let onBackward = (e) => {
+            let onForward = (e) => {
                 e.preventDefault();
                 ViewDispatcher.dispatch({
                     actionType: TweetImageConstants.TRANSITION_FORWARD
                 });
             };
             arrow = (
-                <div className="modal-arrow-forward">
-                    <a
-                        href=""
-                        onClick={onBackward}
-                    >{mark}</a>
-                </div>
+                <a href="" onClick={onForward}>
+                    <div className="modal-arrow-forward">
+                        {mark}
+                    </div>
+                </a>
             );
         }
         return arrow;
