@@ -120,9 +120,11 @@ export default class TweetList extends React.Component {
                 });
             };
             arrow = (
-                <a href="" onClick={onBackward}>
+                <a href="" className="image-transition-link" onClick={onBackward}>
                     <div className="modal-arrow-backward">
-                        {mark}
+                        <b>
+                            {mark}
+                        </b>
                     </div>
                 </a>
             );
@@ -141,9 +143,11 @@ export default class TweetList extends React.Component {
                 });
             };
             arrow = (
-                <a href="" onClick={onForward}>
+                <a href="" className="image-transition-link" onClick={onForward}>
                     <div className="modal-arrow-forward">
-                        {mark}
+                        <b>
+                            {mark}
+                        </b>
                     </div>
                 </a>
             );
