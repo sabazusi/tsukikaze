@@ -59,12 +59,12 @@ export default class TweetImageStore extends StoreBase {
             this.images[this.currentIndex] : {};
     }
 
-    transitionForwardEnabled() {
+    transitionBackwardEnabled() {
         return this.imageModalEnabled() &&
             this.currentIndex > 0;
     }
 
-    transitionBackwardEnabled() {
+    transitionForwardEnabled() {
         return this.imageModalEnabled() &&
             this.currentIndex < this.images.length - 1;
     }

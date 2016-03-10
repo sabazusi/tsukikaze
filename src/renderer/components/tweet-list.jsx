@@ -98,13 +98,59 @@ export default class TweetList extends React.Component {
                 style={modalStyle}
             >
                 <img
-                    className="modalimage"
+                    className="modal-image"
                     src={currentImage.url}
                     width={imageSize.width}
                     height={imageSize.height}
                 />
+                {this.getBackwardArrow()}
+                {this.getForwardArrow()}
             </Modal>
         );
+    }
+
+    getBackwardArrow() {
+        let arrow = "";
+        if (this.tweetImageStore.transitionBackwardEnabled()) {
+            let mark = "<";
+            let onBackward = (e) => {
+                e.preventDefault();
+                ViewDispatcher.dispatch({
+                    actionType: TweetImageConstants.TRANSITION_BACKWARD
+                });
+            };
+            arrow = (
+                <div className="modal-arrow-backward">
+                    <a
+                        href=""
+                        onClick={onBackward}
+                    >{mark}</a>
+                </div>
+            );
+        }
+        return arrow;
+    }
+
+    getForwardArrow() {
+        let arrow = "";
+        if (this.tweetImageStore.transitionForwardEnabled()) {
+            let mark = ">";
+            let onBackward = (e) => {
+                e.preventDefault();
+                ViewDispatcher.dispatch({
+                    actionType: TweetImageConstants.TRANSITION_FORWARD
+                });
+            };
+            arrow = (
+                <div className="modal-arrow-forward">
+                    <a
+                        href=""
+                        onClick={onBackward}
+                    >{mark}</a>
+                </div>
+            );
+        }
+        return arrow;
     }
 
     onRequestClose() {
