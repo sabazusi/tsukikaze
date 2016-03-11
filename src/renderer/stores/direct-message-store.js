@@ -1,5 +1,6 @@
 import StoreBase from './store-base'
 import ActionDispatcher from '../dispatcher/action-dispatcher'
+import TwitterClientConstants from '../constants/twitter-client-constants';
 
 export default class DirectMessageStore extends StoreBase {
     constructor() {
@@ -7,7 +8,7 @@ export default class DirectMessageStore extends StoreBase {
         this.dms = [];
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
-                case "directMessages":
+                case TwitterClientConstants.DIRECT_MESSAGE:
                     action.dms.map((dm) => {
                         this.dms.push(dm);
                     });

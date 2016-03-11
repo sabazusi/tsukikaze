@@ -1,5 +1,6 @@
 import StoreBase from './store-base';
 import ActionDispatcher from '../dispatcher/action-dispatcher';
+import TwitterClientConstants from '../constants/twitter-client-constants';
 
 export default class MentionsStore extends StoreBase {
     constructor() {
@@ -7,7 +8,7 @@ export default class MentionsStore extends StoreBase {
         this.mentions = [];
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
-                case "mentions":
+                case TwitterClientConstants.MENTION:
                     action.mentions.map((mention) => {
                         this.mentions.push(mention);
                     });                    
