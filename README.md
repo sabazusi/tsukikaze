@@ -1,6 +1,5 @@
 # tsukikaze
-<img src="resources/tsukikaze.png" width="100px" style="flat:left">
-twitter client for desktop.
+Twitter client for desktop. This app is developed by Electron. 
 
 ## screenshots
 ![screenshot](resources/screenshots/v0.0.5/v0.0.5.png)
