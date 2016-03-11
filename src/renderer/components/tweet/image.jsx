@@ -28,7 +28,7 @@ export default class TweetImage extends React.Component {
             let width = Math.floor(url.width * scale);
             let height = Math.floor(url.height * scale);
             return <img
-                className="userimg"
+                className="tweet-image"
                 src={url.url}
                 width={width}
                 height={height}

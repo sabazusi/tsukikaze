@@ -129,7 +129,7 @@ export default class TweetList extends React.Component {
             };
             arrow = (
                 <a href="" className="image-transition-link" onClick={onBackward}>
-                    <div className="modal-arrow-backward">
+                    <div className="modal-arrow modal-arrow-backward">
                         <b>
                             {mark}
                         </b>
@@ -152,7 +152,7 @@ export default class TweetList extends React.Component {
             };
             arrow = (
                 <a href="" className="image-transition-link" onClick={onForward}>
-                    <div className="modal-arrow-forward">
+                    <div className="modal-arrow modal-arrow-forward">
                         <b>
                             {mark}
                         </b>
