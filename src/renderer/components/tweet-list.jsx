@@ -58,10 +58,10 @@ export default class TweetList extends React.Component {
     getDummyTweets() {
         return (
             <div>
-                <div className="preLoading">
+                <div className="initial-loading-logo">
                     <div className="cssload-loader"></div>
                 </div>
-                <div className="dummyTweetList">
+                <div className="dummy-tweets">
                 </div>
             </div>
         );
@@ -178,7 +178,7 @@ export default class TweetList extends React.Component {
             );
         } else {
             return (
-                <div className="tweetList" style={style}>
+                <div className="tweet-list" style={style}>
                     {this.getTweets()}
                     {this.getOverlayContents()}
                 </div>
