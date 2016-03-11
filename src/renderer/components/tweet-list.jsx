@@ -62,8 +62,6 @@ export default class TweetList extends React.Component {
                     <div className="cssload-loader"></div>
                 </div>
                 <div className="dummyTweetList">
-                    <div className="dummyTweet">
-                    </div>
                 </div>
             </div>
         );
