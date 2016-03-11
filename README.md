@@ -3,10 +3,12 @@
 twitter client for desktop.
 
 ## screenshots
-![screenshot](resources/screenshots/tsukikaze-sc.png)
+<img src="resources/screenshots/v0.0.5/1.png" style="height:40%;width:40%;">
+<img src="resources/screenshots/v0.0.5/2.png" style="height:40%;width:40%;">
+<img src="resources/screenshots/v0.0.5/3.png" style="height:40%;width:40%;">
 
 ## download
-[v0.0.1](https://github.com/sabazusi/tsukikaze/releases/tag/0.0.1)
+[v0.0.5](https://github.com/sabazusi/tsukikaze/releases/tag/0.0.5)
 
 ## development
 ```bash
