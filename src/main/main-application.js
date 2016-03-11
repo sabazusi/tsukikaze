@@ -13,31 +13,31 @@ export default class MainApplication
 {
     constructor() {
         this.window = null;
-        this.windowSize = this._getDefaultWindowSize();
+        this.windowSize = this.getDefaultWindowSize();
     }
 
     start() {
-        app.on('ready', this._onReady.bind(this));
+        app.on('ready', this.onReady.bind(this));
         ipc.on(IpcConstants.INITIALIZE_WITH_LOGIN, (event, windowSize) => {
-            this._startAuthentication(windowSize);
+            this.startAuthentication(windowSize);
         });
         ipc.on(IpcConstants.INITIALIZE_WITH_KEY, (event, loginKeys, windowSize) => {
-            this._checkLoginKeys(loginKeys, windowSize);
+            this.checkLoginKeys(loginKeys, windowSize);
         });
     }
 
-    _onReady() {
-        this._loadCredential();
+    onReady() {
+        this.loadCredential();
         this.initialWindow = new InitialWindow();
     }
 
-    _startAuthentication(windowSize) {
-        this._updateWindowSize(windowSize);
+    startAuthentication(windowSize) {
+        this.updateWindowSize(windowSize);
         setTimeout(() => {
             this.authenticationWindow = new AuthenticationWindow();
             this.authenticationWindow.on(TwitterAuthConstants.GET_ACCESS_TOKEN, (accessToken, accessTokenSecret) => {
                 this.initialWindow.send(IpcConstants.UPDATE_LOGIN_KEYS, accessToken, accessTokenSecret);
-                this._openMainWindow({
+                this.openMainWindow({
                     accessToken: accessToken,
                     accessTokenSecret: accessTokenSecret
                 });
@@ -46,8 +46,8 @@ export default class MainApplication
         }, 1000);
     }
 
-    _checkLoginKeys(accessKeys, windowSize) {
-        this._updateWindowSize(windowSize);
+    checkLoginKeys(accessKeys, windowSize) {
+        this.updateWindowSize(windowSize);
         let client = new TwitterClient(
                     accessKeys.accessToken,
                     accessKeys.accessTokenSecret,
@@ -56,23 +56,23 @@ export default class MainApplication
                 );
         client.verifyCredential().then(({response}) => {
             setTimeout(() => {
-                this._openMainWindow(accessKeys);
+                this.openMainWindow(accessKeys);
             }, 1000);
         }).catch(({error}) => {
             // failed to login.
             setTimeout(() => {
-                this._startAuthentication({});
+                this.startAuthentication({});
             }, 1000);
         });
     }
 
-    _loadCredential() {
+    loadCredential() {
         let credentialFilePath = path.resolve(__dirname, '../../', 'resources', 'authentication', 'twitter-credential.json');
         let credential = new jsonLoader(credentialFilePath);
         this._credential = {consumerKey: credential.consumerKey, consumerSecret: credential.consumerSecret, callback:credential.callback};
     }
 
-    _openMainWindow(accessKeys) {
+    openMainWindow(accessKeys) {
         this.initialWindow.hide();
 
         this.mainWindow = new MainWindow(
@@ -91,11 +91,11 @@ export default class MainApplication
         this.mainWindow.start();
     }
 
-    _getDefaultWindowSize() {
+    getDefaultWindowSize() {
         return {width: 400, height: 700};
     }
 
-    _updateWindowSize(windowSize) {
+    updateWindowSize(windowSize) {
         if (windowSize && windowSize.height && windowSize.width) {
             this.windowSize.height = windowSize.height;
             this.windowSize.width = windowSize.width;
