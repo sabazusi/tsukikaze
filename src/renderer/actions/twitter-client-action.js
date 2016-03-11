@@ -1,10 +1,10 @@
-import ActionDispatcher from '../dispatcher/action-dispatcher'
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import UserStreamActionFactory from '../utils/userstream-action-factory'
-import MediaUtil from '../utils/media-util'
-import EditorConstants from '../constants/editor-constants'
-import TwitterClientConstants from '../constants/twitter-client-constants'
-import TweetOptionConstants from '../constants/tweet-option-constants'
+import ActionDispatcher from '../dispatcher/action-dispatcher';
+import ViewDispatcher from '../dispatcher/view-dispatcher';
+import UserStreamActionFactory from '../utils/userstream-action-factory';
+import MediaUtil from '../utils/media-util';
+import EditorConstants from '../constants/editor-constants';
+import TwitterClientConstants from '../constants/twitter-client-constants';
+import TweetOptionConstants from '../constants/tweet-option-constants';
 
 export default class TwitterClientAction {
     constructor(client) {

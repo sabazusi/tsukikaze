@@ -2,7 +2,6 @@ import ipc from 'ipc';
 import IpcConstants from '../utils/constants/ipc-constants';
 import MainApplicationStarter from './main-starter';
 import TwitterClient from '../utils/twitter-client';
-import Renderer from './renderer';
 import LocalStorageKeyConstants from './../utils/constants/local-storage-key-constants';
 
 

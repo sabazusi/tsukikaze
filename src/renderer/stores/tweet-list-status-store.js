@@ -1,6 +1,6 @@
-import StoreBase from './store-base'
-import ActionDispatcher from '../dispatcher/action-dispatcher'
-import SwitcherConstants from '../constants/switcher-constants'
+import StoreBase from './store-base';
+import ActionDispatcher from '../dispatcher/action-dispatcher';
+import SwitcherConstants from '../constants/switcher-constants';
 
 export default class TweetListStatusStore extends StoreBase {
     constructor() {

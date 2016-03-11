@@ -23,6 +23,11 @@ body
 
 .editor
     background-color: rgba(40, 40, 40, 1.0);
+    height: 100%;
+
+.editorInput
+    height: 70%;
+    width: 100%;
 
 .tweetList
     background: rgba(40, 40, 40, 1.0);
@@ -80,6 +85,10 @@ body
     text-align: left;
     vertical-align: top;
 
+.profileimage
+    float: left;
+    margin: 3px;
+
 .userimg
     float: left;
     margin: 3px;
@@ -95,3 +104,40 @@ body
     height: 30px;
     margin-right: 3px;
 
+.modal-image
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+
+.modal-arrow-backward
+    user-select: none;
+    background-color: rgba(0,0,0,0.24);
+    padding: 5% 2%;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+
+.modal-arrow-forward
+    user-select: none;
+    background-color: rgba(0,0,0,0.24);
+    padding: 5% 2%;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+
+.modal-arrow-backward:hover
+    background-color: rgba(60,60,60,0.17);
+.modal-arrow-forward:hover
+    background-color: rgba(60,60,60,0.17);
+
+
+.image-transition-link,
+.image-transition-link:link,
+.image-transition-link:visited,
+.image-transition-link:hover,
+.image-transition-link:active
+    color: #c3d9ff;
+
+.ReactModal__Overlay
+    z-index: 2;

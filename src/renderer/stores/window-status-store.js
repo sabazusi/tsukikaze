@@ -1,6 +1,6 @@
-import ActionDispatcher from '../dispatcher/action-dispatcher'
+import ActionDispatcher from '../dispatcher/action-dispatcher';
 import LocalStorageKeyConstants from './../../utils/constants/local-storage-key-constants';
-import StoreBase from './store-base'
+import StoreBase from './store-base';
 import WindowConstants from '../constants/window-constants';
 
 export default class WindowStatusStore extends StoreBase {
@@ -13,8 +13,8 @@ export default class WindowStatusStore extends StoreBase {
         ActionDispatcher.register((action) => {
             switch(action.actionType) {
                 case WindowConstants.SIZE_CHANGED:
-                    this.width = action.width;
-                    this.height = action.height;
+                    this.width = window.innerWidth;
+                    this.height = window.innerHeight;
                     this.save(action.width, action.height);
                     this.emitChange();
                     break;
@@ -33,6 +33,13 @@ export default class WindowStatusStore extends StoreBase {
     }
 
     getTweetListMaxHeight() {
-        return this.height - 83;
+        return window.outerHeight - 84;
+    }
+
+    getWindowSize() {
+        return {
+            width: this.width,
+            height: this.height
+        };
     }
 }

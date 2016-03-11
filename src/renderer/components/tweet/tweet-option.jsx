@@ -1,7 +1,7 @@
-import React from 'react'
-import TweetOptionConstants from '../constants/tweet-option-constants'
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap'
+import React from 'react';
+import TweetOptionConstants from '../../constants/tweet-option-constants';
+import ViewDispatcher from '../../dispatcher/view-dispatcher';
+import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default class TweetOption extends React.Component {
     constructor() {
@@ -19,7 +19,8 @@ export default class TweetOption extends React.Component {
         }
     }
 
-    onMentionClicked() {
+    onMentionClicked(e) {
+        e.preventDefault();
         React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.OPEN_MENTION,
@@ -27,7 +28,8 @@ export default class TweetOption extends React.Component {
         });
     }
 
-    onDMClicked() {
+    onDMClicked(e) {
+        e.preventDefault();
         React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.OPEN_DM,
@@ -35,7 +37,8 @@ export default class TweetOption extends React.Component {
         });
     }
 
-    onFavClicked() {
+    onFavClicked(e) {
+        e.preventDefault();
         React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.FAV_TWEET,
@@ -44,7 +47,8 @@ export default class TweetOption extends React.Component {
         });
     }
 
-    onRetweetClicked() {
+    onRetweetClicked(e) {
+        e.preventDefault();
         React.findDOMNode(this.refs.button).click();
         ViewDispatcher.dispatch({
             actionType: TweetOptionConstants.RT_TWEET,
@@ -61,10 +65,10 @@ export default class TweetOption extends React.Component {
                             placement="left"
                             rootClose overlay={
                             <Popover id="tweet-option">
-                                <a href="javascript:void(0)" onClick={this.onMentionClicked.bind(this)}>Mention</a><br/>
-                                <a href="javascript:void(0)" onClick={this.onDMClicked.bind(this)}>DM</a><br/>
-                                <a href="javascript:void(0)" onClick={this.onFavClicked.bind(this)}>{favLabel}</a><br/>
-                                <a href="javascript:void(0)" onClick={this.onRetweetClicked.bind(this)}>Retweet</a>
+                                <a href="" onClick={this.onMentionClicked.bind(this)}>Mention</a><br/>
+                                <a href="" onClick={this.onDMClicked.bind(this)}>DM</a><br/>
+                                <a href="" onClick={this.onFavClicked.bind(this)}>{favLabel}</a><br/>
+                                <a href="" onClick={this.onRetweetClicked.bind(this)}>Retweet</a>
                             </Popover>}
                         >
                             <Button bsStyle="info" ref="button" bsSize="small">></Button>

@@ -30,7 +30,8 @@
     "gulp-eslint": "^1.1.1",
     "gulp-load-plugins": "^0.10.0",
     "gulp-sass": "^2.0.4",
-    "gulp-sym": "0.0.14"
+    "gulp-sym": "0.0.14",
+    "react-modal": "^0.6.1"
   },
   "dependencies": {
     "bootstrap": "^3.3.5",

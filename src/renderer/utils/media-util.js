@@ -1,4 +1,4 @@
-import Fs from 'fs'
+import Fs from 'fs';
 
 class MediaUtil {
     constructor() {

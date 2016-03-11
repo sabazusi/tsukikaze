@@ -1,9 +1,10 @@
-import React from 'react'
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import TweetBodyConstants from '../constants/tweet-body-constants'
-import twitterText from 'twitter-text'
-import TweetOption from './tweet-option'
-import PostDateLabelFactory from '../utils/post-date-label-factory'
+import React from 'react';
+import ViewDispatcher from '../../dispatcher/view-dispatcher';
+import TweetBodyConstants from '../../constants/tweet-body-constants';
+import twitterText from 'twitter-text';
+import TweetOption from './tweet-option';
+import PostDateLabelFactory from '../../utils/post-date-label-factory';
+import TweetImage from './image';
 
 class UrlText extends React.Component {
     onLinkClicked(event) {
@@ -25,11 +26,11 @@ class UrlText extends React.Component {
 
 class ExtendedEntities {
     constructor(rawEntities) {
-        this.mediaUrls = [];
+        this.images = [];
         if (rawEntities && rawEntities.media){
             rawEntities.media.forEach((media) => {
                 if (media.type === 'photo') {
-                    this.mediaUrls.push({
+                    this.images.push({
                         url: media.media_url,
                         width: media.sizes.large.w,
                         height: media.sizes.large.h
@@ -40,13 +41,7 @@ class ExtendedEntities {
     }
 
     getMediaUrls (){
-        return this.mediaUrls;
-    }
-}
-
-class Image extends React.Component {
-    render() {
-        return <img className="userimg" src={this.props.imageUrl} width={this.props.width} height={this.props.height}/>;
+        return this.images;
     }
 }
 
@@ -58,7 +53,7 @@ export default class Tweet extends React.Component {
         const extended = new ExtendedEntities(this.props.tweet.extended_entities);
         let index = 0;
         twitterText.extractEntitiesWithIndices(
-            origin, 
+            origin,
             {extractUrlsWithoutProtocol:false}
         ).forEach((entity) => {
             if (index != entity.indices[0]) {
@@ -77,26 +72,22 @@ export default class Tweet extends React.Component {
         return result;
     }
 
-    getImageBlock(imageUrls) {
-        const images = imageUrls.map((url) => {
-            let scale = 120 / Math.max(url.width, url.height);
-            let width = Math.floor(url.width * scale);
-            let height = Math.floor(url.height * scale);
-            return <Image imageUrl={url.url} width={width} height={height}/>;
-        });
-        return (<div>
-                {images}
-                </div>);
+    getImageBlock(images) {
+        return (
+            <TweetImage
+                images={images}
+            />
+        );
     }
 
     getTargetComponent(targetText, entity) {
         if (entity.url) {
-            return <UrlText href={entity.url} text={targetText} key={this.props.tweet.id}/>;
+            return <UrlText href={entity.url} text={targetText}/>;
         } else if(entity.screenName) {
             let url = "http://twitter.com/" + entity.screenName;
-            return <UrlText href={url} text={targetText} key={this.props.tweet.id}/>;
+            return <UrlText href={url} text={targetText}/>;
         } else {
-            return targetText;
+            return <div>{targetText}</div>;
         }
     }
 
@@ -109,9 +100,12 @@ export default class Tweet extends React.Component {
         return PostDateLabelFactory.create(date)
     }
 
+    onImageClick(e) {
+    }
+
     render() {
         return (
-                <div className="tweet">
+                <div className="tweet" key={this.props.tweet.id_str}>
                     <table className="tweet-body-header">
                         <tbody>
                             <tr>
@@ -134,7 +128,7 @@ export default class Tweet extends React.Component {
                             <tr>
                                 <td className="user-image">
                                     <div>
-                                        <Image imageUrl={this.getTweetProfileImageUrl()} width={50} height={50} />
+                                        <img className="profileimage" src={this.getTweetProfileImageUrl()} width={50} height={50} />
                                     </div>
                                 </td>
                                 <td className="tweet-body">

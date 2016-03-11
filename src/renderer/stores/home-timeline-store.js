@@ -1,6 +1,6 @@
-import TwitterClientConstants from '../constants/twitter-client-constants'
-import Dispatcher from '../dispatcher/action-dispatcher'
-import StoreBase from './store-base'
+import TwitterClientConstants from '../constants/twitter-client-constants';
+import Dispatcher from '../dispatcher/action-dispatcher';
+import StoreBase from './store-base';
 
 export default class TwitterHomeTimelineStore extends StoreBase {
     constructor() {

@@ -1,8 +1,8 @@
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import EditorConstants from '../constants/editor-constants'
-import React from 'react'
-import remote from 'remote'
-import { Button } from 'react-bootstrap'
+import ViewDispatcher from '../dispatcher/view-dispatcher';
+import EditorConstants from '../constants/editor-constants';
+import React from 'react';
+import remote from 'remote';
+import { Button } from 'react-bootstrap';
 
 export default class Editor extends React.Component {
     constructor(...args) {
@@ -33,34 +33,6 @@ export default class Editor extends React.Component {
         return <span className={countClass}>{count}</span>;
     }
 
-    getTweetArea() {
-        if(this.state.isActiveEditor) {
-            return (
-                <div>
-                    <Button bsStyle="danger" bsSize="small" className="closeEditor" onClick={this.onCloseButtonClicked.bind(this)}><i className="fa fa-times fa-2x"></i></Button>
-                    <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
-                    <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>
-                    <br/>
-                    <textarea rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
-                    {this.getRemainCount()}
-                </div>
-            );
-        } else {
-            return <Button bsStyle="primary" bsSize="small" className="openEditor" onClick={this.onOpenButtonClicked.bind(this)}><i className="fa fa-pencil fa-2x"></i></Button>
-        }
-    }
-
-    onOpenButtonClicked(e) {
-        ViewDispatcher.dispatch({
-            actionType: EditorConstants.OPEN_EDITOR
-        });
-    }
-
-    onCloseButtonClicked(e) {
-        ViewDispatcher.dispatch({
-            actionType: EditorConstants.CLOSE_EDITOR
-        });
-    }
     onPostButtonClicked(e) {
         if (this.editorStore.editorText() && this.editorStore.remainTextCount() > -1) {
             let options = {
@@ -101,11 +73,23 @@ export default class Editor extends React.Component {
         });
     }
 
+    getPostButton() {
+        let isDisabled = this.editorStore.editorText() == "";
+        return isDisabled ?
+            <Button bsSize="small" className="postEditorContent" disabled><i className="fa fa-paper-plane-o fa-2x"></i></Button> :
+            <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>;
+
+    }
+
     render() {
         return (
             <div className="editor">
-                {this.getTweetArea()}
+                <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
+                {this.getPostButton()}
+                <br/>
+                <textarea className="editorInput" rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
+                {this.getRemainCount()}
             </div>
-        )
+        );
     }
 }

@@ -1,4 +1,4 @@
-import TwitterClientConstants from '../constants/twitter-client-constants'
+import TwitterClientConstants from '../constants/twitter-client-constants';
 
 class UserStreamActionFactory {
     constructor() {

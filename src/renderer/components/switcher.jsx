@@ -1,7 +1,7 @@
-import React from 'react'
-import { Button, ButtonToolbar, ButtonGroup } from 'react-bootstrap'
-import ViewDispatcher from '../dispatcher/view-dispatcher'
-import SwitcherConstants from '../constants/switcher-constants'
+import React from 'react';
+import { Button, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
+import ViewDispatcher from '../dispatcher/view-dispatcher';
+import SwitcherConstants from '../constants/switcher-constants';
 
 export default class Switcher extends React.Component {
     constructor() {
