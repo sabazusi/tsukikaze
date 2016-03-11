@@ -97,18 +97,26 @@ export default class TweetList extends React.Component {
                 onRequestClose={this.onRequestClose.bind(this)}
                 style={modalStyle}
             >
-                <img
-                    className="modal-image"
-                    src={currentImage.url}
-                    width={imageSize.width}
-                    height={imageSize.height}
-                />
+                <a href="" onClick={this.onClickImage.bind(this)}>
+                    <img
+                        className="modal-image"
+                        src={currentImage.url}
+                        width={imageSize.width}
+                        height={imageSize.height}
+                    />
+                </a>
                 {this.getBackwardArrow()}
                 {this.getForwardArrow()}
             </Modal>
         );
     }
 
+    onClickImage(e) {
+        e.preventDefault();
+        ViewDispatcher.dispatch({
+            actionType: TweetImageConstants.CLOSE_IMAGE
+        });
+    }
     getBackwardArrow() {
         let arrow = "";
         if (this.tweetImageStore.transitionBackwardEnabled()) {
