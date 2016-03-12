@@ -58,12 +58,10 @@ export default class TweetList extends React.Component {
     getDummyTweets() {
         return (
             <div>
-                <div className="preLoading">
+                <div className="initial-loading-logo">
                     <div className="cssload-loader"></div>
                 </div>
-                <div className="dummyTweetList">
-                    <div className="dummyTweet">
-                    </div>
+                <div className="dummy-tweets">
                 </div>
             </div>
         );
@@ -111,56 +109,40 @@ export default class TweetList extends React.Component {
         );
     }
 
+    getBackwardArrow() {
+        return this.tweetImageStore.transitionBackwardEnabled() ?
+            this.getButton("<", TweetImageConstants.TRANSITION_BACKWARD, "modal-arrow-backward") : "";
+    }
+
+    getForwardArrow() {
+        return this.tweetImageStore.transitionForwardEnabled() ?
+            this.getButton(">", TweetImageConstants.TRANSITION_FORWARD, "modal-arrow-forward") : "";
+    }
+
+    getButton(arrowMark, clickedActionType, modalClassName) {
+        let clickHandler = (e) => {
+            e.preventDefault();
+            ViewDispatcher.dispatch({
+                actionType: clickedActionType
+            });
+        };
+        let modalClass = "modal-arrow " + modalClassName;
+        return (
+            <a href="" className="image-transition-link" onClick={clickHandler}>
+                <div className={modalClass}>
+                    <b>
+                        {arrowMark}
+                    </b>
+                </div>
+            </a>
+        );
+    }
+
     onClickImage(e) {
         e.preventDefault();
         ViewDispatcher.dispatch({
             actionType: TweetImageConstants.CLOSE_IMAGE
         });
-    }
-    getBackwardArrow() {
-        let arrow = "";
-        if (this.tweetImageStore.transitionBackwardEnabled()) {
-            let mark = "<";
-            let onBackward = (e) => {
-                e.preventDefault();
-                ViewDispatcher.dispatch({
-                    actionType: TweetImageConstants.TRANSITION_BACKWARD
-                });
-            };
-            arrow = (
-                <a href="" className="image-transition-link" onClick={onBackward}>
-                    <div className="modal-arrow-backward">
-                        <b>
-                            {mark}
-                        </b>
-                    </div>
-                </a>
-            );
-        }
-        return arrow;
-    }
-
-    getForwardArrow() {
-        let arrow = "";
-        if (this.tweetImageStore.transitionForwardEnabled()) {
-            let mark = ">";
-            let onForward = (e) => {
-                e.preventDefault();
-                ViewDispatcher.dispatch({
-                    actionType: TweetImageConstants.TRANSITION_FORWARD
-                });
-            };
-            arrow = (
-                <a href="" className="image-transition-link" onClick={onForward}>
-                    <div className="modal-arrow-forward">
-                        <b>
-                            {mark}
-                        </b>
-                    </div>
-                </a>
-            );
-        }
-        return arrow;
     }
 
     onRequestClose() {
@@ -180,7 +162,7 @@ export default class TweetList extends React.Component {
             );
         } else {
             return (
-                <div className="tweetList" style={style}>
+                <div className="tweet-list" style={style}>
                     {this.getTweets()}
                     {this.getOverlayContents()}
                 </div>

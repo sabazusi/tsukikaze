@@ -29,7 +29,7 @@ export default class Editor extends React.Component {
 
     getRemainCount() {
         let count = this.editorStore.remainTextCount();
-        let countClass = count >= 0 ? "postable" : "over";
+        let countClass = "tweet-count-" + count >= 0 ? "postable" : "overed";
         return <span className={countClass}>{count}</span>;
     }
 
@@ -76,8 +76,8 @@ export default class Editor extends React.Component {
     getPostButton() {
         let isDisabled = this.editorStore.editorText() == "";
         return isDisabled ?
-            <Button bsSize="small" className="postEditorContent" disabled><i className="fa fa-paper-plane-o fa-2x"></i></Button> :
-            <Button bsSize="small" onClick={this.onPostButtonClicked.bind(this)} className="postEditorContent"><i className="fa fa-paper-plane-o fa-2x"></i></Button>;
+            <Button bsSize="small" className="post-tweet-button" disabled><i className="fa fa-paper-plane-o fa-2x"></i></Button> :
+            <Button bsSize="small" className="post-tweet-button" onClick={this.onPostButtonClicked.bind(this)}><i className="fa fa-paper-plane-o fa-2x"></i></Button>;
 
     }
 
@@ -87,7 +87,7 @@ export default class Editor extends React.Component {
                 <Button bsSize="small" onClick={this.onMediaButtonClicked.bind(this)} className="uploadMedia"><i className="fa fa-file-image-o fa-2x"></i></Button>
                 {this.getPostButton()}
                 <br/>
-                <textarea className="editorInput" rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
+                <textarea className="editor-input" rows="2" cols="40" placeholder="tweet..." disabled={this.state.isControllable ? "" : "disabled"} value={this.state.editorText} onChange={this.onChangeTextArea.bind(this)}></textarea>
                 {this.getRemainCount()}
             </div>
         );

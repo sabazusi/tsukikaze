@@ -1,5 +1,5 @@
 import TwitterClientConstants from '../constants/twitter-client-constants';
-import Dispatcher from '../dispatcher/action-dispatcher';
+import ActionDispatcher from '../dispatcher/action-dispatcher';
 import StoreBase from './store-base';
 
 export default class TwitterHomeTimelineStore extends StoreBase {
@@ -7,7 +7,7 @@ export default class TwitterHomeTimelineStore extends StoreBase {
         super();
         this.initialized = false;
         this.homeTimelineTweets = [];
-        Dispatcher.register((action) => {
+        ActionDispatcher.register((action) => {
             switch(action.actionType) {
                 case TwitterClientConstants.INITIAL_TWEET:
                     this.initialized = true;

@@ -6,30 +6,27 @@ body
     user-select: none;
     -webkit-user-select: none;
 
-.dummyTweetList
+.dummy-tweets
     position: relative;
     overflow-y: hidden;
+    background-color: #555555;
     max-height: 700px;
+    min-height: 700px;
     filter: blur(5px);
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
     -ms-filter: blur(5px);
     -o-filter: blur(5px);
 
-.dummyTweet
-    background-color: #555555;
-    color: #bbbbbb;
-    min-height: 700px;
-
 .editor
     background-color: rgba(40, 40, 40, 1.0);
     height: 100%;
 
-.editorInput
+.editor-input
     height: 70%;
     width: 100%;
 
-.tweetList
+.tweet-list
     background: rgba(40, 40, 40, 1.0);
     position: relative;
     overflow: scroll;
@@ -41,7 +38,7 @@ body
     color: #bbbbbb;
 
 
-.preLoading
+.initial-loading-logo
     position: absolute;
     z-index: 999;
     top: 0px;
@@ -53,12 +50,13 @@ body
 .switcher
     background: rgba(40, 40, 40, 1.0);
 
-.postEditorContent
+.post-tweet-button
     margin: 0px 20px;
 
-.postable
+.tweet-count-postable
     color: #99ff89;
-.over
+
+.tweet-count-overed
     color: #ff0000;
 
 .tweet-body-header
@@ -85,11 +83,11 @@ body
     text-align: left;
     vertical-align: top;
 
-.profileimage
+.user-profile-image
     float: left;
     margin: 3px;
 
-.userimg
+.tweet-image
     float: left;
     margin: 3px;
 
@@ -110,24 +108,20 @@ body
     overflow: hidden;
     position: relative;
 
-.modal-arrow-backward
+.modal-arrow
     user-select: none;
     background-color: rgba(0,0,0,0.24);
     padding: 5% 2%;
     position: absolute;
     top: 50%;
+
+.modal-arrow-backward
     left: 0px;
 
 .modal-arrow-forward
-    user-select: none;
-    background-color: rgba(0,0,0,0.24);
-    padding: 5% 2%;
-    position: absolute;
-    top: 50%;
     right: 0px;
 
-.modal-arrow-backward:hover
-    background-color: rgba(60,60,60,0.17);
+.modal-arrow-backward:hover,
 .modal-arrow-forward:hover
     background-color: rgba(60,60,60,0.17);
 
