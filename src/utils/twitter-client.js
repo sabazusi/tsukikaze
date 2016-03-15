@@ -78,12 +78,13 @@ export default class TwitterClient {
         });
     }
 
-    homeTimeline({screenName}) {
+    homeTimeline(screenName, count) {
         return new Promise((resolve, reject) => {
             this.twitter.get(
                 'statuses/home_timeline',
                 {
-                    screen_name: screenName
+                    screen_name: screenName,
+                    count: count
                 },
                 (error, tweets, response) => {
                     resolve({ tweets: tweets, response: response });

@@ -56,7 +56,7 @@ export default class TwitterClientAction {
 
     start() {
         this.client.verifyCredential().then(({user}) => {
-            this.client.homeTimeline({user}).then(({tweets}) => {
+            this.client.homeTimeline(user.screenName, 100).then(({tweets}) => {
                 ActionDispatcher.dispatch(UserStreamActionFactory.getInitial(tweets));
                 this.client.userStream({user}).then(({stream}) => {
                     stream.on('data', (data) => {
