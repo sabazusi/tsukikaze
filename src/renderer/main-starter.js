@@ -1,4 +1,5 @@
 import ActionDispatcher from './dispatcher/action-dispatcher';
+import ContextMenuAction from './actions/contextmenu-action';
 import DirectMessageStore from './stores/direct-message-store';
 import EditorAction from './actions/editor-action';
 import EditorStore from './stores/editor-store';
@@ -43,15 +44,7 @@ export default class MainApplicationStarter {
         new ExternalAction();
         new IpcAction();
         new TweetImageAction();
-
-        // initialize context menu.
-        let Menu = remote.require('menu');
-        let MenuItem = remote.require('menu-item');
-
-        let menu = new Menu();
-        window.addEventListener('contextmenu', (e) => {
-            // TODO: e.targetの内容を見てmenuItemを出し分ける
-        });
+        new ContextMenuAction();
 
         // start application.
         ReactDOM.render(
