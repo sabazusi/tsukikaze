@@ -2,12 +2,9 @@ import remote from 'remote';
 
 export default class ContextMenuAction {
     constructor() {
-        this.Menu = remote.require('menu');
-        this.contextMenu = this.Menu.buildFromTemplate([
-            {label: 'todo: implement'}
-        ]);
         window.addEventListener('contextmenu', (e) => {
             e.preventDefault();
+            this.setupContextMenu();
             switch(e) {
               default:
                   this.getContextMenu();
@@ -17,6 +14,13 @@ export default class ContextMenuAction {
     }
 
     getContextMenu() {
-        this.contextMenu.popup(remote.getCurrentWindow());
+        this.textSelectedMenu.popup(remote.getCurrentWindow());
+    }
+
+    setupContextMenu() {
+        const Menu = remote.require('menu');
+        this.textSelectedMenu = Menu.buildFromTemplate([
+            {label: 'todo: implement'}
+        ]);
     }
 }
