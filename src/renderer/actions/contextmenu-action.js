@@ -20,7 +20,12 @@ export default class ContextMenuAction {
     setupContextMenu() {
         const Menu = remote.require('menu');
         this.textSelectedMenu = Menu.buildFromTemplate([
-            {label: 'todo: implement'}
+            {
+                label: 'コピー',
+                accelerator: 'Command+C',
+                click: () => {
+                }
+            }
         ]);
     }
 }
