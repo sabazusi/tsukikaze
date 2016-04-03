@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
-    "clipboard": "^1.5.9",
+    "clipboard-js": "^0.2.0",
     "electron-window": "^0.6.0",
     "flux": "^2.1.1",
     "font-awesome": "^4.4.0",
