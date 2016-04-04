@@ -1,4 +1,6 @@
 import remote from 'remote';
+import ActionDispatcher from '../dispatcher/action-dispatcher';
+import ContextMenuConstants from '../constants/contextmenu-constants';
 
 export default class ContextMenuAction {
     constructor() {
@@ -24,6 +26,10 @@ export default class ContextMenuAction {
                 label: 'コピー',
                 accelerator: 'Command+C',
                 click: () => {
+                    ActionDispatcher.dispatch({
+                        actionType: ContextMenuConstants.COPY_TEXT,
+                        text: "hoge"
+                    });
                 }
             }
         ]);

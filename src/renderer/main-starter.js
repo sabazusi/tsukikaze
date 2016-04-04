@@ -1,5 +1,6 @@
 import ActionDispatcher from './dispatcher/action-dispatcher';
 import ContextMenuAction from './actions/contextmenu-action';
+import ClipboardAction from './actions/clipboard-action';
 import DirectMessageStore from './stores/direct-message-store';
 import EditorAction from './actions/editor-action';
 import EditorStore from './stores/editor-store';
@@ -45,6 +46,7 @@ export default class MainApplicationStarter {
         new IpcAction();
         new TweetImageAction();
         new ContextMenuAction();
+        new ClipboardAction();
 
         // start application.
         ReactDOM.render(
