@@ -28,7 +28,7 @@ export default class ContextMenuAction {
                 click: () => {
                     ActionDispatcher.dispatch({
                         actionType: ContextMenuConstants.COPY_TEXT,
-                        text: "hoge"
+                        text: window.getSelection().toString()
                     });
                 }
             }
