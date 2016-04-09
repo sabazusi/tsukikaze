@@ -7,16 +7,20 @@ export default class ContextMenuAction {
         window.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             this.setupContextMenu();
-            switch(e) {
-              default:
-                  this.getContextMenu();
-                  break;
+            if (window.getSelection().toString()) {
+                this.getTextSelectedContextMenu();
+            } else {
+                this.getDefaultContextMenu();
             }
         });
     }
 
-    getContextMenu() {
+    getTextSelectedContextMenu() {
         this.textSelectedMenu.popup(remote.getCurrentWindow());
+    }
+
+    getDefaultContextMenu() {
+        this.defaultMenu.popup(remote.getCurrentWindow());
     }
 
     setupContextMenu() {
@@ -32,6 +36,8 @@ export default class ContextMenuAction {
                     });
                 }
             }
+        ]);
+        this.defaultMenu = Menu.buildFromTemplate([
         ]);
     }
 }
