@@ -5,6 +5,7 @@ import MediaUtil from '../utils/media-util';
 import EditorConstants from '../constants/editor-constants';
 import TwitterClientConstants from '../constants/twitter-client-constants';
 import TweetOptionConstants from '../constants/tweet-option-constants';
+import TwitterStreamingEventTypes from '../constants/types/twitter-streaming-event-types';
 
 export default class TwitterClientAction {
     constructor(client) {
@@ -56,10 +57,10 @@ export default class TwitterClientAction {
 
     start() {
         this.client.verifyCredential().then(({user}) => {
-            this.client.homeTimeline({user}).then(({tweets}) => {
+            this.client.homeTimeline(user.screenName, 100).then(({tweets}) => {
                 ActionDispatcher.dispatch(UserStreamActionFactory.getInitial(tweets));
                 this.client.userStream({user}).then(({stream}) => {
-                    stream.on('data', (data) => {
+                    stream.on(TwitterStreamingEventTypes.DATA, (data) => {
                         ActionDispatcher.dispatch(UserStreamActionFactory.getData(data));
                     });
                 });

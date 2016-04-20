@@ -1,6 +1,6 @@
 {
   "name": "tsukikaze",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "main": "dest/main/tsukikaze.js",
   "scripts": {
     "compile": "gulp compile",
@@ -12,6 +12,11 @@
     "url": "git+https://github.com/sabazusi/tsukikaze.git"
   },
   "author": "sabazusi",
+  "config": {
+    "ghooks": {
+      "post_merge": "npm install"
+    }
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sabazusi/tsukikaze/issues"
@@ -24,6 +29,7 @@
     "electron-zip-packager": "^1.0.4",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.13.1",
+    "ghooks": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
     "gulp-concat": "^2.6.0",
@@ -35,6 +41,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
+    "clipboard-js": "^0.2.0",
     "electron-window": "^0.6.0",
     "flux": "^2.1.1",
     "font-awesome": "^4.4.0",
