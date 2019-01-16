@@ -8,11 +8,5 @@
   },
   "major": {
     "enabled": false
-  },
-  "minor": {
-    "enabled": false
-  },
-  "patch": {
-    "enabled": true
   }
 }
