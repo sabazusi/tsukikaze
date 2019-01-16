@@ -1,7 +1,7 @@
 {
   "prHourlyLimit": 3,
   "timezone": "Asia/Tokyo",
-  "schedule": ["after 11am and before 8pm every weekday"],
+  "schedule": ["every weekday"],
   "labels": ["renovate"],
   "vulnerabilityAlerts": {
     "labels": ["security"]
