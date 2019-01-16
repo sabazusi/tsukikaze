@@ -1,5 +1,25 @@
 {
-  "extends": [
-    "config:base"
+  "prHourlyLimit": 3,
+  "timezone": "Asia/Tokyo",
+  "schedule": ["after 11am and before 8pm every weekday"],
+  "labels": ["renovate"],
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  },
+  "major": {
+    "enabled": false
+  },
+  "minor": {
+    "enabled": false
+  },
+  "patch": {
+    "enabled": true
+  },
+  "ignoreDeps": [
+    "react",
+    "react-*",
+    "material-ui",
+    "@types/react",
+    "@types/react-*"
   ]
 }
