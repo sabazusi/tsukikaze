@@ -1,8 +1,5 @@
 {
   "prHourlyLimit": 3,
   "timezone": "Asia/Tokyo",
-  "labels": ["renovate"],
-  "vulnerabilityAlerts": {
-    "labels": ["security"]
-  }
+  "labels": ["renovate"]
 }
