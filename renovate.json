@@ -14,12 +14,5 @@
   },
   "patch": {
     "enabled": true
-  },
-  "ignoreDeps": [
-    "react",
-    "react-*",
-    "material-ui",
-    "@types/react",
-    "@types/react-*"
-  ]
+  }
 }
