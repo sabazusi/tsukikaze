@@ -1,5 +1,5 @@
 {
-  "prHourlyLimit": 3,
-  "timezone": "Asia/Tokyo",
-  "labels": ["renovate"]
+  "extends": [
+    "config:base"
+  ]
 }
